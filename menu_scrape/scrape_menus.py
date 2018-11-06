@@ -21,7 +21,7 @@ def get_menu_items(longmenu_url):
             print current_category
         else:
             this_name = menurow.xpath('./a//text()')[0]
-            if not "Closed for Today" in this_name: # check that it's not a "closed" message masquerading as a menu item.
+            if (not 'Closed for Today' in this_name) and (not 'We are Closed on Fridays' in this_name): # check that it's not a "closed" message masquerading as a menu item.
                 # this is a menu item - add it to the current category.
                 if not current_category in meal_menu:
                     meal_menu[current_category] = {}
