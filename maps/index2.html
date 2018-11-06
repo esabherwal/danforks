@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Map &middot; danforks</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 90%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <button class="btn btn-light btn-block" id="recenter-button">Re-center Map</button>
+
+    <nav class="navbar navbar-expand fixed-bottom navbar-dark bg-dark">
+      <div class="container">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href=".">Map <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../menus/">Menus</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../specials/">Specials</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <script>
+
+
+      //adapted from https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple
+      function initMap() {
+        //Task 1: Monday 9:30pm DUC, change this for all other tasks and it'll autochoose
+        let task = "hieveryone";
+
+        //var campusCenter = {lat: 38.647648, lng: -90.310810}; //for reference
+        //var myLocation = {lat: 38.648313, lng: -90.308118}; //Olin
+        //var myLocation = {lat: 38.649325, lng: -90.307864}; //Louderman
+
+        //DUC works for all tasks, yay
+        var myLocation = {lat: 38.648057, lng: -90.310565}; //DUC
+        var initialZoom = 16;
+
+        let hoursOfOperationHTML = "<span style='text-decoration:underline;'>Hours of Operation</span> <br>"
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: initialZoom,
+          center: myLocation
+        });
+
+        var currentLocationMarker = new google.maps.Marker({
+            position: myLocation,
+            icon: "currentLocationDotSmall.png",
+            map: map
+          });
+
+        //list of locations with coords and info
+        let locations = [
+          duc = [
+            lat = 38.647563,
+            lng = -90.310455,
+            title = "DUC",
+            open =  (task!="task1")?true:false, //open for all but task 1
+            hours =  hoursOfOperationHTML + "M-F: 11a-3p <br> Sa, Su: Closed"
+          ],
+          bd = [
+            lat= 38.644949,
+            lng= -90.313163,
+            title= "BD",
+            open =  true, //open for all but task 1
+            hours =  hoursOfOperationHTML + "M-Th: 7:30am-2am <br> Fri: 7:30am-3am<br>Sat: 8:30am - 3am<br> Sun: 8:30am - 1am"
+          ],
+          hillman = [
+            lat = 38.646899,
+            lng = -90.304714,
+            title = "Grounds for Change",
+            open = (task!="task1")?true:false, //open for all but task 1,
+            hours =  hoursOfOperationHTML + "<br>M-F: 8a-2p<br>"
+          ],
+          lopata = [
+            lat = 38.649407,
+            lng = -90.306066,
+            title = "Stanley's",
+            open =  (task!="task1")?true:false, //open for all but task 1
+            hours =  hoursOfOperationHTML + "M-F: 9:30a-3p<br> Sa-Su: Closed"
+          ],
+          village = [
+            lat = 38.650643,
+            lng = -90.314071,
+            title = "Village",
+            open = true,
+            hours = hoursOfOperationHTML+"M-Th: 8a-12a<br> Fr: 8a-2a<br> Sa: 9a-2a<br> Su: 9a-12a"
+          ],
+          holmes = [
+            lat = 38.648355,
+            lng = -90.306184,
+            title = "Holmes Lounge",
+            open =  (task!="task1")?true:false, //open for all but task 1,
+            hours =  hoursOfOperationHTML + "M-F: 7:30a-3p<br> Sa-Su: Closed"
+          ],
+          ettas = [
+            lat = 38.646830,
+            lng = -90.302662,
+            title = "Etta's",
+            open =  (task!="task1")?true:false, //open for all but task 1
+            hours =  hoursOfOperationHTML + "M-Th: 7:45a-6p<br> Fr: 7:45a-3p<br> Sa-Su: Closed"
+          ],
+          whispers = [
+            lat = 38.648288,
+            lng = -90.307456,
+            title = "Whispers Café",
+            open =  (task!="task1")?true:false, //open for all but task 1
+            hours =  hoursOfOperationHTML + "M-Th, 7:30am-12am<br> F: 7:30am-3pm<br> Sat: 9am-1pm<br> Sun: 9am-12am"
+          ],
+          bergson = [
+            lat = 38.647758,
+            lng = -90.310705,
+            title = "Café Bergson",
+            open =  (task!="task1")?true:false, //open for all but task 1
+            hours =  hoursOfOperationHTML + "M-F: 7:30a - 5p<br> Sa: 9a-3p<br> Su: 9a-7p "
+          ]
+        ]
+
+        var infowindow = new google.maps.InfoWindow({
+          content: ""
+        });
+
+        for (var i=0; i<locations.length; ++i) {
+
+          var content = '<div id="content">'+
+              '<h1 id="firstHeading" class="firstHeading">' + locations[i][2] +'</h1>'+
+              '<div id="bodyContent">'+
+              '<p>' + locations[i][4] + '</p>'+
+              '<a class="btn btn-light" href="../menus/index.html" role="button">Menu</a>' +
+              '</div>'+
+              '</div>';
+
+          var pointLocation = {lat: +locations[i][0], lng: +locations[i][1]};
+          if (locations[i][3]==true) {
+            var marker = new google.maps.Marker({
+             position: pointLocation,
+             map: map,
+             title: locations[i][2],
+            });
+          }
+          else {
+            var marker = new google.maps.Marker({
+             position: pointLocation,
+             map: map,
+             title: locations[i][2],
+             icon: 'graymarkersmall.png',
+            });
+         }
+         // from https://stackoverflow.com/questions/11106671/google-maps-api-multiple-markers-with-infowindows
+         google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){
+            return function() {
+                infowindow.setContent(content);
+                infowindow.open(map,marker);
+            };
+        })(marker,content,infowindow));
+
+      }
+      document.getElementById("recenter-button").addEventListener("click",
+        function() {
+          map.setCenter(myLocation);
+          map.setZoom(initialZoom);
+        }
+      );
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIyX07lj9dcK1-R0iXoEzOhoQjbBTwHRM&callback=initMap">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  </body>
+</html>
