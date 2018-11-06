@@ -27,18 +27,19 @@
     <script>
 
 
-      ///////Kaitlyn: When we need to do our user testing, I'll just make a function that lets us pick the location and settings for our task;
-      ///////the current open/close and location info is pretty arbitrary, so adjust as needed
-
       //adapted from https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple
       function initMap() {
+        //Task 1: Monday 9:30pm DUC
+        let task = "task1";
 
-        //change as you see fit
+        //I'll fix
         //var campusCenter = {lat: 38.647648, lng: -90.310810}; //for reference
-        var myLocation = {lat: 38.648313, lng: -90.308118}; //Olin
+        //var myLocation = {lat: 38.648313, lng: -90.308118}; //Olin
         //var myLocation = {lat: 38.649325, lng: -90.307864}; //Louderman
+        var myLocation = {lat: 38.648057, lng: -90.310565}; //DUC
         var initialZoom = 16;
 
+        let hoursOfOperationHTML = "<span style='text-decoration:underline;'>Hours of Operation</span> <br>"
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: initialZoom,
           center: myLocation
@@ -56,64 +57,64 @@
             lat = 38.647563,
             lng = -90.310455,
             title = "DUC",
-            open = false,
-            hours = "<span style='text-decoration:underline;'>Hours of Operation</span> <br>M-F: 11a-3p <br> Sa, Su: Closed"
+            open = (task=="task1")?false:true,
+            hours =  hoursOfOperationHTML + "M-F: 11a-3p <br> Sa, Su: Closed"
           ],
           bd = [
             lat= 38.644949,
             lng= -90.313163,
             title= "BD",
             open = true,
-            hours = "<span style='text-decoration:underline;'>Hours of Operation</span> <br>M-Th: 7:30am-2am <br> Fri: 7:30am-3am<br>Sat: 8:30am - 3am<br> Sun: 8:30am - 1am"
+            hours =  hoursOfOperationHTML + "M-Th: 7:30am-2am <br> Fri: 7:30am-3am<br>Sat: 8:30am - 3am<br> Sun: 8:30am - 1am"
           ],
           hillman = [
             lat = 38.646899,
             lng = -90.304714,
             title = "Grounds for Change",
             open = true,
-            hours = "<span style='text-decoration:underline;'>Hours of Operation</span> <br>M-F: 8a-2p<br>"
+            hours =  hoursOfOperationHTML + "<br>M-F: 8a-2p<br>"
           ],
           lopata = [
             lat = 38.649407,
             lng = -90.306066,
             title = "Stanley's",
             open = true,
-            hours = "<span style='text-decoration:underline;'>Hours of Operation</span> <br>M-F: 9:30a-3p<br> Sa-Su: Closed"
+            hours =  hoursOfOperationHTML + "M-F: 9:30a-3p<br> Sa-Su: Closed"
           ],
           village = [
             lat = 38.650643,
             lng = -90.314071,
             title = "Village",
             open = true,
-            hours = "<span style='text-decoration:underline;'>Hours of Operation</span> <br>M-Th: 8a-12a<br> Fr: 8a-2a<br> Sa: 9a-2a<br> Su: 9a-12a"
+            hours = hoursOfOperationHTML+"M-Th: 8a-12a<br> Fr: 8a-2a<br> Sa: 9a-2a<br> Su: 9a-12a"
           ],
           holmes = [
             lat = 38.648355,
             lng = -90.306184,
             title = "Holmes Lounge",
             open = false,
-            hours = "<span style='text-decoration:underline;'>Hours of Operation</span> <br>M-F: 7:30a-3p<br> Sa-Su: Closed"
+            hours =  hoursOfOperationHTML + "M-F: 7:30a-3p<br> Sa-Su: Closed"
           ],
           ettas = [
             lat = 38.646830,
             lng = -90.302662,
             title = "Etta's",
             open = true,
-            hours = "<span style='text-decoration:underline;'>Hours of Operation</span> <br>M-Th: 7:45a-6p<br> Fr: 7:45a-3p<br> Sa-Su: Closed"
+            hours =  hoursOfOperationHTML + "M-Th: 7:45a-6p<br> Fr: 7:45a-3p<br> Sa-Su: Closed"
           ],
           whispers = [
             lat = 38.648288,
             lng = -90.307456,
             title = "Whispers Café",
             open = false,
-            hours = "<span style='text-decoration:underline;'>Hours of Operation</span> <br>M - Th, 7:30am-12am<br> F: 7:30am-3pm<br> Sat: 9am-1pm<br> Sun: 9am-12am"
+            hours =  hoursOfOperationHTML + "M-Th, 7:30am-12am<br> F: 7:30am-3pm<br> Sat: 9am-1pm<br> Sun: 9am-12am"
           ],
           bergson = [
             lat = 38.647758,
             lng = -90.310705,
             title = "Café Bergson",
             open = false,
-            hours = "<span style='text-decoration:underline;'>Hours of Operation</span> <br>M - F: 7:30a - 5p<br> Sa: 9a-3p<br> Su: 9a-7p "
+            hours =  hoursOfOperationHTML + "M-F: 7:30a - 5p<br> Sa: 9a-3p<br> Su: 9a-7p "
           ]
         ]
 
