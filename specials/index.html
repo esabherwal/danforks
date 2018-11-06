@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="specials.css">
 
   <title>danforks</title>
 
@@ -19,8 +21,80 @@
 
 </head>
 <body>
-<div class="container">
+  <div class="container">
     <h1>danforks</h1>
+    <!-- <button onclick="getWeekDays()">Current Day of the Week</button> -->
+      <button id="element1" class="previous round" onclick="yesterday()">&#8249;</button>
+      <p id="today"></p>
+      <button id="element2" class="next round" onclick="tomorrow()">&#8250;</button>
+      <ul id="a"></ul>
+
+    <script>
+    function getWeekDays() {
+      var d = new Date();
+      var weekday = new Array(7);
+      weekday[0] = "Sunday";
+      weekday[1] = "Monday";
+      weekday[2] = "Tuesday";
+      weekday[3] = "Wednesday";
+      weekday[4] = "Thursday";
+      weekday[5] = "Friday";
+      weekday[6] = "Saturday";
+
+      var index = d.getDay();
+      var n = weekday[index];
+      document.getElementById("today").innerHTML = n;
+
+      var dict = {"day": n, "index": index, "weekday": weekday};
+      return dict;
+    }
+    getWeekDays()
+
+    var d = getWeekDays();
+    var currentDate = d.day;
+    var currentDateIndex = d.index;
+
+    function tomorrow(){
+      if(currentDateIndex >= 6){
+        currentDateIndex = 6;
+      }
+      var tomorrowDay = d.weekday[currentDateIndex+1];
+      console.log(tomorrowDay);
+      document.getElementById("today").innerHTML = tomorrowDay;
+      currentDate = tomorrowDay;
+      currentDateIndex = currentDateIndex + 1;
+      console.log("post:"+currentDate)
+      console.log("post:"+currentDateIndex)
+      if(currentDateIndex >= 6){
+        currentDateIndex = -1;
+      }
+
+    }
+    function yesterday(){
+      if(currentDateIndex <= 0){
+        currentDateIndex = 0;
+      }
+      var tomorrowDay = d.weekday[currentDateIndex-1];
+      console.log(tomorrowDay);
+      document.getElementById("today").innerHTML = tomorrowDay;
+      currentDate = tomorrowDay;
+      currentDateIndex = currentDateIndex - 1;
+      console.log("post:"+currentDate)
+      console.log("post:"+currentDateIndex)
+      if(currentDateIndex <= 0){
+        currentDateIndex = 7;
+      }
+      else if(currentDateIndex == 6){
+        currentDateIndex = 6;
+      }
+    }
+
+    $.getJSON("../menu_scrape/specials_data.json", function(json) {
+    console.log(json); // this will show the info it in firebug console
+    });
+
+  </script>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
