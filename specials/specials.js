@@ -35,6 +35,7 @@ function getWeekDays(){
       index = index + 1
       document.getElementById("today").innerHTML = currentDate;
     };
+    return currentDate;
 }
 
 getWeekDays()

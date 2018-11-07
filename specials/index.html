@@ -35,24 +35,77 @@
     <!-- Generates the weekdays by arrow button click -->
     <script type="text/javascript" src="specials.js"></script>
 
+    <!-- Displays the specials by location for the selected weekday-->
     <script>
     $.getJSON("../menu_scrape/specials_data.json", function(json) {
-    console.log(json); // this will show the info it in firebug console
-    console.log("------------------------------------------");
-    var locations = Object.keys(json);
-    console.log(locations);
-    for(var i = 0; i < locations.length; i++){
+      //console.log(json); // this will show the info it in firebug console
+      //var data = JSON.parse(json);
+      var locations = Object.keys(json);
+      console.log(locations);
+      console.log("----------------------------------------");
+      var d = getWeekDays();
+      for(var i = 0; i < locations.length; i++){
         var listItem = document.createElement('h6');
         listItem.innerHTML = locations[i] + '<br>';
         locationdiv.appendChild(listItem);
-    }
+        var x = locations[i];
+
+        //checks if the index is referecing the DUC, BD, or the Village
+        //those 3 have different json structure
+        if(i != 2 && i != 9 && i != 10){
+          var data = json[x][""].menus;
+          var date = Object.keys(data);
+          //console.log(data);
+          for(var q = 0; q < date.length; q++){
+            var split_date = date[q].split(",")[0]; //@ 0 will give the weekDAY
+            if(d == split_date){
+              var day_data = data[date[q]];
+              var day_data_keys = Object.keys(day_data.menu);
+               // console.log(day_data.menu)
+               // console.log("------");
+              for(var v = 0; v < day_data_keys.length; v++){
+                var vv = day_data_keys[v];
+              //  console.log(day_data.menu[vv], Object.keys(day_data.menu[vv]).length);
+                var special_types = day_data.menu[vv];
+                console.log(special_types);
+                var special_types_keys = Object.keys(special_types);
+                console.log(special_types_keys);
+                for(var h = 0; h < special_types_keys.length; h++){
+                  var hh = special_types_keys[h];
+                  var types_data = special_types[hh];
+                  //**Now have access to menu data via console--> now just append to webpage
+                }
+              }
+              console.log("----------------------------------------");
+
+            }
+          }
+
+        }
+        else{
+          var stations = Object.keys(json[x]);// array of stations
+          //console.log(stations); //console.log(stations.length);
+          for(var s = 0; s < stations.length; s++){
+            var data = json[x][stations[s]].menus;
+            //console.log(data);
+          }
+
+          // console.log(stations[i].length);
+          // for(var i = 0; )
+          // console.log(stations[0]);//console.log(stations.length);
+          // var data = json[x][stations[i]];
+          // console.log(data);
+        }
+      }
     });
+
+
     </script>
 
-</div>
+  </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 </html>
