@@ -33,17 +33,55 @@
     <ul id="locationdiv"></ul>
 
     <!-- Generates the weekdays by arrow button click -->
-    <script type="text/javascript" src="specials.js"></script>
+    <!-- <script type="text/javascript" src="specials.js"></script> -->
 
     <!-- Displays the specials by location for the selected weekday-->
     <script>
+    var d = new Date();
+    var weekday = new Array(7);
+    weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
+
+    //Today
+    var index = d.getDay();
+    var currentDate = weekday[index];
+    document.getElementById("today").innerHTML = currentDate;
+
+    //Yesterday
+    document.getElementById("button1").onclick = function(){
+      if(index <= 0){
+        index = 7;
+      }
+      currentDate = weekday[index-1];
+      index = index - 1;
+      document.getElementById("today").innerHTML = currentDate;
+    };
+
+    //Tomorrow
+    document.getElementById("button2").onclick = function(){
+      if(index >=6){
+        index = -1;
+      }
+      currentDate = weekday[index+1];
+      index = index + 1
+      document.getElementById("today").innerHTML = currentDate;
+    };
+
     $.getJSON("../menu_scrape/specials_data.json", function(json) {
       var locations = Object.keys(json);
-      console.log(locations);
-      console.log("----------------------------------------");
-      var d = getWeekDays();
+      console.log(json);
+      //***********************************************
+      //Debug: This isn't updating asynchronously
+      //***********************************************
+      var d = currentDate;
       var dictionary = [];
       var dictionary_stations = [];
+      var location_stations = [];
       var food_url_array = [];
       var food_url_array_stations = [];
       for(var i = 0; i < locations.length; i++){
@@ -112,22 +150,18 @@
                       var food_item = types_data_keys[f];
                       var food_items = types_data[food_item];
                       var url = food_items.nutrition_url;  //console.log(url);
-                      dictionary.push({
+                      location_stations.push({
                         key:   locations[i],
+                        value: stations[s]
+                      });
+                      dictionary_stations.push({
+                        key:   stations[s],
                         value: food_item
                       });
-                      food_url_array.push({
+                      food_url_array_stations.push({
                         key: food_item,
                         value: url
                       });
-                      // dictionary_stations.push({
-                      //   key:   locations[i],
-                      //   value: food_item
-                      // });
-                      // food_url_array_stations.push({
-                      //   key: food_item,
-                      //   value: url
-                      // });
                     }
                   }
                 }
@@ -136,8 +170,7 @@
           }
         }
       }
-      // console.log(dictionary_stations);
-      // console.log(food_url_array_stations);
+
 
       Array.prototype.contains = function ( needle ) {
         for (i in this) {
@@ -148,18 +181,57 @@
 
       var array = ["empty_string"];
       var array_keys = Object.keys(dictionary);
+
+
+      /////////////////// Locations without stations
       for(var aa = 0; aa < array_keys.length; aa++){
         var loc = dictionary[aa].key;
+        //console.log(aa, loc);
         if (!(array.contains(loc))) {
-          //appends locations
-          var listItem = document.createElement('h6');
-          listItem.innerHTML = '<br>' + loc;
-          locationdiv.appendChild(listItem);
-          array.push(loc);
+            //appends locations
+            var listItem = document.createElement('h6');
+            listItem.innerHTML = '<br>' + loc;
+            locationdiv.appendChild(listItem);
+            array.push(loc);
         }
+
         //appends food items at locations
         var listItem3 = document.createElement('button');
         listItem3.innerHTML = '<a href="' + food_url_array[aa].value +'">'+dictionary[aa].value+'</a>';
+        locationdiv.appendChild(listItem3);
+      }
+
+      ///////////////////Locations with stations
+      var array_loc = ["empty_string"];
+      var array_stations = ["empty_string"];
+      var array_keys = Object.keys(dictionary);
+
+      // console.log(location_stations); //maps loc to station
+      // console.log(dictionary_stations); //maps station to food
+      // console.log(food_url_array_stations); //maps food to url
+      var location_stations_keys = Object.keys(location_stations);
+      //console.log(location_stations_keys, location_stations_keys.length);
+
+      for(var aa = 0; aa < Object.keys(location_stations).length; aa++){
+        var loc = location_stations[aa].key;
+        var sta = location_stations[aa].value;
+        if (!(array.contains(loc))) {
+            //appends locations
+            var listItem = document.createElement('h6');
+            listItem.innerHTML = '<br>' + loc;
+            locationdiv.appendChild(listItem);
+            array.push(loc);
+        }
+        if (!(array.contains(sta))) {
+            //appends locations
+            var listItem = document.createElement('li');
+            listItem.innerHTML = sta + '<br>';
+            locationdiv.appendChild(listItem);
+            array.push(sta);
+        }
+        //appends food items at locations
+        var listItem3 = document.createElement('button');
+        listItem3.innerHTML = '<a href="' + food_url_array_stations[aa].value +'">'+dictionary_stations[aa].value+'</a>';
         locationdiv.appendChild(listItem3);
       }
     });
