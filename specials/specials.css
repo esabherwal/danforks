@@ -22,9 +22,18 @@ a:hover {
 .round {
     border-radius: 50%;
 }
-/* .containerDays{
-  display: inline;
-} */
-#button1 {display:inline-block;margin-right:10px;margin-left: 100px}
-#today {display:inline-block;}
-#button2 {display:inline-block;margin-left:10px;}
+
+#button1 {
+  display:inline-block;
+  margin-right:10px;
+  margin-left: 80px
+}
+
+#today {
+  display:inline-block;
+}
+
+#button2 {
+  display:inline-block;
+  margin-left:10px;
+}
