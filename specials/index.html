@@ -28,17 +28,26 @@
     <h5 id="today"></h5>
     <button id="button2" class="next round">&#8250;</button>
     <hr>
-    <ul id="location"></ul>
-    <ul id="special"></ul>
+    <!-- <ul id="location"></ul> -->
+    <!-- <ul id="special"></ul> -->
+    <ul id="locationdiv"></ul>
 
     <!-- Generates the weekdays by arrow button click -->
     <script type="text/javascript" src="specials.js"></script>
 
-    <!-- <script>
-    // $.getJSON("../menu_scrape/specials_data.json", function(json) {
-    // console.log(json); // this will show the info it in firebug console
-    // });
-    </script> -->
+    <script>
+    $.getJSON("../menu_scrape/specials_data.json", function(json) {
+    console.log(json); // this will show the info it in firebug console
+    console.log("------------------------------------------");
+    var locations = Object.keys(json);
+    console.log(locations);
+    for(var i = 0; i < locations.length; i++){
+        var listItem = document.createElement('h6');
+        listItem.innerHTML = locations[i] + '<br>';
+        locationdiv.appendChild(listItem);
+    }
+    });
+    </script>
 
 </div>
 
