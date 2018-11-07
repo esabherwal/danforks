@@ -43,7 +43,9 @@
       console.log("----------------------------------------");
       var d = getWeekDays();
       var dictionary = [];
+      var dictionary_stations = [];
       var food_url_array = [];
+      var food_url_array_stations = [];
       for(var i = 0; i < locations.length; i++){
         var x = locations[i];
 
@@ -78,25 +80,64 @@
                       key: food_item,
                       value: url
                     });
-
                   }
-
                 }
               }
             }
           }
         }
-        else{
+        else{  //now we are looking @ the DUC, Bear's Den, and the Village
           var stations = Object.keys(json[x]);// array of stations
-          //console.log(stations); //console.log(stations.length);
+          // console.log(json);
+          // console.log(stations); //console.log(stations.length);
           for(var s = 0; s < stations.length; s++){
             var data = json[x][stations[s]].menus;
+          //  console.log(data);
+            var date = Object.keys(data);
             //console.log(data);
+            for(var q = 0; q < date.length; q++){
+              var split_date = date[q].split(",")[0]; //@ 0 will give the weekDAY
+              if(d == split_date){
+                var day_data = data[date[q]];
+                var day_data_keys = Object.keys(day_data.menu);
+                for(var v = 0; v < day_data_keys.length; v++){
+                  var vv = day_data_keys[v];
+                  var special_types = day_data.menu[vv];
+                  var special_types_keys = Object.keys(special_types);
+                  for(var h = 0; h < special_types_keys.length; h++){
+                    var hh = special_types_keys[h];
+                    var types_data = special_types[hh];
+                    var types_data_keys = Object.keys(types_data);
+                    for(var f = 0; f < types_data_keys.length; f++){
+                      var food_item = types_data_keys[f];
+                      var food_items = types_data[food_item];
+                      var url = food_items.nutrition_url;  //console.log(url);
+                      dictionary.push({
+                        key:   locations[i],
+                        value: food_item
+                      });
+                      food_url_array.push({
+                        key: food_item,
+                        value: url
+                      });
+                      // dictionary_stations.push({
+                      //   key:   locations[i],
+                      //   value: food_item
+                      // });
+                      // food_url_array_stations.push({
+                      //   key: food_item,
+                      //   value: url
+                      // });
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
-      console.log(dictionary);
-      console.log(food_url_array);
+      // console.log(dictionary_stations);
+      // console.log(food_url_array_stations);
 
       Array.prototype.contains = function ( needle ) {
         for (i in this) {
@@ -120,7 +161,6 @@
         var listItem3 = document.createElement('button');
         listItem3.innerHTML = '<a href="' + food_url_array[aa].value +'">'+dictionary[aa].value+'</a>';
         locationdiv.appendChild(listItem3);
-        console.log(food_url_array[aa].value);
       }
     });
     </script>
