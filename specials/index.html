@@ -138,9 +138,9 @@
       }
 
 
-      Array.prototype.contains = function ( needle ) {
+      Array.prototype.contains = function ( arr ) {
         for (i in this) {
-          if (this[i] == needle) return true;
+          if (this[i] == arr) return true;
         }
         return false;
       }
