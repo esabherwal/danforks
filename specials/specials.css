@@ -25,6 +25,6 @@ a:hover {
 /* .containerDays{
   display: inline;
 } */
-#element1 {display:inline-block;margin-right:10px;}
+#button1 {display:inline-block;margin-right:10px;}
 #today {display:inline-block;}
-#element2 {display:inline-block;margin-left:10px;}
+#button2 {display:inline-block;margin-left:10px;}

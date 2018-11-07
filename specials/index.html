@@ -10,11 +10,11 @@
   <title>danforks</title>
 
   <link rel="apple-touch-icon" sizes="180x180" href="/danforks/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/danforks/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/danforks/favicon-16x16.png">
+  <!-- <link rel="icon" type="image/png" sizes="32x32" href="/danforks/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/danforks/favicon-16x16.png"> -->
   <link rel="manifest" href="/danforks/site.webmanifest">
   <link rel="mask-icon" href="/danforks/safari-pinned-tab.svg" color="#5bbad5">
-  <link rel="shortcut icon" href="/danforks/favicon.ico">
+  <!-- <link rel="shortcut icon" href="/danforks/favicon.ico"> -->
   <meta name="msapplication-TileColor" content="#2d89ef">
   <meta name="msapplication-config" content="/danforks/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
@@ -23,77 +23,19 @@
 <body>
   <div class="container">
     <h1>danforks</h1>
-    <!-- <button onclick="getWeekDays()">Current Day of the Week</button> -->
-      <button id="element1" class="previous round" onclick="yesterday()">&#8249;</button>
-      <p id="today"></p>
-      <button id="element2" class="next round" onclick="tomorrow()">&#8250;</button>
-      <ul id="a"></ul>
+    <button id="button1" class="previous round">&#8249;</button>
+    <h5 id="today"></h5>
+    <button id="button2" class="next round">&#8250;</button>
+    <ul id="a"></ul>
 
-    <script>
-    function getWeekDays() {
-      var d = new Date();
-      var weekday = new Array(7);
-      weekday[0] = "Sunday";
-      weekday[1] = "Monday";
-      weekday[2] = "Tuesday";
-      weekday[3] = "Wednesday";
-      weekday[4] = "Thursday";
-      weekday[5] = "Friday";
-      weekday[6] = "Saturday";
+    <!-- Generates the weekdays by arrow button click -->
+    <script type="text/javascript" src="specials.js"></script>
 
-      var index = d.getDay();
-      var n = weekday[index];
-      document.getElementById("today").innerHTML = n;
-
-      var dict = {"day": n, "index": index, "weekday": weekday};
-      return dict;
-    }
-    getWeekDays()
-
-    var d = getWeekDays();
-    var currentDate = d.day;
-    var currentDateIndex = d.index;
-
-    function tomorrow(){
-      if(currentDateIndex >= 6){
-        currentDateIndex = 6;
-      }
-      var tomorrowDay = d.weekday[currentDateIndex+1];
-      console.log(tomorrowDay);
-      document.getElementById("today").innerHTML = tomorrowDay;
-      currentDate = tomorrowDay;
-      currentDateIndex = currentDateIndex + 1;
-      console.log("post:"+currentDate)
-      console.log("post:"+currentDateIndex)
-      if(currentDateIndex >= 6){
-        currentDateIndex = -1;
-      }
-
-    }
-    function yesterday(){
-      if(currentDateIndex <= 0){
-        currentDateIndex = 0;
-      }
-      var tomorrowDay = d.weekday[currentDateIndex-1];
-      console.log(tomorrowDay);
-      document.getElementById("today").innerHTML = tomorrowDay;
-      currentDate = tomorrowDay;
-      currentDateIndex = currentDateIndex - 1;
-      console.log("post:"+currentDate)
-      console.log("post:"+currentDateIndex)
-      if(currentDateIndex <= 0){
-        currentDateIndex = 7;
-      }
-      else if(currentDateIndex == 6){
-        currentDateIndex = 6;
-      }
-    }
-
-    $.getJSON("../menu_scrape/specials_data.json", function(json) {
-    console.log(json); // this will show the info it in firebug console
-    });
-
-  </script>
+    <!-- <script>
+    // $.getJSON("../menu_scrape/specials_data.json", function(json) {
+    // console.log(json); // this will show the info it in firebug console
+    // });
+    </script> -->
 
 </div>
 
