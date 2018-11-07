@@ -38,16 +38,13 @@
     <!-- Displays the specials by location for the selected weekday-->
     <script>
     $.getJSON("../menu_scrape/specials_data.json", function(json) {
-      //console.log(json); // this will show the info it in firebug console
-      //var data = JSON.parse(json);
       var locations = Object.keys(json);
       console.log(locations);
       console.log("----------------------------------------");
       var d = getWeekDays();
+      var dictionary = [];
+      var food_url_array = [];
       for(var i = 0; i < locations.length; i++){
-        var listItem = document.createElement('h6');
-        listItem.innerHTML = locations[i] + '<br>';
-        locationdiv.appendChild(listItem);
         var x = locations[i];
 
         //checks if the index is referecing the DUC, BD, or the Village
@@ -61,26 +58,33 @@
             if(d == split_date){
               var day_data = data[date[q]];
               var day_data_keys = Object.keys(day_data.menu);
-               // console.log(day_data.menu)
-               // console.log("------");
               for(var v = 0; v < day_data_keys.length; v++){
                 var vv = day_data_keys[v];
-              //  console.log(day_data.menu[vv], Object.keys(day_data.menu[vv]).length);
                 var special_types = day_data.menu[vv];
-                console.log(special_types);
                 var special_types_keys = Object.keys(special_types);
-                console.log(special_types_keys);
                 for(var h = 0; h < special_types_keys.length; h++){
                   var hh = special_types_keys[h];
                   var types_data = special_types[hh];
-                  //**Now have access to menu data via console--> now just append to webpage
+                  var types_data_keys = Object.keys(types_data);
+                  for(var f = 0; f < types_data_keys.length; f++){
+                    var food_item = types_data_keys[f];
+                    var food_items = types_data[food_item];
+                    var url = food_items.nutrition_url;  //console.log(url);
+                    dictionary.push({
+                      key:   locations[i],
+                      value: food_item
+                    });
+                    food_url_array.push({
+                      key: food_item,
+                      value: url
+                    });
+
+                  }
+
                 }
               }
-              console.log("----------------------------------------");
-
             }
           }
-
         }
         else{
           var stations = Object.keys(json[x]);// array of stations
@@ -89,17 +93,36 @@
             var data = json[x][stations[s]].menus;
             //console.log(data);
           }
-
-          // console.log(stations[i].length);
-          // for(var i = 0; )
-          // console.log(stations[0]);//console.log(stations.length);
-          // var data = json[x][stations[i]];
-          // console.log(data);
         }
       }
+      console.log(dictionary);
+      console.log(food_url_array);
+
+      Array.prototype.contains = function ( needle ) {
+        for (i in this) {
+          if (this[i] == needle) return true;
+        }
+        return false;
+      }
+
+      var array = ["empty_string"];
+      var array_keys = Object.keys(dictionary);
+      for(var aa = 0; aa < array_keys.length; aa++){
+        var loc = dictionary[aa].key;
+        if (!(array.contains(loc))) {
+          //appends locations
+          var listItem = document.createElement('h6');
+          listItem.innerHTML = '<br>' + loc;
+          locationdiv.appendChild(listItem);
+          array.push(loc);
+        }
+        //appends food items at locations
+        var listItem3 = document.createElement('button');
+        listItem3.innerHTML = '<a href="' + food_url_array[aa].value +'">'+dictionary[aa].value+'</a>';
+        locationdiv.appendChild(listItem3);
+        console.log(food_url_array[aa].value);
+      }
     });
-
-
     </script>
 
   </div>
