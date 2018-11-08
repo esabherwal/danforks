@@ -75,7 +75,7 @@
                   for(var f = 0; f < types_data_keys.length; f++){
                     var food_item = types_data_keys[f];
                     var food_items = types_data[food_item];
-                    var url = food_items.nutrition_url;  //console.log(url);
+                    var url = food_items.nutrition_url; 
                     dictionary.push({
                       key:   locations[i],
                       value: food_item
@@ -152,7 +152,6 @@
       /////////////////// Locations without stations
       for(var aa = 0; aa < array_keys.length; aa++){
         var loc = dictionary[aa].key;
-        //console.log(aa, loc);
         if (!(array.contains(loc))) {
             //appends locations
             var listItem = document.createElement('h6');
@@ -171,12 +170,7 @@
       var array_loc = ["empty_string"];
       var array_stations = ["empty_string"];
       var array_keys = Object.keys(dictionary);
-
-      // console.log(location_stations); //maps loc to station
-      // console.log(dictionary_stations); //maps station to food
-      // console.log(food_url_array_stations); //maps food to url
       var location_stations_keys = Object.keys(location_stations);
-      //console.log(location_stations_keys, location_stations_keys.length);
 
       for(var aa = 0; aa < Object.keys(location_stations).length; aa++){
         var loc = location_stations[aa].key;
@@ -197,7 +191,7 @@
         }
         //appends food items at locations
         var listItem3 = document.createElement('button');
-        listItem3.innerHTML = '<a class="btn btn-primary btn-lg btn-block" href="' + food_url_array_stations[aa].value +'">'+dictionary_stations[aa].value+'</a>';
+        // listItem3.innerHTML = '<a href="' + food_url_array_stations[aa].value +'">'+dictionary_stations[aa].value+'</a>';
         locationdiv.appendChild(listItem3);
       }
     });
