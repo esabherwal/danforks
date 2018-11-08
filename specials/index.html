@@ -152,10 +152,11 @@
       /////////////////// Locations without stations
       for(var aa = 0; aa < array_keys.length; aa++){
         var loc = dictionary[aa].key;
+        var locStr = loc.replace(/\s+/g,'');
         if (!(array.contains(loc))) {
             //appends locations
             var listItem = document.createElement('h6');
-            listItem.innerHTML = '<br><a class="btn btn-light btn-sm btn-block" data-toggle="collapse" href="#loc' + loc + '"role="button" aria-expanded="false" aria-controls="loc' + loc + '">' + loc + '</a>';
+            listItem.innerHTML = '<br><a class="btn btn-light btn-sm btn-block" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
             console.log(listItem.innerHTML)
             locationdiv.appendChild(listItem);
             array.push(loc);
@@ -165,7 +166,7 @@
         var listItem3 = document.createElement('button');
         listItem3.innerHTML = '<a href="' + food_url_array[aa].value +'">'+dictionary[aa].value+'</a></br>';
         listItem3.className = 'btn btn-light btn-sm btn-block collapse';
-        listItem3.id = "loc" + loc;
+        listItem3.id = "loc" + locStr;
         console.log(listItem.innerHTML)
         console.log(listItem3.id)
         locationdiv.appendChild(listItem3);
