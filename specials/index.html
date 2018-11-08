@@ -190,8 +190,8 @@
             //appends stations
             var listItem = document.createElement('li');
             listItem.innerHTML = '<a data-toggle="collapse" href="#sta' + staStr + '"role="button" aria-expanded="false" aria-controls="sta' + staStr + '">' + sta + "</a></br>";
-            console.log("STATIONS:" + listItem.innerHTML);
-            listItem.className = 'btn btn-light btn-sm btn-block text-center collapse';
+            listItem.className = 'btn btn-secondary btn-lg btn-block text-center';
+            // listItem.className = 'btn btn-light btn-sm btn-block text-center collapse';
             listItem.id = "loc" + locStr;
             locationdiv.appendChild(listItem);
             array.push(sta);
