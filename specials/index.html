@@ -40,7 +40,6 @@
 
     $.getJSON("../menu_scrape/specials_data.json", function(json) {
       var locations = Object.keys(json);
-      console.log(json);
       //***********************************************
       //Debug: This isn't updating asynchronously
       //***********************************************
@@ -157,7 +156,6 @@
             //appends locations
             var listItem = document.createElement('h6');
             listItem.innerHTML = '</br><a class="btn btn-secondary btn-lg btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
-            console.log(listItem.innerHTML)
             locationdiv.appendChild(listItem);
             array.push(loc);
         }
@@ -167,8 +165,6 @@
         listItem3.innerHTML = '<a href="' + food_url_array[aa].value +'">'+dictionary[aa].value+'</a></br>';
         listItem3.className = 'btn btn-light btn-sm btn-block text-center collapse';
         listItem3.id = "loc" + locStr;
-        console.log(listItem.innerHTML)
-        console.log(listItem3.id)
         locationdiv.appendChild(listItem3);
       }
 
@@ -186,7 +182,7 @@
         if (!(array.contains(loc))) {
             //appends locations
             var listItem = document.createElement('h6');
-            listItem.innerHTML = '<br><a class="btn btn-secondary btn-lg btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc;
+            listItem.innerHTML = '<br><a class="btn btn-secondary btn-lg btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
             locationdiv.appendChild(listItem);
             array.push(loc);
         }
@@ -194,7 +190,8 @@
             //appends stations
             var listItem = document.createElement('li');
             listItem.innerHTML = '<a class="btn btn-secondary btn-lg btn-block text-center" data-toggle="collapse" href="#sta' + staStr + '"role="button" aria-expanded="false" aria-controls="sta' + staStr + '">' + sta + "</br>";
-            listItem.className = 'btn btn-light btn-lg btn-block text-center collapse';
+            console.log("STATIONS:" + listItem.innerHTML);
+              listItem.className = 'btn btn-light btn-lg btn-block text-center collapse';
             listItem.id = "loc" + locStr;
             locationdiv.appendChild(listItem);
             array.push(sta);
