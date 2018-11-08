@@ -161,14 +161,10 @@
         }
 
         //appends food items at locations
-        var divA = document.createElement('div');
-        divA.className = 'btn-group-vertical';
         var listItem3 = document.createElement('button');
-        var divB = document.createElement('div');
-        listItem3.innerHTML = '<a href="' + food_url_array[aa].value +'">'+dictionary[aa].value+'</a>';
+        listItem3.innerHTML = '<a href="' + food_url_array[aa].value +'">'+dictionary[aa].value+'</a></br>';
         listItem3.className = 'btn btn-light btn-sm btn-block';
-        divA.appendChild(listItem3);
-        locationdiv.appendChild(divA);
+        locationdiv.appendChild(listItem3);
       }
 
       ///////////////////Locations with stations
