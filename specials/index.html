@@ -181,14 +181,14 @@
         var staStr = sta.replace(/\s+/g,'');
         if (!(array.contains(loc))) {
             //appends locations
-            var listItem = document.createElement('button');
+            var listItem = document.createElement('h6');
             listItem.innerHTML = '<br><a class="btn btn-secondary btn-lg btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
             locationdiv.appendChild(listItem);
             array.push(loc);
         }
-        if (!(array.contains(sta))) { 
+        if (!(array.contains(sta))) {
             //appends stations
-            var listItem = document.createElement('button');
+            var listItem = document.createElement('li');
             listItem.innerHTML = '<a data-toggle="collapse" href="#sta' + staStr + '"role="button" aria-expanded="false" aria-controls="sta' + staStr + '">' + sta + "</br>";
             listItem.className = 'btn btn-light btn-sm btn-block text-center collapse';
             listItem.id = "loc" + locStr;
