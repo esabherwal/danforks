@@ -156,6 +156,7 @@
             //appends locations
             var listItem = document.createElement('h6');
             listItem.innerHTML = '<br><a class="btn btn-primary btn-sm btn-block" data-toggle="collapse" href="#loc' + loc + '"role="button" aria-expanded="false" aria-controls="loc"' + aa + ">" + loc + '</a>';
+            console.log(listItem.innerHTML)
             locationdiv.appendChild(listItem);
             array.push(loc);
         }
@@ -165,6 +166,8 @@
         listItem3.innerHTML = '<a href="' + food_url_array[aa].value +'">'+dictionary[aa].value+'</a></br>';
         listItem3.className = 'btn btn-light btn-sm btn-block collapse';
         listItem3.id = "loc" + loc;
+        console.log(listItem.innerHTML)
+        console.log(listItem3.id)
         locationdiv.appendChild(listItem3);
       }
 
