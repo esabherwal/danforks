@@ -176,9 +176,9 @@
 
       for(var aa = 0; aa < Object.keys(location_stations).length; aa++){
         var loc = location_stations[aa].key;
-        var locString = loc.replace(/\s+/g,'');
+        var locStr = loc.replace(/\s+/g,'');
         var sta = location_stations[aa].value;
-        var staString = sta.replace(/\s+/g,'');
+        var staStr = sta.replace(/\s+/g,'');
         if (!(array.contains(loc))) {
             //appends locations
             var listItem = document.createElement('h6');
