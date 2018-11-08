@@ -156,7 +156,7 @@
         if (!(array.contains(loc))) {
             //appends locations
             var listItem = document.createElement('h6');
-            listItem.innerHTML = '</br><a class="btn btn-secondary btn-lg btn-block" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
+            listItem.innerHTML = '</br><a class="btn btn-secondary btn-lg btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
             console.log(listItem.innerHTML)
             locationdiv.appendChild(listItem);
             array.push(loc);
@@ -165,7 +165,7 @@
         //appends food items at locations
         var listItem3 = document.createElement('button');
         listItem3.innerHTML = '<a href="' + food_url_array[aa].value +'">'+dictionary[aa].value+'</a></br>';
-        listItem3.className = 'btn btn-light btn-sm btn-block collapse';
+        listItem3.className = 'btn btn-light btn-sm btn-block text-center collapse';
         listItem3.id = "loc" + locStr;
         console.log(listItem.innerHTML)
         console.log(listItem3.id)
@@ -186,21 +186,24 @@
         if (!(array.contains(loc))) {
             //appends locations
             var listItem = document.createElement('h6');
-            listItem.innerHTML = '<br>' + loc;
+            listItem.innerHTML = '<br><a class="btn btn-secondary btn-lg btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc;
             locationdiv.appendChild(listItem);
             array.push(loc);
         }
         if (!(array.contains(sta))) {
-            //appends locations
+            //appends stations
             var listItem = document.createElement('li');
-            listItem.innerHTML = sta + '<br>';
+            listItem.innerHTML = '<a class="btn btn-secondary btn-lg btn-block text-center" data-toggle="collapse" href="#sta' + staStr + '"role="button" aria-expanded="false" aria-controls="sta' + staStr + '">' + sta + "</br>";
+            listItem.className = 'btn btn-light btn-lg btn-block text-center collapse';
+            listItem.id = "loc" + locStr;
             locationdiv.appendChild(listItem);
             array.push(sta);
         }
         //appends food items at station locations
         var listItem3 = document.createElement('button');
         listItem3.innerHTML = '<a href="' + food_url_array_stations[aa].value +'">'+dictionary_stations[aa].value+'</a></br>';
-        listItem3.className = 'btn btn-light btn-sm btn-block';
+        listItem3.className = 'btn btn-light btn-sm btn-block text-center collapse';
+        listItem3.id = "sta" + staStr;
         locationdiv.appendChild(listItem3);
       }
     });
