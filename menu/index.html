@@ -40,25 +40,8 @@
     </ul>
   </nav>
 
-  <ul class="nav nav-tabs" id="time-tabs" role="tablist">
-    <li id="breakfast-item" class="nav-item">
-      <a class="nav-link" id="breakfast-tab" data-toggle="tab" href="#home" role="tab" aria-controls="breakfast"
-         aria-selected="false">Breakfast</a>
-    </li>
-    <li id="lunch-item" class="nav-item">
-      <a class="nav-link" id="lunch-tab" data-toggle="tab" href="#lunch" role="tab" aria-controls="lunch"
-         aria-selected="false">Lunch</a>
-    </li>
-    <li id="dinner-item" class="nav-item">
-      <a class="nav-link" id="dinner-tab" data-toggle="tab" href="#dinner" role="tab" aria-controls="dinner"
-         aria-selected="false">Dinner</a>
-    </li>
-  </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade" id="breakfast" role="tabpanel" aria-labelledby="breakfast-tab"></div>
-    <div class="tab-pane fade" id="lunch" role="tabpanel" aria-labelledby="lunch-tab"></div>
-    <div class="tab-pane fade" id="dinner" role="tabpanel" aria-labelledby="dinner-tab"></div>
-  </div>
+  <ul class="nav nav-tabs" id="time-tabs" role="tablist"></ul>
+  <div class="tab-content" id="tab-content"></div>
 
   <nav class="navbar navbar-expand fixed-bottom navbar-dark bg-dark">
     <div class="container">
@@ -90,15 +73,20 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 <script>
-  function getTime() {
-    // TODO return "breakfast", "lunch", or "dinner"
-    return "lunch";
+  function getDefaultMeal(meals) {
+    // TODO figure out how to do this for each task
+    if (meals.includes("LUNCH")) {
+      return "LUNCH";
+    } else {
+      return meals[0];
+    }
   }
 
   function populateWithData(element, mealData) {
-    const categories = Object.keys(mealData).sort();
+    const categories = Object.keys(mealData);
     for (const category of categories) {
       const heading = document.createElement("h2");
+      heading.classList.add("mt-5");
       heading.innerText = category;
       element.appendChild(heading);
       const foodData = mealData[category];
@@ -112,10 +100,13 @@
         title.classList.add("card-title");
         title.innerText = food;
         body.appendChild(title);
-        const text = document.createElement("p");
-        text.classList.add("card-text");
-        text.innerText = foodData[food].calories + " Cal";
-        body.appendChild(text);
+        const cals = foodData[food].calories;
+        if (cals && cals !== "0") {
+          const text = document.createElement("p");
+          text.classList.add("card-text");
+          text.innerText = cals + " Cal";
+          body.appendChild(text);
+        }
         card.appendChild(body);
         element.appendChild(card);
       }
@@ -124,13 +115,16 @@
 
   function updateDayMeal(dayIndex, meal, divArray) {
     const fixedIndex = 0 <= dayIndex && dayIndex < divArray.length ? dayIndex : 0;
-    const mealElement = document.getElementById(meal);
+    const mealElement = document.getElementById(getIdForMeal(meal));
     $(mealElement).children(".meal-div").each((_, e) => e.hidden = true);
     divArray[fixedIndex].hidden = false;
   }
 
+  function getIdForMeal(meal) {
+    return meal.toLowerCase().replace(/-*[^a-zA-Z\d-]+-*/, "-");
+  }
+
   $(() => {
-    $("#" + getTime() + "-tab").tab("show");
     const url = new URL(window.location.href);
     const location = url.searchParams.get("location");
     const station = url.searchParams.get("station");
@@ -141,61 +135,107 @@
     }
     $.getJSON("https://esabherwal.github.io/danforks/menu_scrape/menu_data.json", {}, data => {
       const locationData = data[location];
-      const stationData = locationData[station || ""];
+      let stationData = locationData[station || ""];
+      if (!stationData) {
+        stationData = {};
+        const menus = {};
+        const stationNames = Object.keys(locationData).sort();
+        for (const stationName of stationNames) {
+          const stationMenus = locationData[stationName].menus;
+          Object.entries(stationMenus).forEach(([day, stationDayData]) => {
+            let dayData;
+            if (menus[day]) {
+              dayData = menus[day];
+            } else {
+              dayData = {menu: {}};
+              menus[day] = dayData;
+            }
+            const menu = dayData.menu;
+            Object.entries(stationDayData.menu).forEach(([meal, stationMealData]) => {
+              if (!menu[meal]) {
+                menu[meal] = {};
+              }
+              let mealData = menu[meal];
+              Object.entries(stationMealData).forEach(([category, categoryData]) => {
+                mealData[stationName + " \u00b7 " + category] = categoryData;
+              });
+            });
+          });
+        }
+        stationData.menus = menus;
+      }
       const menus = stationData.menus;
       const days = Object.keys(menus).filter(
           s => Object.keys(menus[s].menu).length !== 0
       ).sort((a, b) => Date.parse(a) - Date.parse(b));
-      const breakfastData = [];
-      const lunchData = [];
-      const dinnerData = [];
+
+      const meals = [];
+      for (const day of days)
+        for (const meal of Object.keys(menus[day].menu))
+          if (!meals.includes(meal))
+            meals.push(meal);
+      const mealsCopy = meals.slice();
+      const standardOrder = ["BREAKFAST", "LUNCH", "DINNER"];
+      meals.sort((a, b) => {
+        if (standardOrder.includes(a) && standardOrder.includes(b)) {
+          return standardOrder.indexOf(a) - standardOrder.indexOf(b);
+        } else {
+          return mealsCopy.indexOf(a) - mealsCopy.indexOf(b);
+        }
+      });
+      const dataDivs = {};
+      const contentDivs = {};
+      for (const meal of meals) {
+        dataDivs[meal] = [];
+        const li = document.createElement("li");
+        li.classList.add("nav-item");
+        const a = document.createElement("a");
+        const safeName = getIdForMeal(meal);
+        a.id = safeName + "-a";
+        a.classList.add("nav-link");
+        a.setAttribute("data-toggle", "tab");
+        a.href = "#" + safeName;
+        a.role = "tab";
+        a.innerText = meal;
+        li.appendChild(a);
+        document.getElementById("time-tabs").appendChild(li);
+        const contentDiv = document.createElement("div");
+        contentDiv.classList.add("tab-pane", "fade");
+        contentDiv.id = safeName;
+        contentDiv.role = "tabpanel";
+        document.getElementById("tab-content").appendChild(contentDiv);
+        contentDivs[meal] = contentDiv;
+        $(a).tab();
+      }
+
       const alert = document.createElement("div");
       alert.classList.add("alert", "alert-secondary", "meal-div", "my-2");
       alert.role = "alert";
       alert.innerText = "Closed at this time";
       alert.hidden = true;
-      for (let dayIndex = 0; dayIndex < days.length; dayIndex++) {
-        const menu = menus[days[dayIndex]].menu;
-        const breakfast = menu["BREAKFAST"];
-        if (breakfast) {
-          const breakfastDiv = document.createElement("div");
-          breakfastDiv.classList.add("meal-div");
-          breakfastDiv.hidden = true;
-          populateWithData(breakfastDiv, breakfast);
-          breakfastData[dayIndex] = breakfastDiv;
-          document.getElementById("breakfast").appendChild(breakfastDiv);
-        } else {
-          const alertClone = alert.cloneNode(true);
-          breakfastData[dayIndex] = alertClone;
-          document.getElementById("breakfast").appendChild(alertClone);
-        }
-        const lunch = menu["LUNCH"];
-        if (lunch) {
-          const lunchDiv = document.createElement("div");
-          lunchDiv.classList.add("meal-div");
-          lunchDiv.hidden = true;
-          populateWithData(lunchDiv, lunch);
-          lunchData[dayIndex] = lunchDiv;
-          document.getElementById("lunch").appendChild(lunchDiv);
-        } else {
-          const alertClone = alert.cloneNode(true);
-          lunchData[dayIndex] = alertClone;
-          document.getElementById("lunch").appendChild(alertClone);
-        }
-        const dinner = menu["DINNER"];
-        if (dinner) {
-          const dinnerDiv = document.createElement("div");
-          dinnerDiv.classList.add("meal-div");
-          dinnerDiv.hidden = true;
-          populateWithData(dinnerDiv, lunch);
-          dinnerData[dayIndex] = dinnerDiv;
-          document.getElementById("dinner").appendChild(dinnerDiv);
-        } else {
-          const alertClone = alert.cloneNode(true);
-          dinnerData[dayIndex] = alertClone;
-          document.getElementById("dinner").appendChild(alertClone);
+
+      for (const day of days) {
+        const menu = menus[day].menu;
+        for (const meal of meals) {
+          const mealData = menu[meal];
+          const mealDataDivs = dataDivs[meal];
+          const contentDiv = contentDivs[meal];
+          if (mealData) {
+            const div = document.createElement("div");
+            div.classList.add("meal-div");
+            div.hidden = true;
+            populateWithData(div, mealData);
+            mealDataDivs.push(div);
+            contentDiv.appendChild(div);
+          } else {
+            const alertClone = alert.cloneNode(true);
+            mealDataDivs.push(alertClone);
+            contentDiv.appendChild(alertClone);
+          }
         }
       }
+
+      $("#" + getIdForMeal(getDefaultMeal(meals)) + "-a").tab("show");
 
       days[0] = "Today";
       days[1] = "Tomorrow";
@@ -204,31 +244,14 @@
         days[i] = dayNames[new Date(Date.parse(days[i])).getDay()]
       }
 
-      if (breakfastData.filter(e => !e.classList.contains("alert")).length) {
-        updateDayMeal(0, "breakfast", breakfastData);
-      } else {
-        document.getElementById("breakfast-item").hidden = true;
-      }
-      if (lunchData.filter(e => !e.classList.contains("alert")).length) {
-        updateDayMeal(0, "lunch", lunchData);
-      } else {
-        document.getElementById("lunch-item").hidden = true;
-      }
-      if (dinnerData.filter(e => !e.classList.contains("alert")).length) {
-        updateDayMeal(0, "dinner", dinnerData);
-      } else {
-        document.getElementById("dinner-item").hidden = true;
-      }
+      updateDay(0);
 
       function updateDay(newDayIndex) {
-        if (breakfastData.length)
-          updateDayMeal(newDayIndex, "breakfast", breakfastData);
-        if (lunchData.length)
-          updateDayMeal(newDayIndex, "lunch", lunchData);
-        if (dinnerData.length)
-          updateDayMeal(newDayIndex, "dinner", dinnerData);
-        $("#current-link").text(days[dayIndex]);
+        for (const meal of meals)
+          updateDayMeal(newDayIndex, meal, dataDivs[meal]);
+        $("#current-link").text(days[newDayIndex]);
       }
+
       function disablePagerButtons() {
         if (dayIndex < 1) {
           dayIndex = 0;
@@ -243,6 +266,7 @@
           $("#next").removeClass("disabled");
         }
       }
+
       let dayIndex = 0;
       $("#previous-link").click(() => {
         dayIndex--;
@@ -250,7 +274,7 @@
         updateDay(dayIndex);
         return false;
       });
-      const maxIndex = Math.max(breakfastData.length, lunchData.length, dinnerData.length);
+      const maxIndex = Math.max(Object.values(dataDivs).map(value => value.length));
       $("#next-link").click(() => {
         dayIndex++;
         disablePagerButtons();

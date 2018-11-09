@@ -98,8 +98,7 @@
             menu.classList.add("dropdown-menu");
             const allStations = document.createElement("a");
             allStations.classList.add("dropdown-item");
-            // TODO href
-            allStations.href = "#";
+            allStations.href = "../menu/?location=" + location;
             allStations.innerText = "All stations";
             menu.appendChild(allStations);
             const divider = document.createElement("div");
