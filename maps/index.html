@@ -7,41 +7,39 @@
 
     <title>Map &middot; danforks</title>
     <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
+      #container {
+        height: 100vh;
       }
     </style>
   </head>
   <body>
-    <div id="map"></div>
-    <button class="btn btn-light btn-block" id="recenter-button">Re-center Map</button>
-    <nav class="navbar navbar-expand fixed-bottom navbar-dark bg-dark">
-      <div class="container">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href=".">Map <span class="sr-only">(current)</span></a>
-          </li>
-        </ul>
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="../menus/">Menus</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="../specials/">Specials</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+  <div id="container" class="d-flex flex-column">
+    <div id="map" class="flex-grow-1"></div>
+    <div class="p-2">
+      <button class="btn btn-primary btn-block" id="recenter-button">Re-center Map</button>
+    </div>
+    <div>
+      <nav class="navbar navbar-expand navbar-dark bg-dark">
+        <div class="container">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href=".">Map <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="../menus/">Menus</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="../specials/">Specials</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
 
     <script>
 
