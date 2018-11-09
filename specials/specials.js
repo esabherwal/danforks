@@ -172,9 +172,9 @@ var array = ["empty_string"];
         }
 
         //appends food items at locations
-        var listItem3 = document.createElement('button');
+        var listItem3 = document.createElement('li');
         listItem3.innerHTML = '<a href="' + food_url_array[aa].value +'">'+dictionary[aa].value+'</a></br>';
-        listItem3.className = 'btn btn-light btn-sm btn-block text-center collapse';
+        listItem3.className = 'collapse';
         listItem3.id = "loc" + locStr;
         locationdiv.appendChild(listItem3);
       }

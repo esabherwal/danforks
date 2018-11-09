@@ -16,6 +16,10 @@ a:active {
     text-decoration: none;
 }
 
+ul {
+    list-style: none;
+}
+
 
 .previous {
     background-color: #f1f1f1;
