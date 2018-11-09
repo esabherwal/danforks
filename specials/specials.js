@@ -209,7 +209,7 @@ var array = ["empty_string"];
         //appends food items at station locations
         var listItem3 = document.createElement('li');
         listItem3.innerHTML = '<a href="' + food_url_array_stations[aa].value +'">'+dictionary_stations[aa].value+'</a>';
-        // listItem3.className = 'btn btn-light btn-sm btn-block text-center collapse';
+        listItem3.className = 'collapse';
         listItem3.id = "sta" + staStr;
         locationdiv.appendChild(listItem3);
       }
