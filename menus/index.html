@@ -108,8 +108,7 @@
             for (const station of stationNames) {
               const item = document.createElement("a");
               item.classList.add("dropdown-item");
-              // TODO href
-              item.href = "#";
+              item.href = "../menu/?location=" + location + "&station=" + station;
               item.innerText = station;
               menu.appendChild(item);
             }
@@ -118,8 +117,7 @@
             $(button).dropdown();
           } else {
             const button = document.createElement("a");
-            // TODO href
-            button.href = "#";
+            button.href = "../menu/?location=" + location;
             button.classList.add("btn", "btn-primary", "btn-block", "my-2");
             button.role = "button";
             button.innerText = location;
