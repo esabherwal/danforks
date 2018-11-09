@@ -11124,24 +11124,21 @@ var text = {"HL": {
 		
 		  }
   
-  
-  
- $('.btn15').on('click', function(){
+$('.btn15').on('click', function(){
  $.each(text.HL, function (i, v) {
   $.each(v, function (ii, vv) {
-   var click = +$(this).data('clicks') || 0;
+  var click = +$(this).data('clicks') || 1;
  // var click = $(this).data('clicks');
-     if(click % 2 == 1){
+    if(click % 2 == 1){
     $('h1').append('<br />' + ii + '<br />');
      $('h1').css("font-size", "12px");
 	   }else{
 	   $('h1').empty();
 	 }
 	  $(this).data('clicks',click+1);
-	// $(this).data('clicks', !click); 
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   if(click % 2 == 1){
+    if(click % 2 == 1){
    $('h1').append('<br />' + x + '<br />');
 	$('h1').css("font-size", "12px");
      }else{
@@ -11150,7 +11147,6 @@ var text = {"HL": {
 	 $(this).data('clicks',click+1);
 	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
-    var click = +$(this).data('clicks') || 0;
    // show food option, labels, and url
       if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
@@ -11159,30 +11155,56 @@ var text = {"HL": {
 	 $('h1').empty();
 	 }
 	  $(this).data('clicks',click+1);
-	// $(this).data('clicks', !click); 
+	
    });
  });
   });
 });
 });
+$('.btn16').on('click', function(){
+var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + 'The menu is not avaiable');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
 
+});
  $('.btn17').on('click', function(){
  $.each(text.LF, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+	   var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
+	
 	
    });
  });
@@ -11193,113 +11215,113 @@ var text = {"HL": {
 $('.btn2').on('click', function(){
  $.each(text.BD, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+  var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
+	
 	
    });
  });
   });
 });
 });
+
 $('.btn3').on('click', function(){
  $.each(text.BDG, function (i, v) {
-  $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+ $.each(v, function (ii, vv) {
+    var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
+	
 	
    });
  });
   });
 });
 });
-$('.btn4').on('click', function(){
- $.each(text.BDOSO, function (i, v) {
-  $.each(v, function (ii, vv) {
-   $('h1').append("Bear's Den Grilled Menu" + '<br />');
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
-   $.each(vv, function (x, y) {
-   // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
-   $.each(y, function (s,j) {
-   // show food option, labels, and url
-     $('h1').toggle();
-	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
-	
-   });
- });
-  });
-});
-});
-$('.btn5').on('click', function(){
- $.each(text.BDST, function (i, v) {
-  $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
-   $.each(vv, function (x, y) {
-   // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
-   $.each(y, function (s,j) {
-   // show food option, labels, and url
-     $('h1').toggle();
-	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
-	
-   });
- });
-  });
-});
-});
+
 $('.btn1').on('click', function(){
  $.each(text.BDC, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+   var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
+	
 	
    });
  });
@@ -11309,44 +11331,74 @@ $('.btn1').on('click', function(){
 $('.btn4').on('click', function(){
  $.each(text.BDOSO, function (i, v) {
   $.each(v, function (ii, vv) {
-   $('h1').append("Bear's Den Grilled Menu" + '<br />');
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+     var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
+	
 	
    });
  });
   });
 });
 });
+
 $('.btn5').on('click', function(){
  $.each(text.BDST, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+  
+	   var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
 	
    });
  });
@@ -11356,20 +11408,34 @@ $('.btn5').on('click', function(){
 $('.btn6').on('click', function(){
  $.each(text.BDWU, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+   var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
 	
    });
  });
@@ -11379,20 +11445,34 @@ $('.btn6').on('click', function(){
 $('.btn7').on('click', function(){
  $.each(text.CT, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+  var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
 	
    });
  });
@@ -11402,20 +11482,35 @@ $('.btn7').on('click', function(){
 $('.btn8').on('click', function(){
  $.each(text.DUC1853, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+   var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
+	
 	
    });
  });
@@ -11425,20 +11520,35 @@ $('.btn8').on('click', function(){
 $('.btn9').on('click', function(){
  $.each(text.CB, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+   var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
+	
 	
    });
  });
@@ -11448,20 +11558,35 @@ $('.btn9').on('click', function(){
 $('.btn10').on('click', function(){
  $.each(text.DUCDEC, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+    var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
+	
 	
    });
  });
@@ -11471,20 +11596,35 @@ $('.btn10').on('click', function(){
 $('.btn11').on('click', function(){
  $.each(text.DT, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+   var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
+	
 	
    });
  });
@@ -11494,20 +11634,34 @@ $('.btn11').on('click', function(){
 $('.btn12').on('click', function(){
  $.each(text.DUCW, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+      var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
 	
    });
  });
@@ -11517,20 +11671,35 @@ $('.btn12').on('click', function(){
 $('.btn13').on('click', function(){
  $.each(text.ETTA, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+    var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
+	
 	
    });
  });
@@ -11540,20 +11709,35 @@ $('.btn13').on('click', function(){
 $('.btn14').on('click', function(){
  $.each(text.GFC, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+   var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
+	
 	
    });
  });
@@ -11563,20 +11747,34 @@ $('.btn14').on('click', function(){
 $('.btn18').on('click', function(){
  $.each(text.NB, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+	 var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
 	
    });
  });
@@ -11586,20 +11784,34 @@ $('.btn18').on('click', function(){
 $('.btn19').on('click', function(){
  $.each(text.PG, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+   var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
 	
    });
  });
@@ -11609,43 +11821,85 @@ $('.btn19').on('click', function(){
 $('.btn20').on('click', function(){
  $.each(text.ST, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+    var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
+	
 	
    });
  });
   });
 });
 });
+
+$('.btn21').on('click', function(){
+var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + 'The menu is not avaiable');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
+
+});
 $('.btn22').on('click', function(){
  $.each(text.MMCC, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+	 var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
 	
    });
  });
@@ -11655,20 +11909,34 @@ $('.btn22').on('click', function(){
 $('.btn23').on('click', function(){
  $.each(text.VC, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+     var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
 	
    });
  });
@@ -11678,20 +11946,34 @@ $('.btn23').on('click', function(){
 $('.btn24').on('click', function(){
  $.each(text.VG, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+    var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
 	
    });
  });
@@ -11701,20 +11983,35 @@ $('.btn24').on('click', function(){
 $('.btn25').on('click', function(){
  $.each(text.MB, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
      
+	 var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
 	
    });
  });
@@ -11724,20 +12021,35 @@ $('.btn25').on('click', function(){
 $('.btn26').on('click', function(){
  $.each(text.VS, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+    var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
+	
 	
    });
  });
@@ -11747,20 +12059,35 @@ $('.btn26').on('click', function(){
 $('.btn27').on('click', function(){
  $.each(text.WCC, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+    var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
+	
 	
    });
  });
@@ -11770,20 +12097,34 @@ $('.btn27').on('click', function(){
 $('.btn28').on('click', function(){
  $.each(text.WHISPERS, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-     
+    var click = +$(this).data('clicks') || 1;
+ // var click = $(this).data('clicks');
+    if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
-	//console.log(x);
+    if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-    //console.log(j.labels);
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
 	
    });
  });
