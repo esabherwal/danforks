@@ -179,7 +179,7 @@ var array = ["empty_string"];
         locationdiv.appendChild(listItem3);
       }
 
-      ///////////////////Locations with stations
+      /////////////////// Locations with stations
       var array_loc = ["empty_string"];
       var array_stations = ["empty_string"];
       var array_keys = Object.keys(dictionary);
@@ -199,7 +199,7 @@ var array = ["empty_string"];
         }
         if (!(array.contains(sta))) {
             //appends stations
-            var listItem = document.createElement('li');
+            var listItem = document.createElement('button');
             listItem.innerHTML = '<a data-toggle="collapse" href="#sta' + staStr + '"role="button" aria-expanded="false" aria-controls="sta' + staStr + '">' + sta + "</a>";
             listItem.className = 'btn btn-light btn-sm btn-block text-center collapse';
             listItem.id = "loc" + locStr;
@@ -207,9 +207,9 @@ var array = ["empty_string"];
             array.push(sta);
         }
         //appends food items at station locations
-        var listItem3 = document.createElement('button');
+        var listItem3 = document.createElement('li');
         listItem3.innerHTML = '<a href="' + food_url_array_stations[aa].value +'">'+dictionary_stations[aa].value+'</a>';
-        listItem3.className = 'btn btn-light btn-sm btn-block text-center collapse';
+        // listItem3.className = 'btn btn-light btn-sm btn-block text-center collapse';
         listItem3.id = "sta" + staStr;
         locationdiv.appendChild(listItem3);
       }
