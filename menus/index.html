@@ -20,13 +20,12 @@
 
 </head>
 <body>
-<div class="d-flex flex-column" style="height: 100vh">
-  <div class="container flex-grow-1" style="overflow-y: scroll">
+  <div class="container">
     <h1 class="display-4">Menus</h1>
     <div id="locations"></div>
   </div>
   <div>
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <nav class="navbar navbar-expand fixed-bottom navbar-dark bg-dark">
       <div class="container">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
@@ -46,8 +45,6 @@
       </div>
     </nav>
   </div>
-
-</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
@@ -75,7 +72,7 @@
           menu.classList.add("dropdown-menu");
           const allStations = document.createElement("a");
           allStations.classList.add("dropdown-item");
-          allStations.href = "../menu/?location=" + location;
+          allStations.href = "../menu/?location=" + encodeURIComponent(location);
           allStations.innerText = "All stations";
           menu.appendChild(allStations);
           const divider = document.createElement("div");
@@ -84,7 +81,7 @@
           for (const station of stationNames) {
             const item = document.createElement("a");
             item.classList.add("dropdown-item");
-            item.href = "../menu/?location=" + location + "&station=" + station;
+            item.href = "../menu/?location=" + encodeURIComponent(location) + "&station=" + encodeURIComponent(station);
             item.innerText = station;
             menu.appendChild(item);
           }
@@ -93,13 +90,16 @@
           $(button).dropdown();
         } else {
           const button = document.createElement("a");
-          button.href = "../menu/?location=" + location;
+          button.href = "../menu/?location=" + encodeURIComponent(location);
           button.classList.add("btn", "btn-primary", "btn-block", "my-2");
           button.role = "button";
           button.innerText = location;
           locationsDiv.appendChild(button);
         }
       }
+      const spacer = document.createElement("div");
+      spacer.style.height = "56px";
+      locationsDiv.appendChild(spacer);
     });
   })
 </script>
