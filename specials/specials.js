@@ -193,14 +193,14 @@ var array = ["empty_string"];
         if (!(array.contains(loc))) {
             //appends locations
             var listItem = document.createElement('h6');
-            listItem.innerHTML = '<br><a class="btn btn-secondary btn-lg btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
+            listItem.innerHTML = '<a class="btn btn-secondary btn-lg btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
             locationdiv.appendChild(listItem);
             array.push(loc);
         }
         if (!(array.contains(sta))) {
             //appends stations
             var listItem = document.createElement('li');
-            listItem.innerHTML = '<a data-toggle="collapse" href="#sta' + staStr + '"role="button" aria-expanded="false" aria-controls="sta' + staStr + '">' + sta + "</br>";
+            listItem.innerHTML = '<a data-toggle="collapse" href="#sta' + staStr + '"role="button" aria-expanded="false" aria-controls="sta' + staStr + '">' + sta + "</a>";
             listItem.className = 'btn btn-light btn-sm btn-block text-center collapse';
             listItem.id = "loc" + locStr;
             locationdiv.appendChild(listItem);
@@ -208,7 +208,7 @@ var array = ["empty_string"];
         }
         //appends food items at station locations
         var listItem3 = document.createElement('button');
-        listItem3.innerHTML = '<a href="' + food_url_array_stations[aa].value +'">'+dictionary_stations[aa].value+'</a></br>';
+        listItem3.innerHTML = '<a href="' + food_url_array_stations[aa].value +'">'+dictionary_stations[aa].value+'</a>';
         listItem3.className = 'btn btn-light btn-sm btn-block text-center collapse';
         listItem3.id = "sta" + staStr;
         locationdiv.appendChild(listItem3);
