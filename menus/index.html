@@ -1,9 +1,10 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
   <title>danforks</title>
 
@@ -19,112 +20,88 @@
 
 </head>
 <body>
-<div class="container">
-  <h1 class="display-4">Menus</h1>
-
-  <div id="locations"></div>
-
-  <nav class="navbar navbar-expand fixed-bottom navbar-dark bg-dark">
-    <div class="container">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="../maps/">Map</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href=".">Menus <span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="../specials/">Specials</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+<div class="d-flex flex-column" style="height: 100vh">
+  <div class="container flex-grow-1" style="overflow-y: scroll">
+    <h1 class="display-4">Menus</h1>
+    <div id="locations"></div>
+  </div>
+  <div>
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+      <div class="container">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../maps/">Map</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href=".">Menus <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../specials/">Specials</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
 
 </div>
 
-<button class = "btn1" style = "width:200px"> Bear's Den Ciao Down</button></br>
-<button class = "btn2" style = "width:200px" > Bear's Den L'Chaim</button></br>
-<button class = "btn3" style = "width:200px"> Bear's Den Grizzly Grill</button></br>
-<button class = "btn4" style = "width:200px"  > Bear's Den OSOGood</button></br>
-<button class = "btn5" style = "width:200px" > Bear's Den Sizzle&Stir </button></br>
-<button class = "btn6" style = "width:200px"> Bear's Den WUrld Fusion</button></br>
-<button class = "btn7" style = "width:200px" > Cherry Tree Cafe</button></br>
-<button class = "btn8" style = "width:200px" > DUC 1853 Diner</button></br>
-<button class = "btn9" style = "width:200px" > DUC Cafe Bergson</button></br>
-<button class = "btn10" style = "width:200px" > DUC DeliciOSO </button></br>
-<button class = "btn11" style = "width:200px" > DUC Trattoria Verde</button></br>
-<button class = "btn12" style = "width:200px" > DUC Wash U Wok</button></br>
-<button class = "btn13" style = "width:200px" > Etta's</button></br>
-<button class = "btn14" style = "width:200px" > Grounds for Change</button></br>
-<button class = "btn15" style = "width:200px" > Holmes Lounge</button></br>
-<button class = "btn16" style = "width:200px" > Ibby's</button></br>
-<button class = "btn17" style = "width:200px"> Law Cafe</button></br>
-<button class = "btn18" style = "width:200px" > Northern Bites</button></br>
-<button class = "btn19" style = "width:200px" > Paws&Go Market</button></br>
-<button class = "btn20" style = "width:200px"> Stanley's</button></br>
-<button class = "btn21" style = "width:200px" > Subway</button></br>
-<button class = "btn22" style = "width:200px"> The Village Coffee Connection</button></br>
-<button class = "btn23" style = "width:200px" > The Village Comfort Food</button></br>
-<button class = "btn24" style = "width:200px"> The Village Grill</button></br>
-<button class = "btn25" style = "width:200px" > The Village Millbrook Market</button></br>
-<button class = "btn26" style = "width:200px" > The Village Stir Fry</button></br>
-<button class = "btn27" style = "width:200px" > West Campus Cafe</button></br>
-<button class = "btn28" style = "width:200px" > Whispers Cafe</button></br>
-<p id = "h1"></p>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  <script>
-    $(() => {
-      $.getJSON("https://esabherwal.github.io/danforks/menu_scrape/menu_data.json", {}, data => {
-        const locationsDiv = document.getElementById("locations");
-        for (const location of Object.keys(data).sort()) {
-          const stationNames = Object.keys(data[location]).sort();
-          if (stationNames.length >= 2) {
-            const div = document.createElement("div");
-            div.classList.add("dropdown");
-            const button = document.createElement("button");
-            button.classList.add("btn", "btn-primary", "btn-block", "dropdown-toggle", "my-2");
-            button.type = "button";
-            button.setAttribute("data-toggle", "dropdown");
-            button.innerText = location;
-            div.appendChild(button);
-            const menu = document.createElement("div");
-            menu.classList.add("dropdown-menu");
-            const allStations = document.createElement("a");
-            allStations.classList.add("dropdown-item");
-            allStations.href = "../menu/?location=" + location;
-            allStations.innerText = "All stations";
-            menu.appendChild(allStations);
-            const divider = document.createElement("div");
-            divider.classList.add("dropdown-divider");
-            menu.appendChild(divider);
-            for (const station of stationNames) {
-              const item = document.createElement("a");
-              item.classList.add("dropdown-item");
-              item.href = "../menu/?location=" + location + "&station=" + station;
-              item.innerText = station;
-              menu.appendChild(item);
-            }
-            div.appendChild(menu);
-            locationsDiv.appendChild(div);
-            $(button).dropdown();
-          } else {
-            const button = document.createElement("a");
-            button.href = "../menu/?location=" + location;
-            button.classList.add("btn", "btn-primary", "btn-block", "my-2");
-            button.role = "button";
-            button.innerText = location;
-            locationsDiv.appendChild(button);
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+<script>
+  $(() => {
+    $.getJSON("https://esabherwal.github.io/danforks/menu_scrape/menu_data.json", {}, data => {
+      const locationsDiv = document.getElementById("locations");
+      for (const location of Object.keys(data).sort()) {
+        const stationNames = Object.keys(data[location]).sort();
+        if (stationNames.length >= 2) {
+          const div = document.createElement("div");
+          div.classList.add("dropdown");
+          const button = document.createElement("button");
+          button.classList.add("btn", "btn-primary", "btn-block", "dropdown-toggle", "my-2");
+          button.type = "button";
+          button.setAttribute("data-toggle", "dropdown");
+          button.innerText = location;
+          div.appendChild(button);
+          const menu = document.createElement("div");
+          menu.classList.add("dropdown-menu");
+          const allStations = document.createElement("a");
+          allStations.classList.add("dropdown-item");
+          allStations.href = "../menu/?location=" + location;
+          allStations.innerText = "All stations";
+          menu.appendChild(allStations);
+          const divider = document.createElement("div");
+          divider.classList.add("dropdown-divider");
+          menu.appendChild(divider);
+          for (const station of stationNames) {
+            const item = document.createElement("a");
+            item.classList.add("dropdown-item");
+            item.href = "../menu/?location=" + location + "&station=" + station;
+            item.innerText = station;
+            menu.appendChild(item);
           }
+          div.appendChild(menu);
+          locationsDiv.appendChild(div);
+          $(button).dropdown();
+        } else {
+          const button = document.createElement("a");
+          button.href = "../menu/?location=" + location;
+          button.classList.add("btn", "btn-primary", "btn-block", "my-2");
+          button.role = "button";
+          button.innerText = location;
+          locationsDiv.appendChild(button);
         }
-      });
-    })
-  </script>
+      }
+    });
+  })
+</script>
 </body>
 </html>
