@@ -11129,21 +11129,37 @@ var text = {"HL": {
  $('.btn15').on('click', function(){
  $.each(text.HL, function (i, v) {
   $.each(v, function (ii, vv) {
-      $('h1').toggle();
-     $('h1').append('<br />' + ii + '<br />');
-    $('h1').css("font-size", "12px");
-  
+   var click = +$(this).data('clicks') || 0;
+ // var click = $(this).data('clicks');
+     if(click % 2 == 1){
+    $('h1').append('<br />' + ii + '<br />');
+     $('h1').css("font-size", "12px");
+	   }else{
+	   $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
+	// $(this).data('clicks', !click); 
    $.each(vv, function (x, y) {
    // show subtile, like dessert, protein.......
-   $('h1').toggle();
-    $('h1').append('<br />' + x + '<br />');
+   if(click % 2 == 1){
+   $('h1').append('<br />' + x + '<br />');
+	$('h1').css("font-size", "12px");
+     }else{
+	 $('h1').empty();
+	 }
+	 $(this).data('clicks',click+1);
+	 //$(this).data('clicks', !click); 
    $.each(y, function (s,j) {
+    var click = +$(this).data('clicks') || 0;
    // show food option, labels, and url
-     $('h1').toggle();
+      if(click % 2 == 1){
 	$('h1').append("<p><a target='_blank' href='"+ j.nutrition_url + "'>"+s+"</a></p>");
-	
-    //console.log(j.labels);
-	
+    $('h1').css("font-size", "12px");
+    }else{
+	 $('h1').empty();
+	 }
+	  $(this).data('clicks',click+1);
+	// $(this).data('clicks', !click); 
    });
  });
   });
