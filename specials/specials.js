@@ -200,7 +200,7 @@ var array = ["empty_string"];
         if (!(array.contains(sta))) {
             //appends stations
             var listItem = document.createElement('button');
-            listItem.innerHTML = '<a data-toggle="collapse" href="#sta' + staStr + '"role="button" aria-expanded="false" aria-controls="sta' + staStr + '">' + sta + "</a>";
+            listItem.innerHTML = '<a data-toggle="collapse" href="#sta' + staStr + '"role="button" aria-expanded="false" aria-controls="sta' + staStr + '">' + sta + "</a></br>";
             listItem.className = 'btn btn-light btn-sm text-center collapse';
             listItem.id = "loc" + locStr;
             locationdiv.appendChild(listItem);
