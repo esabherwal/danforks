@@ -3,16 +3,19 @@
 import json
 from lxml import html
 import requests
+import collections
+
 
 full_menus = {}
 
 with open('menu_data.json') as f:
-    full_menus = json.load(f)
+    full_menus = json.load(f, object_pairs_hook=collections.OrderedDict)
     for loc in full_menus:
         for station in full_menus[loc]:
             print loc, station
             for date in full_menus[loc][station]['menus']:
                 for meal in full_menus[loc][station]['menus'][date]['menu']:
+                    print meal, date
                     for category in full_menus[loc][station]['menus'][date]['menu'][meal]:
                         for item in full_menus[loc][station]['menus'][date]['menu'][meal][category]:
                             nutrition_url = full_menus[loc][station]['menus'][date]['menu'][meal][category][item]["nutrition_url"]
