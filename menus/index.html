@@ -20,21 +20,31 @@
 </head>
 <body>
 <div class="container">
-    <h1>danforks</h1>
-</div>
+  <h1 class="display-4">Menus</h1>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-</body>
-</html>
-<head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
- 
-</head>
-</head>
-<body>
-<center>
+  <div id="locations"></div>
+
+  <nav class="navbar navbar-expand fixed-bottom navbar-dark bg-dark">
+    <div class="container">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="../maps/">Map</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href=".">Menus <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="../specials/">Specials</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+</div>
 
 <button class = "btn1" style = "width:200px"> Bear's Den Ciao Down</button></br>
 <button class = "btn2" style = "width:200px" > Bear's Den L'Chaim</button></br>
@@ -64,10 +74,62 @@
 <button class = "btn26" style = "width:200px" > The Village Stir Fry</button></br>
 <button class = "btn27" style = "width:200px" > West Campus Cafe</button></br>
 <button class = "btn28" style = "width:200px" > Whispers Cafe</button></br>
-</center>
 <p id = "h1"></p>
-<div class = "cool">
-<script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script>
+    $(() => {
+      $.getJSON("https://esabherwal.github.io/danforks/menu_scrape/menu_data.json", {}, data => {
+        const locationsDiv = document.getElementById("locations");
+        for (const location of Object.keys(data).sort()) {
+          const stationNames = Object.keys(data[location]).sort();
+          if (stationNames.length >= 2) {
+            const div = document.createElement("div");
+            div.classList.add("dropdown");
+            const button = document.createElement("button");
+            button.classList.add("btn", "btn-primary", "btn-block", "dropdown-toggle", "my-2");
+            button.type = "button";
+            button.setAttribute("data-toggle", "dropdown");
+            button.innerText = location;
+            div.appendChild(button);
+            const menu = document.createElement("div");
+            menu.classList.add("dropdown-menu");
+            const allStations = document.createElement("a");
+            allStations.classList.add("dropdown-item");
+            // TODO href
+            allStations.href = "#";
+            allStations.innerText = "All stations";
+            menu.appendChild(allStations);
+            const divider = document.createElement("div");
+            divider.classList.add("dropdown-divider");
+            menu.appendChild(divider);
+            for (const station of stationNames) {
+              const item = document.createElement("a");
+              item.classList.add("dropdown-item");
+              // TODO href
+              item.href = "#";
+              item.innerText = station;
+              menu.appendChild(item);
+            }
+            div.appendChild(menu);
+            locationsDiv.appendChild(div);
+            $(button).dropdown();
+          } else {
+            const button = document.createElement("a");
+            // TODO href
+            button.href = "#";
+            button.classList.add("btn", "btn-primary", "btn-block", "my-2");
+            button.role = "button";
+            button.innerText = location;
+            locationsDiv.appendChild(button);
+          }
+        }
+      });
+    })
+  </script>
+  <script>
 var text = {"HL": {
           "menu": {
             "LUNCH": {
@@ -11776,6 +11838,5 @@ $('.btn28').on('click', function(){
 });
 
 </script>
-</div>
 </body>
 </html>
