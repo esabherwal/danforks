@@ -24,9 +24,13 @@
   <div class="container">
     <h1>danforks</h1>
     <br>
-    <button id="button1" class="previous round">&#8249;</button>
+    <button id="button1" type="button" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Previous Day
+    </button>
     <h5 id="today"></h5>
-    <button id="button2" class="next round">&#8250;</button>
+    <button id="button2" type="button" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Next Day
+    </button>
     <hr>
     <!-- <ul id="location"></ul> -->
     <!-- <ul id="special"></ul> -->
@@ -35,179 +39,9 @@
     <!-- Generates the weekdays by arrow button click -->
     <script type="text/javascript" src="specials.js"></script>
 
-    <!-- Displays the specials by location for the selected weekday-->
-    <script>
-
-    $.getJSON("../menu_scrape/specials_data.json", function(json) {
-      var locations = Object.keys(json);
-      //***********************************************
-      //Debug: This isn't updating asynchronously
-      //***********************************************
-      var d = getWeekDays();
-      var dictionary = [];
-      var dictionary_stations = [];
-      var location_stations = [];
-      var food_url_array = [];
-      var food_url_array_stations = [];
-      for(var i = 0; i < locations.length; i++){
-        var x = locations[i];
-
-        //checks if the index is referecing the DUC, BD, or the Village
-        //those 3 have different json structure
-        if(i != 2 && i != 9 && i != 10){
-          var data = json[x][""].menus;
-          var date = Object.keys(data);
-          //console.log(data);
-          for(var q = 0; q < date.length; q++){
-            var split_date = date[q].split(",")[0]; //@ 0 will give the weekDAY
-            if(d == split_date){
-              var day_data = data[date[q]];
-              var day_data_keys = Object.keys(day_data.menu);
-              for(var v = 0; v < day_data_keys.length; v++){
-                var vv = day_data_keys[v];
-                var special_types = day_data.menu[vv];
-                var special_types_keys = Object.keys(special_types);
-                for(var h = 0; h < special_types_keys.length; h++){
-                  var hh = special_types_keys[h];
-                  var types_data = special_types[hh];
-                  var types_data_keys = Object.keys(types_data);
-                  for(var f = 0; f < types_data_keys.length; f++){
-                    var food_item = types_data_keys[f];
-                    var food_items = types_data[food_item];
-                    var url = food_items.nutrition_url; 
-                    dictionary.push({
-                      key:   locations[i],
-                      value: food_item
-                    });
-                    food_url_array.push({
-                      key: food_item,
-                      value: url
-                    });
-                  }
-                }
-              }
-            }
-          }
-        }
-        else{  //now we are looking @ the DUC, Bear's Den, and the Village
-          var stations = Object.keys(json[x]);// array of stations
-          // console.log(json);
-          // console.log(stations); //console.log(stations.length);
-          for(var s = 0; s < stations.length; s++){
-            var data = json[x][stations[s]].menus;
-          //  console.log(data);
-            var date = Object.keys(data);
-            //console.log(data);
-            for(var q = 0; q < date.length; q++){
-              var split_date = date[q].split(",")[0]; //@ 0 will give the weekDAY
-              if(d == split_date){
-                var day_data = data[date[q]];
-                var day_data_keys = Object.keys(day_data.menu);
-                for(var v = 0; v < day_data_keys.length; v++){
-                  var vv = day_data_keys[v];
-                  var special_types = day_data.menu[vv];
-                  var special_types_keys = Object.keys(special_types);
-                  for(var h = 0; h < special_types_keys.length; h++){
-                    var hh = special_types_keys[h];
-                    var types_data = special_types[hh];
-                    var types_data_keys = Object.keys(types_data);
-                    for(var f = 0; f < types_data_keys.length; f++){
-                      var food_item = types_data_keys[f];
-                      var food_items = types_data[food_item];
-                      var url = food_items.nutrition_url;  //console.log(url);
-                      location_stations.push({
-                        key:   locations[i],
-                        value: stations[s]
-                      });
-                      dictionary_stations.push({
-                        key:   stations[s],
-                        value: food_item
-                      });
-                      food_url_array_stations.push({
-                        key: food_item,
-                        value: url
-                      });
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-
-
-      Array.prototype.contains = function ( arr ) {
-        for (i in this) {
-          if (this[i] == arr) return true;
-        }
-        return false;
-      }
-
-      var array = ["empty_string"];
-      var array_keys = Object.keys(dictionary);
-
-
-      /////////////////// Locations without stations
-      for(var aa = 0; aa < array_keys.length; aa++){
-        var loc = dictionary[aa].key;
-        var locStr = loc.replace(/\s+/g,'');
-        if (!(array.contains(loc))) {
-            //appends locations
-            var listItem = document.createElement('h6');
-            listItem.innerHTML = '</br><a class="btn btn-secondary btn-lg btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
-            locationdiv.appendChild(listItem);
-            array.push(loc);
-        }
-
-        //appends food items at locations
-        var listItem3 = document.createElement('button');
-        listItem3.innerHTML = '<a href="' + food_url_array[aa].value +'">'+dictionary[aa].value+'</a></br>';
-        listItem3.className = 'btn btn-light btn-sm btn-block text-center collapse';
-        listItem3.id = "loc" + locStr;
-        locationdiv.appendChild(listItem3);
-      }
-
-      ///////////////////Locations with stations
-      var array_loc = ["empty_string"];
-      var array_stations = ["empty_string"];
-      var array_keys = Object.keys(dictionary);
-      var location_stations_keys = Object.keys(location_stations);
-
-      for(var aa = 0; aa < Object.keys(location_stations).length; aa++){
-        var loc = location_stations[aa].key;
-        var locStr = loc.replace(/\s+/g,'');
-        var sta = location_stations[aa].value;
-        var staStr = sta.replace(/\s+/g,'');
-        if (!(array.contains(loc))) {
-            //appends locations
-            var listItem = document.createElement('h6');
-            listItem.innerHTML = '<br><a class="btn btn-secondary btn-lg btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
-            locationdiv.appendChild(listItem);
-            array.push(loc);
-        }
-        if (!(array.contains(sta))) {
-            //appends stations
-            var listItem = document.createElement('li');
-            listItem.innerHTML = '<a data-toggle="collapse" href="#sta' + staStr + '"role="button" aria-expanded="false" aria-controls="sta' + staStr + '">' + sta + "</br>";
-            listItem.className = 'btn btn-light btn-sm btn-block text-center collapse';
-            listItem.id = "loc" + locStr;
-            locationdiv.appendChild(listItem);
-            array.push(sta);
-        }
-        //appends food items at station locations
-        var listItem3 = document.createElement('button');
-        listItem3.innerHTML = '<a href="' + food_url_array_stations[aa].value +'">'+dictionary_stations[aa].value+'</a></br>';
-        listItem3.className = 'btn btn-light btn-sm btn-block text-center collapse';
-        listItem3.id = "sta" + staStr;
-        locationdiv.appendChild(listItem3);
-      }
-    });
-    </script>
-
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>

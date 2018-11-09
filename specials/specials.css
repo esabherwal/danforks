@@ -16,6 +16,10 @@ a:active {
     text-decoration: none;
 }
 
+ul {
+    list-style: none; 
+}
+
 
 .previous {
     background-color: #f1f1f1;
@@ -31,17 +35,17 @@ a:active {
     border-radius: 50%;
 }
 
-#button1 {
+/* #button1 {
   display:inline-block;
   margin-right:10px;
   margin-left: 80px
-}
+} */
 
 #today {
   display:inline-block;
 }
 
-#button2 {
+/* #button2 {
   display:inline-block;
   margin-left:10px;
-} 
+}  */
