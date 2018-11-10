@@ -33,14 +33,15 @@ function getWeekDays(){
   document.getElementById("button2").onclick = function(){
     if(index >=6){
       index = -1;
+    }
+    currentDate = weekday[index+1];
+    index = index + 1
+    if(index >= 6) {
       $("#previous").addClass("disabled");
     }
     else {
       $("#previous").removeClass("disabled");
-      console.log("here");
     }
-    currentDate = weekday[index+1];
-    index = index + 1
     // document.getElementById("today").innerHTML = currentDate;
     $("#today").text(currentDate);
     document.getElementById("locationdiv").innerHTML = "";
