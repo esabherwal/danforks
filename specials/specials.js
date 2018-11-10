@@ -202,9 +202,11 @@ var array = ["empty_string"];
             //appends stations
             var listItem = document.createElement('button');
             listItem.innerHTML = '<a data-toggle="collapse" href="#sta' + staStr + '"role="button" aria-expanded="false" aria-controls="sta' + staStr + '">' + sta + "</a></br>";
-            listItem.className = 'btn btn-light btn-sm text-center collapse';
+            listItem.className = 'btn btn-secondary btn-sm text-center collapse';
             listItem.id = "loc" + locStr;
             locationdiv.appendChild(listItem);
+            var br = document.createElement('br');
+            locationdiv.appendChild(br);
             array.push(sta);
         }
         //appends food items at station locations
@@ -213,8 +215,8 @@ var array = ["empty_string"];
         listItem3.className = 'collapse';
         listItem3.id = "sta" + staStr;
         locationdiv.appendChild(listItem3);
-        var br = document.createElement('br');
       }
+      var br = document.createElement('br');
       locationdiv.appendChild(br);
 });
 }
