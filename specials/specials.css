@@ -33,8 +33,11 @@ ul {
 
 #locationdiv {
     margin: auto;
-    width: 50%;
 } 
+
+#dayNavId {
+    margin: auto;
+}
 
 .previous {
     background-color: #f1f1f1;
