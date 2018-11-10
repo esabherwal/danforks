@@ -189,7 +189,7 @@ var array = ["empty_string"];
           $("#macro-modal").modal("show");
           return false;
         });
-        listItem3.innerHTML = link;
+        listItem3.appendChild(link);
         listItem3.className = 'collapse';
         listItem3.id = "loc" + locStr;
         locationdiv.appendChild(listItem3);
