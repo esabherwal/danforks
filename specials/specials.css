@@ -24,6 +24,11 @@ ul {
     color: white;
 }
 
+.btn-group {
+    display: block;
+    padding: 10px 10px;
+}
+
 .previous {
     background-color: #f1f1f1;
     color: black;
