@@ -37,7 +37,8 @@ function getWeekDays(){
     }
     currentDate = weekday[index+1];
     index = index + 1
-    document.getElementById("today").innerHTML = currentDate;
+    // document.getElementById("today").innerHTML = currentDate;
+    $("#today").text(currentDate);
     document.getElementById("locationdiv").innerHTML = "";
     displayData(currentDate);
   };
@@ -166,7 +167,7 @@ var array = ["empty_string"];
         if (!(array.contains(loc))) {
             //appends locations
             var listItem = document.createElement('h6');
-            listItem.innerHTML = '<a class="btn btn-secondary btn-lg btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
+            listItem.innerHTML = '<a class="btn btn-primary btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
             locationdiv.appendChild(listItem);
             array.push(loc);
         }
@@ -193,15 +194,15 @@ var array = ["empty_string"];
         if (!(array.contains(loc))) {
             //appends locations
             var listItem = document.createElement('h6');
-            listItem.innerHTML = '<a class="btn btn-secondary btn-lg btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
+            listItem.innerHTML = '<a class="btn btn-primary btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
             locationdiv.appendChild(listItem);
             array.push(loc);
         }
         if (!(array.contains(sta))) {
             //appends stations
             var listItem = document.createElement('button');
-            listItem.innerHTML = '<a data-toggle="collapse" href="#sta' + staStr + '"role="button" aria-expanded="false" aria-controls="sta' + staStr + '">' + sta + "</a></br>";
-            listItem.className = 'btn btn-light btn-sm text-center collapse';
+            listItem.innerHTML = '<a data-toggle="collapse" href="#sta' + staStr + '"role="button" aria-expanded="false" aria-controls="sta' + staStr + '">' + sta + "</a></br></br>";
+            listItem.className = 'btn btn-secondary btn-sm text-center collapse';
             listItem.id = "loc" + locStr;
             locationdiv.appendChild(listItem);
             array.push(sta);
@@ -213,5 +214,7 @@ var array = ["empty_string"];
         listItem3.id = "sta" + staStr;
         locationdiv.appendChild(listItem3);
       }
+      var br = document.createElement('br');
+      locationdiv.appendChild(br);
 });
 }
