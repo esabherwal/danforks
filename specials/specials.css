@@ -25,8 +25,14 @@ ul {
 }
 
 .btn-group {
+    width: 15%;
     display: block;
-    padding: 10px 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+.navbar {
+    padding: 0px; 
 }
 
 .previous {
