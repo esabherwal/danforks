@@ -168,14 +168,13 @@ var array = ["empty_string"];
             locationdiv.appendChild(listItem);
             array.push(loc);
         }
-
         //appends food items at locations
         var listItem3 = document.createElement('li');
         var link = document.createElement("a");
         link.href = "#";
         link.text = dictionary[aa].value;
         link.addEventListener("click", e => {
-          console.log("reached");
+          console.log(aa);
           e.preventDefault();
           $("#modal-title").text(dictionary[aa].value);
           $("#modal-location").text(dictionary[aa].key);
@@ -193,7 +192,6 @@ var array = ["empty_string"];
         listItem3.className = 'collapse';
         listItem3.id = "loc" + locStr;
         locationdiv.appendChild(listItem3);
-
       }
 
       /////////////////// Locations with stations
@@ -225,7 +223,25 @@ var array = ["empty_string"];
         }
         //appends food items at station locations
         var listItem3 = document.createElement('li');
-        listItem3.innerHTML = '<a href="' + food_url_array_stations[aa].value +'">'+dictionary_stations[aa].value+'</a>';
+        var link = document.createElement("a");
+        link.href = "#";
+        link.text = dictionary[aa].value;
+        link.addEventListener("click", e => {
+          console.log(aa);
+          e.preventDefault();
+          $("#modal-title").text(dictionary[aa].value);
+          $("#modal-location").text(dictionary[aa].key);
+          const macros = dictionary[aa].value;
+          $("#td-cals").text(macros.calories);
+          $("#td-carbs").text(macros.carbs);
+          $("#td-fat").text(macros.fat);
+          $("#td-protein").text(macros.protein);
+          const nutritionUrl = macros.nutrition_url;
+          document.getElementById("modal-button").href = nutritionUrl;
+          $("#macro-modal").modal("show");
+          return false;
+        });
+        listItem3.appendChild(link);
         listItem3.className = 'collapse';
         listItem3.id = "sta" + staStr;
         locationdiv.appendChild(listItem3);
