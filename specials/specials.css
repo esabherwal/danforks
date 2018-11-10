@@ -31,8 +31,9 @@ ul {
     text-align: center;
 }
 
-.navbar {
-    padding: 0px; 
+#locationdiv {
+    margin: auto;
+    width: 50%;
 }
 
 .previous {
