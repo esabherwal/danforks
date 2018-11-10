@@ -21,10 +21,10 @@ function getWeekDays(){
   document.getElementById("button1").onclick = function(){
     if(index <= 0){
       index = 7;
-      document.getElementById("button1").addClass("disabled");
+      $("#button1").addClass("disabled");
     }
     else {
-      document.getElementById("button1").removeClass("disabled");
+      $("#button1").removeClass("disabled");
     }
     currentDate = weekday[index-1];
     index = index - 1;
