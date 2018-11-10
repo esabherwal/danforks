@@ -1,4 +1,8 @@
- a {
+body {
+    padding-bottom: 50px;
+}
+
+a {
     text-decoration: none;
     display: inline-block;
     padding: 8px 16px;
@@ -20,6 +24,24 @@ ul {
     list-style: none; 
 }
 
+.btn-link {
+    color: white;
+}
+
+.btn-group {
+    width: 50%;
+    display: block;
+    margin: 10px;
+    text-align: center;
+}
+
+#locationdiv {
+    margin: 10px 35px 0px 0px;
+} 
+
+#dayNavId {
+    margin: auto;
+}
 
 .previous {
     background-color: #f1f1f1;
@@ -35,17 +57,3 @@ ul {
     border-radius: 50%;
 }
 
-/* #button1 {
-  display:inline-block;
-  margin-right:10px;
-  margin-left: 80px
-} */
-
-#today {
-  display:inline-block;
-}
-
-/* #button2 {
-  display:inline-block;
-  margin-left:10px;
-}  */

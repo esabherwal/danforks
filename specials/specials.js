@@ -17,7 +17,6 @@ function getWeekDays(){
   document.getElementById("today").innerHTML = currentDate;
   displayData(currentDate);
 
-
   //Yesterday
   document.getElementById("button1").onclick = function(){
     if(index <= 0){
@@ -37,7 +36,14 @@ function getWeekDays(){
     }
     currentDate = weekday[index+1];
     index = index + 1
-    document.getElementById("today").innerHTML = currentDate;
+    if(index >= 6) {
+      $("#previous").addClass("disabled");
+    }
+    else {
+      $("#previous").removeClass("disabled");
+    }
+    // document.getElementById("today").innerHTML = currentDate;
+    $("#today").text(currentDate);
     document.getElementById("locationdiv").innerHTML = "";
     displayData(currentDate);
   };
@@ -49,12 +55,10 @@ function displayData(currentDate){
 
 $.getJSON("../menu_scrape/specials_data.json", function(json) {
 var locations = Object.keys(json);
-console.log(json);
 //***********************************************
 //Debug: This isn't updating asynchronously
 //***********************************************
 var d = currentDate;
-console.log(d);
 var dictionary = [];
 var dictionary_stations = [];
 var location_stations = [];
@@ -68,7 +72,6 @@ for(var i = 0; i < locations.length; i++){
   if(i != 2 && i != 9 && i != 10){
     var data = json[x][""].menus;
     var date = Object.keys(data);
-    //console.log(data);
     for(var q = 0; q < date.length; q++){
       var split_date = date[q].split(",")[0]; //@ 0 will give the weekDAY
         if(d == split_date){
@@ -85,7 +88,7 @@ for(var i = 0; i < locations.length; i++){
             for(var f = 0; f < types_data_keys.length; f++){
               var food_item = types_data_keys[f];
               var food_items = types_data[food_item];
-              var url = food_items.nutrition_url;  //console.log(url);
+              var url = food_items.nutrition_url; 
               dictionary.push({
                 key:   locations[i],
                 value: food_item
@@ -102,13 +105,9 @@ for(var i = 0; i < locations.length; i++){
   }
   else{  //now we are looking @ the DUC, Bear's Den, and the Village
     var stations = Object.keys(json[x]);// array of stations
-    // console.log(json);
-    // console.log(stations); //console.log(stations.length);
     for(var s = 0; s < stations.length; s++){
       var data = json[x][stations[s]].menus;
-    //  console.log(data);
       var date = Object.keys(data);
-      //console.log(data);
       for(var q = 0; q < date.length; q++){
         var split_date = date[q].split(",")[0]; //@ 0 will give the weekDAY
         if(d == split_date){
@@ -125,7 +124,7 @@ for(var i = 0; i < locations.length; i++){
               for(var f = 0; f < types_data_keys.length; f++){
                 var food_item = types_data_keys[f];
                 var food_items = types_data[food_item];
-                var url = food_items.nutrition_url;  //console.log(url);
+                var url = food_items.nutrition_url;  
                 location_stations.push({
                   key:   locations[i],
                   value: stations[s]
@@ -158,7 +157,6 @@ Array.prototype.contains = function ( arr ) {
 var array = ["empty_string"];
       var array_keys = Object.keys(dictionary);
 
-
       /////////////////// Locations without stations
       for(var aa = 0; aa < array_keys.length; aa++){
         var loc = dictionary[aa].key;
@@ -166,17 +164,36 @@ var array = ["empty_string"];
         if (!(array.contains(loc))) {
             //appends locations
             var listItem = document.createElement('h6');
-            listItem.innerHTML = '<a class="btn btn-secondary btn-lg btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
+            listItem.innerHTML = '<a class="btn btn-primary btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
             locationdiv.appendChild(listItem);
             array.push(loc);
         }
 
         //appends food items at locations
         var listItem3 = document.createElement('li');
-        listItem3.innerHTML = '<a href="' + food_url_array[aa].value +'">'+dictionary[aa].value+'</a>';
+        var link = document.createElement("a");
+        link.href = "#";
+        link.text = dictionary[aa].value;
+        link.addEventListener("click", e => {
+          console.log("reached");
+          e.preventDefault();
+          $("#modal-title").text(dictionary[aa].value);
+          $("#modal-location").text(dictionary[aa].key);
+          const macros = dictionary[aa].value;
+          $("#td-cals").text(macros.calories);
+          $("#td-carbs").text(macros.carbs);
+          $("#td-fat").text(macros.fat);
+          $("#td-protein").text(macros.protein);
+          const nutritionUrl = macros.nutrition_url;
+          document.getElementById("modal-button").href = nutritionUrl;
+          $("#macro-modal").modal("show");
+          return false;
+        });
+        listItem3.appendChild(link);
         listItem3.className = 'collapse';
         listItem3.id = "loc" + locStr;
         locationdiv.appendChild(listItem3);
+
       }
 
       /////////////////// Locations with stations
@@ -193,15 +210,15 @@ var array = ["empty_string"];
         if (!(array.contains(loc))) {
             //appends locations
             var listItem = document.createElement('h6');
-            listItem.innerHTML = '<a class="btn btn-secondary btn-lg btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
+            listItem.innerHTML = '<a class="btn btn-primary btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
             locationdiv.appendChild(listItem);
             array.push(loc);
         }
         if (!(array.contains(sta))) {
             //appends stations
-            var listItem = document.createElement('button');
-            listItem.innerHTML = '<a data-toggle="collapse" href="#sta' + staStr + '"role="button" aria-expanded="false" aria-controls="sta' + staStr + '">' + sta + "</a></br>";
-            listItem.className = 'btn btn-light btn-sm text-center collapse';
+            var listItem = document.createElement('li');
+            listItem.innerHTML = '<a data-toggle="collapse" href="#sta' + staStr + '"role="button" aria-expanded="false" aria-controls="sta' + staStr + '">' + sta + "</a>";
+            listItem.className = 'btn btn-light btn-group btn-sm text-center collapse';
             listItem.id = "loc" + locStr;
             locationdiv.appendChild(listItem);
             array.push(sta);
@@ -213,5 +230,7 @@ var array = ["empty_string"];
         listItem3.id = "sta" + staStr;
         locationdiv.appendChild(listItem3);
       }
+      var br = document.createElement('br');
+      locationdiv.appendChild(br);
 });
 }

@@ -10,11 +10,9 @@
   <title>danforks</title>
 
   <link rel="apple-touch-icon" sizes="180x180" href="/danforks/apple-touch-icon.png">
-  <!-- <link rel="icon" type="image/png" sizes="32x32" href="/danforks/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/danforks/favicon-16x16.png"> -->
+  <link rel="icon" type="image/png" sizes="16x16" href="/danforks/favicon-16x16.png">
   <link rel="manifest" href="/danforks/site.webmanifest">
   <link rel="mask-icon" href="/danforks/safari-pinned-tab.svg" color="#5bbad5">
-  <!-- <link rel="shortcut icon" href="/danforks/favicon.ico"> -->
   <meta name="msapplication-TileColor" content="#2d89ef">
   <meta name="msapplication-config" content="/danforks/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
@@ -22,10 +20,9 @@
 </head>
 <body>
   <div class="container">
-    <h1>danforks</h1>
-    <br>
+    <h1>Specials</h1>
     <nav aria-label="Day navigation">
-      <ul class="pagination justify-content-center">
+      <ul id="dayNavId" class="pagination justify-content-center">
         <li id="previous" class="page-item disabled">
           <a id="button1" class="page-link" href="#" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
@@ -42,16 +39,65 @@
       </ul>
     </nav>
 
-    <button id="button1" type="button" class="btn btn-default btn-sm">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Previous Day
-    </button>
-    <h5 id="today"></h5>
-    <button id="button2" type="button" class="btn btn-default btn-sm">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Next Day
-    </button>
-    <hr>
-    <!-- <ul id="location"></ul> -->
-    <!-- <ul id="special"></ul> -->
+    <div id="macro-modal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="modal-title" class="modal-title"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="modal-location"></p>
+            <table class="table">
+              <tbody>
+              <tr>
+                <th scope="row">Cals</th>
+                <td id="td-cals"></td>
+              </tr>
+              <tr>
+                <th scope="row">Carbs</th>
+                <td id="td-carbs"></td>
+              </tr>
+              <tr>
+                <th scope="row">Fat</th>
+                <td id="td-fat"></td>
+              </tr>
+              <tr>
+                <th scope="row">Protein</th>
+                <td id="td-protein"></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <a id="modal-button" role="button" class="btn btn-primary" target="_blank">Full nutrition</a>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand fixed-bottom navbar-dark bg-dark">
+      <div class="container">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../maps/">Map</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"></li>
+            <a class="nav-link" href="../menus/">Menus </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="../specials/">Specials <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <ul id="locationdiv"></ul>
 
     <!-- Generates the weekdays by arrow button click -->

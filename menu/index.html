@@ -3,8 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
 
   <title>danforks</title>
 
@@ -20,6 +22,7 @@
 
 </head>
 <body>
+
 <div class="container">
   <h1 id="title" class="display-4"></h1>
   <nav aria-label="Day navigation">
@@ -30,7 +33,9 @@
           <span class="sr-only">Previous</span>
         </a>
       </li>
-      <li class="page-item flex-grow-1 text-center"><a id="current-link" class="page-link">Today</a></li>
+      <li class="page-item flex-grow-1 text-center">
+        <a id="current-link" class="page-link">Today</a>
+      </li>
       <li id="next" class="page-item">
         <a id="next-link" class="page-link" href="#" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
@@ -40,47 +45,165 @@
     </ul>
   </nav>
 
-  <ul class="nav nav-tabs" id="time-tabs" role="tablist">
-    <li id="breakfast-item" class="nav-item">
-      <a class="nav-link" id="breakfast-tab" data-toggle="tab" href="#home" role="tab" aria-controls="breakfast"
-         aria-selected="false">Breakfast</a>
-    </li>
-    <li id="lunch-item" class="nav-item">
-      <a class="nav-link" id="lunch-tab" data-toggle="tab" href="#lunch" role="tab" aria-controls="lunch"
-         aria-selected="false">Lunch</a>
-    </li>
-    <li id="dinner-item" class="nav-item">
-      <a class="nav-link" id="dinner-tab" data-toggle="tab" href="#dinner" role="tab" aria-controls="dinner"
-         aria-selected="false">Dinner</a>
-    </li>
-  </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade" id="breakfast" role="tabpanel" aria-labelledby="breakfast-tab"></div>
-    <div class="tab-pane fade" id="lunch" role="tabpanel" aria-labelledby="lunch-tab"></div>
-    <div class="tab-pane fade" id="dinner" role="tabpanel" aria-labelledby="dinner-tab"></div>
-  </div>
-
-  <nav class="navbar navbar-expand fixed-bottom navbar-dark bg-dark">
-    <div class="container">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="../maps/">Map</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="../menus/">Menus <span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="../specials/">Specials</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
+  <ul class="nav nav-tabs" id="time-tabs" role="tablist"></ul>
+  <div class="tab-content" id="tab-content"></div>
 </div>
+
+<div id="macro-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="modal-title" class="modal-title"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="modal-location"></p>
+        <table class="table">
+          <tbody>
+          <tr>
+            <th scope="row">Cals</th>
+            <td id="td-cals"></td>
+          </tr>
+          <tr>
+            <th scope="row">Carbs</th>
+            <td id="td-carbs"></td>
+          </tr>
+          <tr>
+            <th scope="row">Fat</th>
+            <td id="td-fat"></td>
+          </tr>
+          <tr>
+            <th scope="row">Protein</th>
+            <td id="td-protein"></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <a id="modal-button" role="button" class="btn btn-primary" target="_blank">
+          Full nutrition
+        </a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="label-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="embed-responsive embed-responsive-1by1">
+          <iframe id="label-iframe"></iframe>
+        </div>
+        <div id="label-div"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="icon-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Icon Key</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-sm">
+          <tbody>
+          <tr>
+            <th scope='row'><img src='../menus/ContainsDairy-01.jpg'></th>
+            <td>Contains Dairy</td>
+          </tr>
+          <tr>
+            <th scope='row'><img src='../menus/ContainsEgg-01.jpg'></th>
+            <td>Contains Egg</td>
+          </tr>
+          <tr>
+            <th scope='row'><img src='../menus/ContainsFish-01.jpg'></th>
+            <td>Contains Fish</td>
+          </tr>
+          <tr>
+            <th scope='row'><img src='../menus/ContainsNutsTreeNuts-01.jpg'></th>
+            <td>Contains Peanuts or Tree Nuts</td>
+          </tr>
+          <tr>
+            <th scope='row'><img src='../menus/ContainsShellfish18.jpg'></th>
+            <td>Contains Shellfish</td>
+          </tr>
+          <tr>
+            <th scope='row'><img src='../menus/ContainsSoy-01.jpg'></th>
+            <td>Contains Soy</td>
+          </tr>
+          <tr>
+            <th scope='row'><img src='../menus/ContainsWheat.jpg'></th>
+            <td>Contains Wheat</td>
+          </tr>
+          <tr>
+            <th scope='row'><img src='../menus/TwoPlus-01.jpg'></th>
+            <td>Contains 2 or more allergens (see label)</td>
+          </tr>
+          <tr>
+            <th scope='row'><img src='../menus/Vegan-01.jpg'></th>
+            <td>Vegan</td>
+          </tr>
+          <tr>
+            <th scope='row'><img src='../menus/Vegetarian-01.jpg'></th>
+            <td>Vegetarian</td>
+          </tr>
+          <tr>
+            <th scope='row'><img src='../menus/Kosher-01.jpg'></th>
+            <td>Kosher</td>
+          </tr>
+          <tr>
+            <th scope='row'><img src='../menus/Halal-01.jpg'></th>
+            <td>Halal</td>
+          </tr>
+          <tr>
+            <th scope='row'><img src='../menus/ConnieChoice-01.jpg'></th>
+            <td>Connie's Choice</td>
+          </tr>
+          <tr>
+            <th scope='row'><img src='../menus/BearBalanceLogoRed.jpg'></th>
+            <td>Bear Balance</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar navbar-expand fixed-bottom navbar-dark bg-dark">
+  <div class="container">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="../maps/">Map</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="../menus/">Menus <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="../specials/">Specials</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
@@ -90,15 +213,20 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 <script>
-  function getTime() {
-    // TODO return "breakfast", "lunch", or "dinner"
-    return "lunch";
+  function getDefaultMeal(meals) {
+    // TODO figure out how to do this for each task
+    if (meals.includes("LUNCH")) {
+      return "LUNCH";
+    } else {
+      return meals[0];
+    }
   }
 
-  function populateWithData(element, mealData) {
-    const categories = Object.keys(mealData).sort();
+  function populateWithData(element, mealData, location) {
+    const categories = Object.keys(mealData);
     for (const category of categories) {
       const heading = document.createElement("h2");
+      heading.classList.add("mt-4");
       heading.innerText = category;
       element.appendChild(heading);
       const foodData = mealData[category];
@@ -110,27 +238,98 @@
         body.classList.add("card-body");
         const title = document.createElement("h5");
         title.classList.add("card-title");
-        title.innerText = food;
+        const link = document.createElement("a");
+        link.href = "#";
+        link.innerText = food;
+        const macros = foodData[food];
+        link.addEventListener("click", e => {
+          e.preventDefault();
+          $("#modal-title").text(food);
+          $("#modal-location").text(location);
+          $("#td-cals").text(macros.calories);
+          $("#td-carbs").text(macros.carbs);
+          $("#td-fat").text(macros.fat);
+          $("#td-protein").text(macros.protein);
+          const nutritionUrl = macros.nutrition_url;
+          document.getElementById("modal-button").href = nutritionUrl;
+          document.getElementById("label-iframe").src = nutritionUrl;
+          $("#label-div").hide();
+          $("#label-iframe").show();
+          fetchLabel(nutritionUrl).then(label => {
+            document.getElementById("label-div").innerHTML = label;
+            $("#label-iframe").hide();
+            $("#label-div").show();
+          });
+          $("#macro-modal").modal("show");
+          return false;
+        });
+        title.appendChild(link);
         body.appendChild(title);
+
+        const cals = macros.calories;
         const text = document.createElement("p");
         text.classList.add("card-text");
-        text.innerText = foodData[food].calories + " Cal";
-        body.appendChild(text);
+        let shouldShowText = false;
+        if (cals && cals !== "0") {
+          shouldShowText = true;
+          text.innerText = cals + " Cal ";
+        }
+        const labels = macros.labels;
+        if (labels.length) {
+          if (shouldShowText) {
+            text.innerText += "\u00b7 ";
+          } else {
+            shouldShowText = true;
+          }
+          const iconBox = document.createElement("a");
+          iconBox.href = "#";
+          iconBox.addEventListener("click", e => {
+            e.preventDefault();
+            $("#icon-modal").modal("show");
+            return false;
+          });
+          for (const label of labels) {
+            const icon = document.createElement("img");
+            icon.src = "../menus/" + label + ".jpg";
+            iconBox.appendChild(icon);
+            iconBox.appendChild(document.createTextNode(" "));
+          }
+          iconBox.addEventListener("click", e => {
+            e.preventDefault();
+          });
+          text.appendChild(iconBox);
+        }
+        if (shouldShowText) {
+          body.appendChild(text);
+        }
         card.appendChild(body);
         element.appendChild(card);
       }
     }
   }
 
+  function fetchLabel(url) {
+    return new Promise(resolve => {
+      $.get(url, null, data => {
+        const container = document.createElement("div");
+        container.innerHTML = data;
+        resolve($(container).children("table")[0]);
+      });
+    });
+  }
+
   function updateDayMeal(dayIndex, meal, divArray) {
     const fixedIndex = 0 <= dayIndex && dayIndex < divArray.length ? dayIndex : 0;
-    const mealElement = document.getElementById(meal);
+    const mealElement = document.getElementById(getIdForMeal(meal));
     $(mealElement).children(".meal-div").each((_, e) => e.hidden = true);
     divArray[fixedIndex].hidden = false;
   }
 
+  function getIdForMeal(meal) {
+    return meal.toLowerCase().replace(/-*[^a-zA-Z\d-]+-*/g, "-");
+  }
+
   $(() => {
-    $("#" + getTime() + "-tab").tab("show");
     const url = new URL(window.location.href);
     const location = url.searchParams.get("location");
     const station = url.searchParams.get("station");
@@ -141,94 +340,131 @@
     }
     $.getJSON("https://esabherwal.github.io/danforks/menu_scrape/menu_data.json", {}, data => {
       const locationData = data[location];
-      const stationData = locationData[station || ""];
+      let stationData = locationData[station || ""];
+      if (!stationData) {
+        stationData = {};
+        const menus = {};
+        const stationNames = Object.keys(locationData).sort();
+        for (const stationName of stationNames) {
+          const stationMenus = locationData[stationName].menus;
+          Object.entries(stationMenus).forEach(([day, stationDayData]) => {
+            let dayData;
+            if (menus[day]) {
+              dayData = menus[day];
+            } else {
+              dayData = {menu: {}};
+              menus[day] = dayData;
+            }
+            const menu = dayData.menu;
+            Object.entries(stationDayData.menu).forEach(([meal, stationMealData]) => {
+              if (!menu[meal]) {
+                menu[meal] = {};
+              }
+              let mealData = menu[meal];
+              Object.entries(stationMealData).forEach(([category, categoryData]) => {
+                mealData[stationName + " \u00b7 " + category] = categoryData;
+              });
+            });
+          });
+        }
+        stationData.menus = menus;
+      }
       const menus = stationData.menus;
       const days = Object.keys(menus).filter(
           s => Object.keys(menus[s].menu).length !== 0
       ).sort((a, b) => Date.parse(a) - Date.parse(b));
-      const breakfastData = [];
-      const lunchData = [];
-      const dinnerData = [];
+
+      const meals = [];
+      for (const day of days) {
+        for (const meal of Object.keys(menus[day].menu)) {
+          if (!meals.includes(meal)) {
+            meals.push(meal);
+          }
+        }
+      }
+      const mealsCopy = meals.slice();
+      const standardOrder = ["BREAKFAST", "LUNCH", "DINNER"];
+      meals.sort((a, b) => {
+        if (standardOrder.includes(a) && standardOrder.includes(b)) {
+          return standardOrder.indexOf(a) - standardOrder.indexOf(b);
+        } else {
+          return mealsCopy.indexOf(a) - mealsCopy.indexOf(b);
+        }
+      });
+      const dataDivs = {};
+      const contentDivs = {};
+      for (const meal of meals) {
+        dataDivs[meal] = [];
+        const li = document.createElement("li");
+        li.classList.add("nav-item");
+        const a = document.createElement("a");
+        const safeName = getIdForMeal(meal);
+        a.id = safeName + "-a";
+        a.classList.add("nav-link");
+        a.setAttribute("data-toggle", "tab");
+        a.href = "#" + safeName;
+        a.role = "tab";
+        a.innerText = meal;
+        li.appendChild(a);
+        document.getElementById("time-tabs").appendChild(li);
+        const contentDiv = document.createElement("div");
+        contentDiv.classList.add("tab-pane", "fade");
+        contentDiv.id = safeName;
+        contentDiv.role = "tabpanel";
+        document.getElementById("tab-content").appendChild(contentDiv);
+        contentDivs[meal] = contentDiv;
+        $(a).tab();
+      }
+
       const alert = document.createElement("div");
       alert.classList.add("alert", "alert-secondary", "meal-div", "my-2");
       alert.role = "alert";
       alert.innerText = "Closed at this time";
       alert.hidden = true;
-      for (let dayIndex = 0; dayIndex < days.length; dayIndex++) {
-        const menu = menus[days[dayIndex]].menu;
-        const breakfast = menu["BREAKFAST"];
-        if (breakfast) {
-          const breakfastDiv = document.createElement("div");
-          breakfastDiv.classList.add("meal-div");
-          breakfastDiv.hidden = true;
-          populateWithData(breakfastDiv, breakfast);
-          breakfastData[dayIndex] = breakfastDiv;
-          document.getElementById("breakfast").appendChild(breakfastDiv);
-        } else {
-          const alertClone = alert.cloneNode(true);
-          breakfastData[dayIndex] = alertClone;
-          document.getElementById("breakfast").appendChild(alertClone);
+
+      for (const meal of meals) {
+        const mealDataDivs = dataDivs[meal];
+        const contentDiv = contentDivs[meal];
+        for (const day of days) {
+          const menu = menus[day].menu;
+          const mealData = menu[meal];
+          if (mealData) {
+            const div = document.createElement("div");
+            div.classList.add("meal-div");
+            div.hidden = true;
+            populateWithData(div, mealData, station || location);
+            mealDataDivs.push(div);
+            contentDiv.appendChild(div);
+          } else {
+            const alertClone = alert.cloneNode(true);
+            mealDataDivs.push(alertClone);
+            contentDiv.appendChild(alertClone);
+          }
         }
-        const lunch = menu["LUNCH"];
-        if (lunch) {
-          const lunchDiv = document.createElement("div");
-          lunchDiv.classList.add("meal-div");
-          lunchDiv.hidden = true;
-          populateWithData(lunchDiv, lunch);
-          lunchData[dayIndex] = lunchDiv;
-          document.getElementById("lunch").appendChild(lunchDiv);
-        } else {
-          const alertClone = alert.cloneNode(true);
-          lunchData[dayIndex] = alertClone;
-          document.getElementById("lunch").appendChild(alertClone);
-        }
-        const dinner = menu["DINNER"];
-        if (dinner) {
-          const dinnerDiv = document.createElement("div");
-          dinnerDiv.classList.add("meal-div");
-          dinnerDiv.hidden = true;
-          populateWithData(dinnerDiv, lunch);
-          dinnerData[dayIndex] = dinnerDiv;
-          document.getElementById("dinner").appendChild(dinnerDiv);
-        } else {
-          const alertClone = alert.cloneNode(true);
-          dinnerData[dayIndex] = alertClone;
-          document.getElementById("dinner").appendChild(alertClone);
-        }
+        const spacer = document.createElement("div");
+        spacer.style.height = "56px";
+        contentDiv.appendChild(spacer);
       }
+
+      $("#" + getIdForMeal(getDefaultMeal(meals)) + "-a").tab("show");
 
       days[0] = "Today";
       days[1] = "Tomorrow";
-      const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+        "Saturday"];
       for (let i = 2; i < days.length; i++) {
         days[i] = dayNames[new Date(Date.parse(days[i])).getDay()]
       }
 
-      if (breakfastData.filter(e => !e.classList.contains("alert")).length) {
-        updateDayMeal(0, "breakfast", breakfastData);
-      } else {
-        document.getElementById("breakfast-item").hidden = true;
-      }
-      if (lunchData.filter(e => !e.classList.contains("alert")).length) {
-        updateDayMeal(0, "lunch", lunchData);
-      } else {
-        document.getElementById("lunch-item").hidden = true;
-      }
-      if (dinnerData.filter(e => !e.classList.contains("alert")).length) {
-        updateDayMeal(0, "dinner", dinnerData);
-      } else {
-        document.getElementById("dinner-item").hidden = true;
-      }
+      updateDay(0);
 
       function updateDay(newDayIndex) {
-        if (breakfastData.length)
-          updateDayMeal(newDayIndex, "breakfast", breakfastData);
-        if (lunchData.length)
-          updateDayMeal(newDayIndex, "lunch", lunchData);
-        if (dinnerData.length)
-          updateDayMeal(newDayIndex, "dinner", dinnerData);
-        $("#current-link").text(days[dayIndex]);
+        for (const meal of meals) {
+          updateDayMeal(newDayIndex, meal, dataDivs[meal]);
+        }
+        $("#current-link").text(days[newDayIndex]);
       }
+
       function disablePagerButtons() {
         if (dayIndex < 1) {
           dayIndex = 0;
@@ -243,6 +479,7 @@
           $("#next").removeClass("disabled");
         }
       }
+
       let dayIndex = 0;
       $("#previous-link").click(() => {
         dayIndex--;
@@ -250,14 +487,28 @@
         updateDay(dayIndex);
         return false;
       });
-      const maxIndex = Math.max(breakfastData.length, lunchData.length, dinnerData.length);
+      const maxIndex = Math.max(Object.values(dataDivs).map(value => value.length));
       $("#next-link").click(() => {
         dayIndex++;
         disablePagerButtons();
         updateDay(dayIndex);
         return false;
       });
-    })
+    });
+
+    let shouldShowLabel = false;
+    document.getElementById("modal-button").addEventListener("click", e => {
+      e.preventDefault();
+      shouldShowLabel = true;
+      $("#macro-modal").modal("hide");
+      return false;
+    });
+    $("#macro-modal").on("hidden.bs.modal", () => {
+      if (shouldShowLabel) {
+        $("#label-modal").modal("show");
+      }
+      shouldShowLabel = false;
+    });
   });
 </script>
 </body>
