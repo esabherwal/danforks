@@ -20,6 +20,9 @@ ul {
     list-style: none; 
 }
 
+.btn-link {
+    color: white;
+}
 
 .previous {
     background-color: #f1f1f1;
