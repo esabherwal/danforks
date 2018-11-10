@@ -168,6 +168,10 @@ var array = ["empty_string"];
             locationdiv.appendChild(listItem);
             array.push(loc);
         }
+        
+      }
+
+      for (location, food in dictionary) {
         //appends food items at locations
         var listItem3 = document.createElement('li');
         var link = document.createElement("a");
@@ -176,9 +180,9 @@ var array = ["empty_string"];
         link.addEventListener("click", e => {
           console.log(aa);
           e.preventDefault();
-          $("#modal-title").text(dictionary[aa].value);
-          $("#modal-location").text(dictionary[aa].key);
-          const macros = dictionary[aa].value;
+          $("#modal-title").text(food);
+          $("#modal-location").text(location);
+          const macros = food;
           $("#td-cals").text(macros.calories);
           $("#td-carbs").text(macros.carbs);
           $("#td-fat").text(macros.fat);
@@ -193,6 +197,8 @@ var array = ["empty_string"];
         listItem3.id = "loc" + locStr;
         locationdiv.appendChild(listItem3);
       }
+
+
 
       /////////////////// Locations with stations
       var array_loc = ["empty_string"];
