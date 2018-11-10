@@ -45,7 +45,7 @@
   <div class="tab-content" id="tab-content"></div>
 </div>
 
-<div id="modal" class="modal fade" tabindex="-1" role="dialog">
+<div id="macro-modal" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -78,8 +78,27 @@
         </table>
       </div>
       <div class="modal-footer">
-        <a id="modal-button" role="button" class="btn btn-primary">Full nutrition</a>
+        <a id="modal-button" role="button" class="btn btn-primary" target="_blank">Full nutrition</a>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="label-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="embed-responsive embed-responsive-1by1">
+          <iframe id="label-iframe"></iframe>
+        </div>
+        <div id="label-div"></div>
       </div>
     </div>
   </div>
@@ -150,8 +169,17 @@
           $("#td-carbs").text(macros.carbs);
           $("#td-fat").text(macros.fat);
           $("#td-protein").text(macros.protein);
-          document.getElementById("modal-button").href = macros.nutrition_url;
-          $("#modal").modal("show");
+          const nutritionUrl = macros.nutrition_url;
+          document.getElementById("modal-button").href = nutritionUrl;
+          document.getElementById("label-iframe").src = nutritionUrl;
+          $("#label-div").hide();
+          $("#label-iframe").show();
+          fetchLabel(nutritionUrl).then(label => {
+            document.getElementById("label-div").innerHTML = label;
+            $("#label-iframe").hide();
+            $("#label-div").show();
+          });
+          $("#macro-modal").modal("show");
           return false;
         });
         title.appendChild(link);
@@ -167,6 +195,16 @@
         element.appendChild(card);
       }
     }
+  }
+
+  function fetchLabel(url) {
+    return new Promise(resolve => {
+      $.get(url, null, data => {
+        const container = document.createElement("div");
+        container.innerHTML = data;
+        resolve($(container).children("table")[0]);
+      });
+    });
   }
 
   function updateDayMeal(dayIndex, meal, divArray) {
@@ -340,7 +378,21 @@
         updateDay(dayIndex);
         return false;
       });
-    })
+    });
+
+    let shouldShowLabel = false;
+    document.getElementById("modal-button").addEventListener("click", e => {
+      e.preventDefault();
+      shouldShowLabel = true;
+      $("#macro-modal").modal("hide");
+      return false;
+    });
+    $("#macro-modal").on("hidden.bs.modal", () => {
+      if (shouldShowLabel) {
+        $("#label-modal").modal("show");
+      }
+      shouldShowLabel = false;
+    });
   });
 </script>
 </body>
