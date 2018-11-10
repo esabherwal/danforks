@@ -1,13 +1,11 @@
  a {
     text-decoration: none;
     display: inline-block;
-    color: white;
     padding: 8px 16px;
 }
 
 a:hover {
     text-decoration: none;
-    color: lightgray;
 }
 
 a:visited {
