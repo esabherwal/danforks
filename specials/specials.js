@@ -157,7 +157,6 @@ Array.prototype.contains = function ( arr ) {
 var array = ["empty_string"];
       var array_keys = Object.keys(dictionary);
 
-
       /////////////////// Locations without stations
       for(var aa = 0; aa < array_keys.length; aa++){
         var loc = dictionary[aa].key;
@@ -172,10 +171,35 @@ var array = ["empty_string"];
 
         //appends food items at locations
         var listItem3 = document.createElement('li');
-        listItem3.innerHTML = '<a href="' + food_url_array[aa].value +'">'+dictionary[aa].value+'</a>';
+        const link = document.createElement("a");
+        link.href = "#";
+        link.addEventListener("click", e => {
+          e.preventDefault();
+          $("#modal-title").text(food);
+          $("#modal-location").text(location);
+          const macros = dictionary[aa].value;
+          $("#td-cals").text(macros.calories);
+          $("#td-carbs").text(macros.carbs);
+          $("#td-fat").text(macros.fat);
+          $("#td-protein").text(macros.protein);
+          const nutritionUrl = macros.nutrition_url;
+          document.getElementById("modal-button").href = nutritionUrl;
+          document.getElementById("label-iframe").src = nutritionUrl;
+          $("#label-div").hide();
+          $("#label-iframe").show();
+          fetchLabel(nutritionUrl).then(label => {
+            document.getElementById("label-div").innerHTML = label;
+            $("#label-iframe").hide();
+            $("#label-div").show();
+          });
+          $("#macro-modal").modal("show");
+          return false;
+        });
+        listItem3.innerHTML = '<a href="' + link +'">'+dictionary[aa].value+'</a>';
         listItem3.className = 'collapse';
         listItem3.id = "loc" + locStr;
         locationdiv.appendChild(listItem3);
+
       }
 
       /////////////////// Locations with stations

@@ -38,6 +38,47 @@
         </li>
       </ul>
     </nav>
+
+    <div id="macro-modal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="modal-title" class="modal-title"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="modal-location"></p>
+            <table class="table">
+              <tbody>
+              <tr>
+                <th scope="row">Cals</th>
+                <td id="td-cals"></td>
+              </tr>
+              <tr>
+                <th scope="row">Carbs</th>
+                <td id="td-carbs"></td>
+              </tr>
+              <tr>
+                <th scope="row">Fat</th>
+                <td id="td-fat"></td>
+              </tr>
+              <tr>
+                <th scope="row">Protein</th>
+                <td id="td-protein"></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <a id="modal-button" role="button" class="btn btn-primary" target="_blank">Full nutrition</a>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <nav class="navbar navbar-expand fixed-bottom navbar-dark bg-dark">
       <div class="container">
         <ul class="navbar-nav mr-auto">
