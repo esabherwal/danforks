@@ -1,4 +1,8 @@
- a {
+body {
+    padding-bottom: 50px;
+}
+
+a {
     text-decoration: none;
     display: inline-block;
     padding: 8px 16px;
@@ -25,14 +29,14 @@ ul {
 }
 
 .btn-group {
-    width: 15%;
+    width: 50%;
     display: block;
     margin: 10px;
     text-align: center;
 }
 
 #locationdiv {
-    margin: auto;
+    margin: 10px 35px 0px 0px;
 } 
 
 #dayNavId {
