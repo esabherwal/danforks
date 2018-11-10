@@ -205,6 +205,7 @@ var array = ["empty_string"];
             listItem.className = 'btn btn-secondary btn-block btn-sm text-center collapse';
             listItem.id = "loc" + locStr;
             locationdiv.appendChild(listItem);
+            locationdiv.appendChild(document.createElement('br'));
             array.push(sta);
         }
         //appends food items at station locations
