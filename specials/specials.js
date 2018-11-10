@@ -177,8 +177,8 @@ var array = ["empty_string"];
         link.addEventListener("click", e => {
           console.log("reached");
           e.preventDefault();
-          $("#modal-title").text(food);
-          $("#modal-location").text(location);
+          $("#modal-title").text(dictionary[aa].value);
+          $("#modal-location").text(loc);
           const macros = dictionary[aa].value;
           $("#td-cals").text(macros.calories);
           $("#td-carbs").text(macros.carbs);
