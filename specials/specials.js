@@ -55,12 +55,10 @@ function displayData(currentDate){
 
 $.getJSON("../menu_scrape/specials_data.json", function(json) {
 var locations = Object.keys(json);
-console.log(json);
 //***********************************************
 //Debug: This isn't updating asynchronously
 //***********************************************
 var d = currentDate;
-console.log(d);
 var dictionary = [];
 var dictionary_stations = [];
 var location_stations = [];
@@ -74,7 +72,6 @@ for(var i = 0; i < locations.length; i++){
   if(i != 2 && i != 9 && i != 10){
     var data = json[x][""].menus;
     var date = Object.keys(data);
-    //console.log(data);
     for(var q = 0; q < date.length; q++){
       var split_date = date[q].split(",")[0]; //@ 0 will give the weekDAY
         if(d == split_date){
@@ -91,7 +88,7 @@ for(var i = 0; i < locations.length; i++){
             for(var f = 0; f < types_data_keys.length; f++){
               var food_item = types_data_keys[f];
               var food_items = types_data[food_item];
-              var url = food_items.nutrition_url;  //console.log(url);
+              var url = food_items.nutrition_url; 
               dictionary.push({
                 key:   locations[i],
                 value: food_item
@@ -108,13 +105,9 @@ for(var i = 0; i < locations.length; i++){
   }
   else{  //now we are looking @ the DUC, Bear's Den, and the Village
     var stations = Object.keys(json[x]);// array of stations
-    // console.log(json);
-    // console.log(stations); //console.log(stations.length);
     for(var s = 0; s < stations.length; s++){
       var data = json[x][stations[s]].menus;
-    //  console.log(data);
       var date = Object.keys(data);
-      //console.log(data);
       for(var q = 0; q < date.length; q++){
         var split_date = date[q].split(",")[0]; //@ 0 will give the weekDAY
         if(d == split_date){
@@ -131,7 +124,7 @@ for(var i = 0; i < locations.length; i++){
               for(var f = 0; f < types_data_keys.length; f++){
                 var food_item = types_data_keys[f];
                 var food_items = types_data[food_item];
-                var url = food_items.nutrition_url;  //console.log(url);
+                var url = food_items.nutrition_url;  
                 location_stations.push({
                   key:   locations[i],
                   value: stations[s]
