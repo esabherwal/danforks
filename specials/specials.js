@@ -170,9 +170,10 @@ var array = ["empty_string"];
         }
 
         //appends food items at locations
-        var listItem3 = document.createElement('li');
-        const link = document.createElement("a");
+        // var listItem3 = document.createElement('li');
+        var link = document.createElement("a");
         link.href = "#";
+        link.text = dictionary[aa].value;
         link.addEventListener("click", e => {
           console.log("reached");
           e.preventDefault();
@@ -196,10 +197,11 @@ var array = ["empty_string"];
           $("#macro-modal").modal("show");
           return false;
         });
-        listItem3.innerHTML = '<a href="' + link +'">'+dictionary[aa].value+'</a>';
-        listItem3.className = 'collapse';
-        listItem3.id = "loc" + locStr;
-        locationdiv.appendChild(listItem3);
+        link.className = 'collapse';
+        // listItem3.innerHTML = '<a href="' + link +'">'+dictionary[aa].value+'</a>';
+        // listItem3.className = 'collapse';
+        // listItem3.id = "loc" + locStr;
+        locationdiv.appendChild(link);
 
       }
 
