@@ -178,7 +178,7 @@ var array = ["empty_string"];
           console.log("reached");
           e.preventDefault();
           $("#modal-title").text(dictionary[aa].value);
-          $("#modal-location").text(loc);
+          $("#modal-location").text(dictionary[aa].key);
           const macros = dictionary[aa].value;
           $("#td-cals").text(macros.calories);
           $("#td-carbs").text(macros.carbs);
@@ -186,21 +186,13 @@ var array = ["empty_string"];
           $("#td-protein").text(macros.protein);
           const nutritionUrl = macros.nutrition_url;
           document.getElementById("modal-button").href = nutritionUrl;
-          // document.getElementById("label-iframe").src = nutritionUrl;
-          // $("#label-div").hide();
-          // $("#label-iframe").show();
-          fetchLabel(nutritionUrl).then(label => {
-            // document.getElementById("label-div").innerHTML = label;
-            // $("#label-iframe").hide();
-            // $("#label-div").show();
-          });
           $("#macro-modal").modal("show");
           return false;
         });
         listItem3.innerHTML = link;
         listItem3.className = 'collapse';
         listItem3.id = "loc" + locStr;
-        locationdiv.appendChild(link);
+        locationdiv.appendChild(listItem3);
 
       }
 
