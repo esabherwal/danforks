@@ -167,7 +167,7 @@ var array = ["empty_string"];
         if (!(array.contains(loc))) {
             //appends locations
             var listItem = document.createElement('h6');
-            listItem.innerHTML = '<a class="btn btn-secondary btn-lg btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
+            listItem.innerHTML = '<a class="btn btn-primary btn-lg btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
             locationdiv.appendChild(listItem);
             array.push(loc);
         }
@@ -194,7 +194,7 @@ var array = ["empty_string"];
         if (!(array.contains(loc))) {
             //appends locations
             var listItem = document.createElement('h6');
-            listItem.innerHTML = '<a class="btn btn-secondary btn-lg btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
+            listItem.innerHTML = '<a class="btn btn-primary btn-lg btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
             locationdiv.appendChild(listItem);
             array.push(loc);
         }
