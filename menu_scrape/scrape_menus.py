@@ -4,11 +4,13 @@ import requests
 import csv
 import json
 
+import collections
+
 menu_url_root = 'http://menus.wustl.edu/'
 
 # given a "longmenu" url (for a single meal/category), parse the data therein and return datastructure with menu items.
 def get_menu_items(longmenu_url):
-    meal_menu = {} # map of sub-section to dict of menu items
+    meal_menu = collections.OrderedDict() # map of sub-section to dict of menu items
     meal_page = requests.get(longmenu_url)
     meal_tree = html.fromstring(meal_page.content)
     # in the menu table, get (in order) all rows that are either categories or menu entries
@@ -43,7 +45,7 @@ def get_menu_items(longmenu_url):
 # given url for a menu page, get the actual menu data for the day.
 # returns object with parsed data.
 def get_day_menus(menu_url):
-    menu = {} # map of meal time (breakfast, etc.) to menu
+    menu = collections.OrderedDict() # map of meal time (breakfast, etc.) to menu
     menu_page = requests.get(menu_url)
     menu_tree = html.fromstring(menu_page.content)
     for submenu in menu_tree.xpath('//div[@class="shortmenumeals"]'):
