@@ -37,6 +37,7 @@ function getWeekDays(){
     }
     else {
       $("#previous").removeClass("disabled");
+      console.log("here");
     }
     currentDate = weekday[index+1];
     index = index + 1
