@@ -174,6 +174,7 @@ var array = ["empty_string"];
         const link = document.createElement("a");
         link.href = "#";
         link.addEventListener("click", e => {
+          console.log("reached");
           e.preventDefault();
           $("#modal-title").text(food);
           $("#modal-location").text(location);
