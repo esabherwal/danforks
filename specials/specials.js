@@ -37,7 +37,8 @@ function getWeekDays(){
     }
     currentDate = weekday[index+1];
     index = index + 1
-    document.getElementById("today").innerHTML = currentDate;
+    // document.getElementById("today").innerHTML = currentDate;
+    $("#today").text(currentDate);
     document.getElementById("locationdiv").innerHTML = "";
     displayData(currentDate);
   };
