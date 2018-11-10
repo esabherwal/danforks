@@ -36,7 +36,7 @@ function getWeekDays(){
     }
     currentDate = weekday[index+1];
     index = index + 1
-    if(index >= 7) {
+    if(index >= 6) {
       $("#previous").addClass("disabled");
     }
     else {
