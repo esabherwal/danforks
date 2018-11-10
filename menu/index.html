@@ -45,6 +45,46 @@
   <div class="tab-content" id="tab-content"></div>
 </div>
 
+<div id="modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="modal-title" class="modal-title"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="modal-location"></p>
+        <table class="table">
+          <tbody>
+          <tr>
+            <th scope="row">Cals</th>
+            <td id="td-cals"></td>
+          </tr>
+          <tr>
+            <th scope="row">Carbs</th>
+            <td id="td-carbs"></td>
+          </tr>
+          <tr>
+            <th scope="row">Fat</th>
+            <td id="td-fat"></td>
+          </tr>
+          <tr>
+            <th scope="row">Protein</th>
+            <td id="td-protein"></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <a id="modal-button" role="button" class="btn btn-primary">Full nutrition</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <nav class="navbar navbar-expand fixed-bottom navbar-dark bg-dark">
   <div class="container">
     <ul class="navbar-nav mr-auto">
@@ -82,7 +122,7 @@
     }
   }
 
-  function populateWithData(element, mealData) {
+  function populateWithData(element, mealData, location) {
     const categories = Object.keys(mealData);
     for (const category of categories) {
       const heading = document.createElement("h2");
@@ -98,7 +138,23 @@
         body.classList.add("card-body");
         const title = document.createElement("h5");
         title.classList.add("card-title");
-        title.innerText = food;
+        const link = document.createElement("a");
+        link.href = "#";
+        link.innerText = food;
+        link.addEventListener("click", e => {
+          e.preventDefault();
+          $("#modal-title").text(food);
+          $("#modal-location").text(location);
+          const macros = foodData[food];
+          $("#td-cals").text(macros.calories);
+          $("#td-carbs").text(macros.carbs);
+          $("#td-fat").text(macros.fat);
+          $("#td-protein").text(macros.protein);
+          document.getElementById("modal-button").href = macros.nutrition_url;
+          $("#modal").modal("show");
+          return false;
+        });
+        title.appendChild(link);
         body.appendChild(title);
         const cals = foodData[food].calories;
         if (cals && cals !== "0") {
@@ -121,7 +177,7 @@
   }
 
   function getIdForMeal(meal) {
-    return meal.toLowerCase().replace(/-*[^a-zA-Z\d-]+-*/, "-");
+    return meal.toLowerCase().replace(/-*[^a-zA-Z\d-]+-*/g, "-");
   }
 
   $(() => {
@@ -224,7 +280,7 @@
             const div = document.createElement("div");
             div.classList.add("meal-div");
             div.hidden = true;
-            populateWithData(div, mealData);
+            populateWithData(div, mealData, station || location);
             mealDataDivs.push(div);
             contentDiv.appendChild(div);
           } else {
