@@ -176,7 +176,7 @@ var array = ["empty_string"];
         var listItem3 = document.createElement('li');
         var link = document.createElement("a");
         link.href = "#";
-        link.text = food;
+        link.text = food; 
         link.addEventListener("click", e => {
           console.log(aa);
           e.preventDefault();
