@@ -171,7 +171,7 @@ var array = ["empty_string"];
 
         var listItem3 = document.createElement('li');
         var link = document.createElement("a");
-        link.id = "food" + dictionary[aa].value;
+        // link.id = "food" + dictionary[aa].value;
         food = dictionary[aa].value;
         location = dictionary[aa].key;
         link.href = "#";
