@@ -95,6 +95,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
+        <h5 class="modal-title"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -103,6 +104,7 @@
         <div class="embed-responsive embed-responsive-1by1">
           <iframe id="label-iframe"></iframe>
         </div>
+        <div id="label-div"></div>
       </div>
     </div>
   </div>
@@ -251,6 +253,13 @@
           const nutritionUrl = macros.nutrition_url;
           document.getElementById("modal-button").href = nutritionUrl;
           document.getElementById("label-iframe").src = nutritionUrl;
+          $("#label-div").hide();
+          $("#label-iframe").show();
+          fetchLabel(nutritionUrl).then(label => {
+            document.getElementById("label-div").innerHTML = label;
+            $("#label-iframe").hide();
+            $("#label-div").show();
+          });
           $("#macro-modal").modal("show");
           return false;
         });
@@ -297,6 +306,16 @@
         element.appendChild(card);
       }
     }
+  }
+
+  function fetchLabel(url) {
+    return new Promise(resolve => {
+      $.get(url, null, data => {
+        const container = document.createElement("div");
+        container.innerHTML = data;
+        resolve($(container).children("table")[0]);
+      });
+    });
   }
 
   function updateDayMeal(dayIndex, meal, divArray) {
