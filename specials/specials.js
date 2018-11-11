@@ -176,7 +176,7 @@ var array = ["empty_string"];
         link.href = "#" + food;
         link.innerText = food; 
         link.addEventListener("click", e => {
-          e.preventDefault();
+          e.preventDefault(); 
           $("#modal-title").text(food);
           $("#modal-location").text(location);
           const macros = food;
