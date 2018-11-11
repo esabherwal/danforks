@@ -26,9 +26,9 @@ with open('menu_data.json') as f:
                                     nutrition_page = requests.get(nutrition_url)
                                     with open(htmlfname, "w") as html_file:
                                         html_file.write(nutrition_page.text.encode('utf-8'))
+                                    full_menus[loc][station]['menus'][date]['menu'][meal][category][item]["nutrition_url"] = htmlfname
                                 except requests.exceptions.ConnectionError:
                                     print 'couldn\'t load', nutrition_url
-                            full_menus[loc][station]['menus'][date]['menu'][meal][category][item]["nutrition_url"] = htmlfname
 
 
 print 'writing'                        

@@ -19,17 +19,17 @@ with open('menu_data.json') as f:
                     for category in full_menus[loc][station]['menus'][date]['menu'][meal]:
                         for item in full_menus[loc][station]['menus'][date]['menu'][meal][category]:
                             nutrition_url = full_menus[loc][station]['menus'][date]['menu'][meal][category][item]["nutrition_url"]
-                            # print nutrition_url
-                            nutrition_page = requests.get(nutrition_url)
-                            nutrition_tree = html.fromstring(nutrition_page.content)
-                            calories = nutrition_tree.xpath('//b[starts-with(text(),"Calories")]/text()')[0].split()[1]
-                            fat = nutrition_tree.xpath('//b[starts-with(text(),"Total Fat")]/../following-sibling::font/text()')[0]
-                            protein = nutrition_tree.xpath('//b[starts-with(text(),"Protein")]/../following-sibling::font/text()')[0]
-                            carbs = nutrition_tree.xpath('//b[starts-with(text(),"Tot. Carb.")]/../following-sibling::font/text()')[0]
-                            full_menus[loc][station]['menus'][date]['menu'][meal][category][item]['calories'] = calories
-                            full_menus[loc][station]['menus'][date]['menu'][meal][category][item]['fat'] = fat
-                            full_menus[loc][station]['menus'][date]['menu'][meal][category][item]['protein'] = protein
-                            full_menus[loc][station]['menus'][date]['menu'][meal][category][item]['carbs'] = carbs
+                            with open(nutrition_url, "r") as nutrition_f:
+                                print nutrition_url
+                                nutrition_tree = html.fromstring(nutrition_f.read())
+                                calories = nutrition_tree.xpath('//b[starts-with(text(),"Calories")]/text()')[0].split()[1]
+                                fat = nutrition_tree.xpath('//b[starts-with(text(),"Total Fat")]/../following-sibling::font/text()')[0]
+                                protein = nutrition_tree.xpath('//b[starts-with(text(),"Protein")]/../following-sibling::font/text()')[0]
+                                carbs = nutrition_tree.xpath('//b[starts-with(text(),"Tot. Carb.")]/../following-sibling::font/text()')[0]
+                                full_menus[loc][station]['menus'][date]['menu'][meal][category][item]['calories'] = calories
+                                full_menus[loc][station]['menus'][date]['menu'][meal][category][item]['fat'] = fat
+                                full_menus[loc][station]['menus'][date]['menu'][meal][category][item]['protein'] = protein
+                                full_menus[loc][station]['menus'][date]['menu'][meal][category][item]['carbs'] = carbs
             
 
 print 'writing'                        
