@@ -172,13 +172,13 @@ var array = ["empty_string"];
       }
 
       for ( const [location, food] of  Object.entries(dictionary)) {
+        console.log(aa);
         //appends food items at locations
         var listItem3 = document.createElement('li');
         var link = document.createElement("a");
         link.href = "#";
         link.text = food; 
         link.addEventListener("click", e => {
-          console.log(aa);
           e.preventDefault();
           $("#modal-title").text(food);
           $("#modal-location").text(location);
