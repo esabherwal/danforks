@@ -171,7 +171,7 @@ var array = ["empty_string"];
         
       }
 
-      for (location, food in dictionary) {
+      for ( const [location, food] of  Object.entries(dictionary)) {
         //appends food items at locations
         var listItem3 = document.createElement('li');
         var link = document.createElement("a");
