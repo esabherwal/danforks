@@ -95,16 +95,16 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title"></h5>
+        <h5 id="label-title" class="modal-title"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <div class="embed-responsive embed-responsive-1by1">
+        <div id="iframe-div" class="embed-responsive embed-responsive-1by1">
           <iframe id="label-iframe"></iframe>
         </div>
-        <div id="label-div"></div>
+        <div id="label-div" class="table-responsive"></div>
       </div>
     </div>
   </div>
@@ -254,10 +254,11 @@
           document.getElementById("modal-button").href = nutritionUrl;
           document.getElementById("label-iframe").src = nutritionUrl;
           $("#label-div").hide();
-          $("#label-iframe").show();
+          $("#label-title").text(food);
+          $("#iframe-div").show();
           fetchLabel(nutritionUrl).then(label => {
-            document.getElementById("label-div").innerHTML = label;
-            $("#label-iframe").hide();
+            document.getElementById("label-div").appendChild(label);
+            $("#iframe-div").hide();
             $("#label-div").show();
           });
           $("#macro-modal").modal("show");
@@ -313,7 +314,10 @@
       $.get(url, null, data => {
         const container = document.createElement("div");
         container.innerHTML = data;
-        resolve($(container).children("table")[0]);
+        const containerJq = $(container);
+        containerJq.children(".labelrecipe").remove();
+        containerJq.find("tr[valign=middle]").remove()
+        resolve(container);
       });
     });
   }
