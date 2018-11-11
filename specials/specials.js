@@ -172,7 +172,7 @@ var array = ["empty_string"];
         var listItem3 = document.createElement('li');
         var link = document.createElement("a");
         food = dictionary[aa].value;
-        link.href = "#" + food;
+        link.href = "#";
         link.innerText = food; 
         link.addEventListener("click", e => {
           e.preventDefault(); 
