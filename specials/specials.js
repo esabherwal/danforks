@@ -172,13 +172,12 @@ var array = ["empty_string"];
         var listItem3 = document.createElement('li');
         var link = document.createElement("a");
         food = dictionary[aa].value;
-        location = dictionary[aa].key;
         link.href = "#" + food;
         link.innerText = food; 
         link.addEventListener("click", e => {
           e.preventDefault(); 
           $("#modal-title").text(food);
-          $("#modal-location").text(location);
+          $("#modal-location").text(loc);
           const macros = food;
           $("#td-cals").text(macros.calories);
           $("#td-carbs").text(macros.carbs);
