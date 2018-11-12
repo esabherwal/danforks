@@ -185,15 +185,11 @@ function displayData(currentDate){
       locationdiv.appendChild(listItem);
       array.push(loc);
     }
-    //console.log(dictionary[aa].value);
     var listItem3 = document.createElement('li');
-    var link = document.createElement("a");
+    const link = document.createElement("a");
     var food = dictionary[aa].value.key;
-    //  console.log(dictionary[aa]);
-    // console.log("Cals:" + food.calories);
     link.href = "#";
     link.innerText = food;
-    //console.log("M:",dictionary[aa].value.value);
     link.addEventListener("click", e => {
       console.log(dictionary[aa]);
       e.preventDefault();
@@ -211,7 +207,7 @@ function displayData(currentDate){
     });
     listItem3.appendChild(link);
     listItem3.className = 'collapse';
-    listItem3.id = "loc" + locStr;
+    // listItem3.id = "loc" + locStr;
     locationdiv.appendChild(listItem3);
 
   }
