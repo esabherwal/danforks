@@ -168,14 +168,10 @@ function displayData(currentDate) {
     }
 
     var array = ["empty_string"];
-    var array_keys = Object.keys(dictionary);
-    console.log(array_keys.length);
-    console.log(dictionary);
-    //  console.log(location_stations);
 
-
+    // console.log(dictionary);
     /////////////////// Locations without stations
-    for (var aa = 0; aa < array_keys.length; aa++) {
+    for (var aa = 0; aa < (Object.keys(dictionary)).length; aa++) {
       var loc = dictionary[aa].key;
       var locStr = loc.replace(/\s+/g, '');
       if (!(array.contains(loc))) {
@@ -212,19 +208,16 @@ function displayData(currentDate) {
 
     }
 
+    //  console.log(location_stations);
     /////////////////// Locations with stations
     var array_loc = ["empty_string"];
     var array_stations = ["empty_string"];
-    var array_keys = Object.keys(dictionary);
     var location_stations_keys = Object.keys(location_stations);
 
     for (var aa = 0; aa < Object.keys(location_stations).length; aa++) {
-      for (var i = 0; i < Object.keys(location_stations[aa].value).length;) {
         var loc = location_stations[aa].key;
-        var locStr = loc.replace(/\s+/g, '');
-        console.log(loc);
-        var sta = location_stations[aa].value[i].key;
-        console.log(sta);
+        var locStr = loc.replace(/\s+/g, ''); //console.log(loc);
+        var sta = location_stations[aa].value.key;// console.log(sta,"-------------------");
         var staStr = sta.replace(/\s+/g, '');
         if (!(array.contains(loc))) {
           //appends locations
@@ -246,8 +239,12 @@ function displayData(currentDate) {
         var listItem3 = document.createElement('li');
         var link = document.createElement("a");
         link.href = "#";
-        link.text = dictionary[aa].value;
-
+        link.text = location_stations[aa].value.value.key; //food name
+        const food_macros = location_stations[aa].value.value.value;//array of nutrition info
+        console.log(location_stations[aa].value.value.key, ": ", food_macros)
+        //console.log(location_stations[aa].key); //<-- this is the location
+        //note to Eesha:
+        //make sure to change dictionary to location_stations for the popup
         link.addEventListener("click", e => {
           e.preventDefault();
           $("#modal-title").text(dictionary[aa].value);
@@ -266,8 +263,6 @@ function displayData(currentDate) {
         listItem3.className = 'collapse';
         listItem3.id = "sta" + staStr;
         locationdiv.appendChild(listItem3);
-      }
-
     }
     var br = document.createElement('br');
     locationdiv.appendChild(br);
