@@ -219,7 +219,7 @@ function displayData(currentDate) {
     var location_stations_keys = Object.keys(location_stations);
 
     for (var aa = 0; aa < Object.keys(location_stations).length; aa++) {
-      for (var i = 0; i < Object.keys(locations[aa].value).length;) {
+      for (var i = 0; i < Object.keys(location_stations[aa].value).length;) {
         var loc = location_stations[aa].key;
         var locStr = loc.replace(/\s+/g, '');
         console.log(loc);
