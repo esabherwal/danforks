@@ -224,6 +224,7 @@ function displayData(currentDate) {
     for (var aa = 0; aa < Object.keys(location_stations).length; aa++) {
       var loc = location_stations[aa].key;
       var locStr = loc.replace(/\s+/g, ''); //console.log(loc);
+      locStr = locStr.replace("&", "");
       var sta = location_stations[aa].value.key;// console.log(sta,"-------------------");
       var staStr = sta.replace(/\s+/g, '');
       if (!(array.contains(loc))) {
