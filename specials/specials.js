@@ -174,6 +174,7 @@ function displayData(currentDate) {
     for (var aa = 0; aa < (Object.keys(dictionary)).length; aa++) {
       var loc = dictionary[aa].key;
       var locStr = loc.replace(/\s+/g, '');
+      locStr = locStr.replace("&", "");
       if (!(array.contains(loc))) {
         //appends locations
         var listItem = document.createElement('h6');
@@ -224,7 +225,6 @@ function displayData(currentDate) {
     for (var aa = 0; aa < Object.keys(location_stations).length; aa++) {
       var loc = location_stations[aa].key;
       var locStr = loc.replace(/\s+/g, ''); //console.log(loc);
-      locStr = locStr.replace("&", "");
       var sta = location_stations[aa].value.key;// console.log(sta,"-------------------");
       var staStr = sta.replace(/\s+/g, '');
       if (!(array.contains(loc))) {
