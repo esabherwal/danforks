@@ -177,33 +177,34 @@ function displayData(currentDate) {
       if (!(array.contains(loc))) {
         //appends locations
         var listItem = document.createElement('h6');
-        listItem.innerHTML = '<a class="btn btn-primary btn-block text-center role="button">' + loc + '</a>';
+        listItem.innerHTML = '<a class="btn btn-primary btn-block text-center role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
         locationdiv.appendChild(listItem);
         array.push(loc);
+        var listItem3 = document.createElement('li');
+        const link = document.createElement("a");
+        var food = dictionary[aa].value.key;
+        console.log(food);
+        link.href = "#";
+        link.innerText = food;
+        link.addEventListener("click", e => {
+          e.preventDefault();
+          $("#modal-title").text(food);
+          $("#modal-location").text(loc);
+          const macros = dictionary[aa].value.value;
+          $("#td-cals").text(macros[0]);
+          $("#td-carbs").text(macros[1]);
+          $("#td-fat").text(macros[2]);
+          $("#td-protein").text(macros[3]);
+          const nutritionUrl = macros[4];
+          document.getElementById("modal-button").href = nutritionUrl;
+          $("#macro-modal").modal("show");
+          return false;
+        });
+        listItem3.appendChild(link);
+        listItem3.className = 'collapse';
+        listItem3.id = "loc" + locStr;
+        locationdiv.appendChild(listItem3);
       }
-      var listItem3 = document.createElement('li');
-      const link = document.createElement("a");
-      var food = dictionary[aa].value.key;
-      link.href = "#";
-      link.innerText = food;
-      link.addEventListener("click", e => {
-        e.preventDefault();
-        $("#modal-title").text(food);
-        $("#modal-location").text(loc);
-        const macros = dictionary[aa].value.value;
-        $("#td-cals").text(macros[0]);
-        $("#td-carbs").text(macros[1]);
-        $("#td-fat").text(macros[2]);
-        $("#td-protein").text(macros[3]);
-        const nutritionUrl = macros[4];
-        document.getElementById("modal-button").href = nutritionUrl;
-        $("#macro-modal").modal("show");
-        return false;
-      });
-      // listItem3.appendChild(link);
-      // listItem3.className = 'collapse';
-      // listItem3.id = "loc" + locStr;
-      locationdiv.appendChild(link);
 
     }
 
@@ -214,54 +215,53 @@ function displayData(currentDate) {
     var location_stations_keys = Object.keys(location_stations);
 
     for (var aa = 0; aa < Object.keys(location_stations).length; aa++) {
-        var loc = location_stations[aa].key;
-        var locStr = loc.replace(/\s+/g, ''); //console.log(loc);
-        var sta = location_stations[aa].value.key;// console.log(sta,"-------------------");
-        var staStr = sta.replace(/\s+/g, '');
-        if (!(array.contains(loc))) {
-          //appends locations
-          var listItem = document.createElement('h6');
-          listItem.innerHTML = '<a class="btn btn-primary btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
-          locationdiv.appendChild(listItem);
-          array.push(loc);
-        }
-        if (!(array.contains(sta))) {
-          //appends stations
-          var listItem = document.createElement('li');
-          listItem.innerHTML = '<a data-toggle="collapse" href="#sta' + staStr + '"role="button" aria-expanded="false" aria-controls="sta' + staStr + '">' + sta + "</a>";
-          listItem.className = 'btn btn-light btn-group btn-sm text-center collapse';
-          listItem.id = "loc" + locStr;
-          locationdiv.appendChild(listItem);
-          array.push(sta);
-        }
-        //appends food items at station locations
-        var listItem3 = document.createElement('li');
-        var link = document.createElement("a");
-        link.href = "#";
-        link.text = location_stations[aa].value.value.key; //food name
-        const food_macros = location_stations[aa].value.value.value;//array of nutrition info
-        console.log(location_stations[aa].value.value.key, ": ", food_macros)
-        //console.log(location_stations[aa].key); //<-- this is the location
-        //note to Eesha:
-        //make sure to change dictionary to location_stations for the popup
-        link.addEventListener("click", e => {
-          e.preventDefault();
-          $("#modal-title").text(dictionary[aa].value);
-          $("#modal-location").text(dictionary[aa].key);
-          const macros = dictionary[aa].value;
-          $("#td-cals").text(macros.calories);
-          $("#td-carbs").text(macros.carbs);
-          $("#td-fat").text(macros.fat);
-          $("#td-protein").text(macros.protein);
-          const nutritionUrl = macros.nutrition_url;
-          document.getElementById("modal-button").href = nutritionUrl;
-          $("#macro-modal").modal("show");
-          return false;
-        });
-        listItem3.appendChild(link);
-        listItem3.className = 'collapse';
-        listItem3.id = "sta" + staStr;
-        locationdiv.appendChild(listItem3);
+      var loc = location_stations[aa].key;
+      var locStr = loc.replace(/\s+/g, ''); //console.log(loc);
+      var sta = location_stations[aa].value.key;// console.log(sta,"-------------------");
+      var staStr = sta.replace(/\s+/g, '');
+      if (!(array.contains(loc))) {
+        //appends locations
+        var listItem = document.createElement('h6');
+        listItem.innerHTML = '<a class="btn btn-primary btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
+        locationdiv.appendChild(listItem);
+        array.push(loc);
+      }
+      if (!(array.contains(sta))) {
+        //appends stations
+        var listItem = document.createElement('li');
+        listItem.innerHTML = '<a data-toggle="collapse" href="#sta' + staStr + '"role="button" aria-expanded="false" aria-controls="sta' + staStr + '">' + sta + "</a>";
+        listItem.className = 'btn btn-light btn-group btn-sm text-center collapse';
+        listItem.id = "loc" + locStr;
+        locationdiv.appendChild(listItem);
+        array.push(sta);
+      }
+      //appends food items at station locations
+      var listItem3 = document.createElement('li');
+      var link = document.createElement("a");
+      link.href = "#";
+      link.text = location_stations[aa].value.value.key; //food name
+      const food_macros = location_stations[aa].value.value.value;//array of nutrition info
+      //console.log(location_stations[aa].key); //<-- this is the location
+      //note to Eesha:
+      //make sure to change dictionary to location_stations for the popup
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        $("#modal-title").text(dictionary[aa].value);
+        $("#modal-location").text(dictionary[aa].key);
+        const macros = dictionary[aa].value;
+        $("#td-cals").text(macros.calories);
+        $("#td-carbs").text(macros.carbs);
+        $("#td-fat").text(macros.fat);
+        $("#td-protein").text(macros.protein);
+        const nutritionUrl = macros.nutrition_url;
+        document.getElementById("modal-button").href = nutritionUrl;
+        $("#macro-modal").modal("show");
+        return false;
+      });
+      listItem3.appendChild(link);
+      listItem3.className = 'collapse';
+      listItem3.id = "sta" + staStr;
+      locationdiv.appendChild(listItem3);
     }
     var br = document.createElement('br');
     locationdiv.appendChild(br);
