@@ -186,21 +186,21 @@ function displayData(currentDate) {
       var food = dictionary[aa].value.key;
       link.href = "#";
       link.innerText = food;
-      // link.addEventListener("click", e => {
-      //   console.log(dictionary[aa]);
-      //   e.preventDefault();
-      //   $("#modal-title").text(food);
-      //   $("#modal-location").text(loc);
-      //   const macros = dictionary[aa].value.value;
-      //   $("#td-cals").text(macros[0]);
-      //   $("#td-carbs").text(macros[1]);
-      //   $("#td-fat").text(macros[2]);
-      //   $("#td-protein").text(macros[3]);
-      //   const nutritionUrl = macros[4];
-      //   document.getElementById("modal-button").href = nutritionUrl;
-      //   $("#macro-modal").modal("show");
-      //   return false;
-      // });
+      link.addEventListener("click", e => {
+        console.log(dictionary[aa]);
+        e.preventDefault();
+        $("#modal-title").text(food);
+        $("#modal-location").text(loc);
+        const macros = dictionary[aa].value.value;
+        $("#td-cals").text(macros[0]);
+        $("#td-carbs").text(macros[1]);
+        $("#td-fat").text(macros[2]);
+        $("#td-protein").text(macros[3]);
+        const nutritionUrl = macros[4];
+        document.getElementById("modal-button").href = nutritionUrl;
+        $("#macro-modal").modal("show");
+        return false;
+      });
       listItem3.appendChild(link);
       listItem3.className = 'collapse';
       listItem3.id = "loc" + locStr;
