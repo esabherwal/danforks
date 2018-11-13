@@ -177,16 +177,16 @@ function displayData(currentDate) {
       if (!(array.contains(loc))) {
         //appends locations
         var listItem = document.createElement('h6');
-        listItem.innerHTML = '<a class="btn btn-primary btn-block text-center role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
+        listItem.innerHTML = '<a class="btn btn-primary btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
         locationdiv.appendChild(listItem);
         array.push(loc);
         var listItem3 = document.createElement('li');
         const link = document.createElement("a");
         var food = dictionary[aa].value.key;
-        console.log(food);
         link.href = "#";
         link.innerText = food;
         link.addEventListener("click", e => {
+          console.log(dictionary[aa]);
           e.preventDefault();
           $("#modal-title").text(food);
           $("#modal-location").text(loc);
@@ -205,6 +205,7 @@ function displayData(currentDate) {
         listItem3.id = "loc" + locStr;
         locationdiv.appendChild(listItem3);
       }
+
 
     }
 
@@ -241,6 +242,7 @@ function displayData(currentDate) {
       link.href = "#";
       link.text = location_stations[aa].value.value.key; //food name
       const food_macros = location_stations[aa].value.value.value;//array of nutrition info
+      console.log(location_stations[aa].value.value.key, ": ", food_macros)
       //console.log(location_stations[aa].key); //<-- this is the location
       //note to Eesha:
       //make sure to change dictionary to location_stations for the popup
