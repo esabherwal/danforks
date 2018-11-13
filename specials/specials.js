@@ -72,7 +72,7 @@ function populateWithData(element, mealData, loc, locStr) {
     return false;
   });
   listItem3.appendChild(link);
-  listItem3.className = 'collapse';
+  // listItem3.className = 'collapse';
   listItem3.id = "loc" + locStr;
   element.appendChild(listItem3);
 }
@@ -201,7 +201,7 @@ function displayData(currentDate) {
       if (!(array.contains(loc))) {
         //appends locations
         var listItem = document.createElement('h6');
-        listItem.innerHTML = '<a class="btn btn-primary btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
+        listItem.innerHTML = '<a class="btn btn-primary btn-block text-center" role="button>' + loc + '</a>';
         locationdiv.appendChild(listItem);
         array.push(loc);
       }
