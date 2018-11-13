@@ -201,7 +201,7 @@ function displayData(currentDate) {
       if (!(array.contains(loc))) {
         //appends locations
         var listItem = document.createElement('h6');
-        listItem.innerHTML = '<a class="btn btn-primary btn-block text-center" role="button>' + loc + '</a>';
+        listItem.innerHTML = loc;
         locationdiv.appendChild(listItem);
         array.push(loc);
       }
