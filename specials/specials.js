@@ -51,32 +51,6 @@ function getWeekDays() {
 
 getWeekDays()
 
-function populateWithData(element, mealData, loc, locStr) {
-  var listItem3 = document.createElement('li');
-  const link = document.createElement("a");
-  var food = mealData.value.key;
-  link.href = "#";
-  link.innerText = food;
-  link.addEventListener("click", e => {
-    e.preventDefault();
-    $("#modal-title").text(food);
-    $("#modal-location").text(loc);
-    const macros = mealData.value.value;
-    $("#td-cals").text(macros[0]);
-    $("#td-carbs").text(macros[1]);
-    $("#td-fat").text(macros[2]);
-    $("#td-protein").text(macros[3]);
-    const nutritionUrl = macros[4];
-    document.getElementById("modal-button").href = nutritionUrl;
-    $("#macro-modal").modal("show");
-    return false;
-  });
-  listItem3.appendChild(link);
-  // listItem3.className = 'collapse';
-  listItem3.id = "loc" + locStr;
-  element.appendChild(listItem3);
-}
-
 function displayData(currentDate) {
 
   $.getJSON("../menu_scrape/specials_data.json", function (json) {
@@ -162,14 +136,15 @@ function displayData(currentDate) {
                     var fat = food_items.fat;
                     var protein = food_items.protein;
                     var url = food_items.nutrition_url;
-                    nutrition_s = {
+                    //console.log(food_items)
+                    nutrition_s = {//}.push({
                       key: food_item,
                       value: [cals, carbs, fat, protein, url]
-                    }
-                    dictionary_stations = {
+                    }//);
+                    dictionary_stations = {//}.push({
                       key: stations[s],
                       value: nutrition_s
-                    }
+                    }//);
                     location_stations.push({
                       key: locations[i],
                       value: dictionary_stations
@@ -194,6 +169,7 @@ function displayData(currentDate) {
 
     var array = ["empty_string"];
 
+    // console.log(dictionary);
     /////////////////// Locations without stations
     for (var aa = 0; aa < (Object.keys(dictionary)).length; aa++) {
       var loc = dictionary[aa].key;
@@ -201,15 +177,19 @@ function displayData(currentDate) {
       if (!(array.contains(loc))) {
         //appends locations
         var listItem = document.createElement('h6');
-        listItem.innerHTML = loc;
+        listItem.innerHTML = '<a class="btn btn-primary btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
         locationdiv.appendChild(listItem);
         array.push(loc);
       }
-      const div = document.createElement("div");
-      div.classList.add("meal-div");
-      div.hidden = true;
-      populateWithData(div, dictionary[aa], loc, locStr);
-      locationdiv.appendChild(div);
+      var listItem3 = document.createElement('li');
+      const macros = dictionary[aa].value.value;
+      listItem3.innerHTML = '<a href="' + macros[4] + '">' + dictionary[aa].value.key + '</a>';
+      listItem3.className = 'collapse';
+      listItem3.id = "loc" + locStr;
+
+      locationdiv.appendChild(listItem3);
+
+
       // var listItem3 = document.createElement('li');
       // const link = document.createElement("a");
       // var food = dictionary[aa].value.key;
@@ -230,13 +210,14 @@ function displayData(currentDate) {
       //   $("#macro-modal").modal("show");
       //   return false;
       // });
-      // listItem3.appendChild(link);
-      // listItem3.className = 'collapse';
-      // listItem3.id = "loc" + locStr;
-      // locationdiv.appendChild(listItem3);
+      listItem3.appendChild(link);
+      listItem3.className = 'collapse';
+      listItem3.id = "loc" + locStr;
+      locationdiv.appendChild(listItem3);
 
     }
 
+    //  console.log(location_stations);
     /////////////////// Locations with stations
     var array_loc = ["empty_string"];
     var array_stations = ["empty_string"];
@@ -244,8 +225,8 @@ function displayData(currentDate) {
 
     for (var aa = 0; aa < Object.keys(location_stations).length; aa++) {
       var loc = location_stations[aa].key;
-      var locStr = loc.replace(/\s+/g, '');
-      var sta = location_stations[aa].value.key;
+      var locStr = loc.replace(/\s+/g, ''); //console.log(loc);
+      var sta = location_stations[aa].value.key;// console.log(sta,"-------------------");
       var staStr = sta.replace(/\s+/g, '');
       if (!(array.contains(loc))) {
         //appends locations
