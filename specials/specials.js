@@ -51,7 +51,7 @@ function getWeekDays() {
 
 getWeekDays()
 
-function populateWithData(element, mealData) {
+function populateWithData(element, mealData, loc, locStr) {
   var listItem3 = document.createElement('li');
   const link = document.createElement("a");
   var food = mealData.value.key;
@@ -208,7 +208,7 @@ function displayData(currentDate) {
       const div = document.createElement("div");
       div.classList.add("meal-div");
       div.hidden = true;
-      populateWithData(div, dictionary[aa]);
+      populateWithData(div, dictionary[aa], loc, locStr);
       locationdiv.appendChild(div);
       // var listItem3 = document.createElement('li');
       // const link = document.createElement("a");
