@@ -177,7 +177,7 @@ function displayData(currentDate) {
       if (!(array.contains(loc))) {
         //appends locations
         var listItem = document.createElement('h6');
-        listItem.innerHTML = '<a class="btn btn-primary btn-block text-center" data-toggle="collapse" href="#loc' + locStr + "aa" + aa + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
+        listItem.innerHTML = '<a class="btn btn-primary btn-block text-center role="button">' + loc + '</a>';
         locationdiv.appendChild(listItem);
         array.push(loc);
       }
@@ -187,7 +187,6 @@ function displayData(currentDate) {
       link.href = "#";
       link.innerText = food;
       link.addEventListener("click", e => {
-        console.log(dictionary[aa]);
         e.preventDefault();
         $("#modal-title").text(food);
         $("#modal-location").text(loc);
@@ -202,8 +201,8 @@ function displayData(currentDate) {
         return false;
       });
       listItem3.appendChild(link);
-      listItem3.className = 'collapse';
-      listItem3.id = "loc" + locStr + "aa" + aa;
+      // listItem3.className = 'collapse';
+      // listItem3.id = "loc" + locStr;
       locationdiv.appendChild(listItem3);
 
     }
