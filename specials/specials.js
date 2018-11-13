@@ -277,7 +277,7 @@ function displayData(currentDate) {
       // listItem3.className = 'collapse';
       // listItem3.id = "sta" + staStr;
       // locationdiv.appendChild(listItem3);
-    }
+    } 
     var br = document.createElement('br');
     locationdiv.appendChild(br);
   });
