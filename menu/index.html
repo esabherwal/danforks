@@ -258,15 +258,7 @@
           $("#td-protein").text(macros.protein);
           const nutritionUrl = macros.nutrition_url;
           document.getElementById("modal-button").href = nutritionUrl;
-          document.getElementById("label-iframe").src = nutritionUrl;
-          $("#label-div").hide();
           $("#label-title").text(food);
-          $("#iframe-div").show();
-          fetchLabel(nutritionUrl).then(label => {
-            document.getElementById("label-div").appendChild(label);
-            $("#iframe-div").hide();
-            $("#label-div").show();
-          });
           $("#macro-modal").modal("show");
           return false;
         });
@@ -313,19 +305,6 @@
         element.appendChild(card);
       }
     }
-  }
-
-  function fetchLabel(url) {
-    return new Promise(resolve => {
-      $.get(url, null, data => {
-        const container = document.createElement("div");
-        container.innerHTML = data;
-        const containerJq = $(container);
-        containerJq.children(".labelrecipe").remove();
-        containerJq.find("tr[valign=middle]").remove()
-        resolve(container);
-      });
-    });
   }
 
   function updateDayMeal(dayIndex, meal, divArray) {
@@ -504,20 +483,6 @@
         updateDay(dayIndex);
         return false;
       });
-    });
-
-    let shouldShowLabel = false;
-    document.getElementById("modal-button").addEventListener("click", e => {
-      e.preventDefault();
-      shouldShowLabel = true;
-      $("#macro-modal").modal("hide");
-      return false;
-    });
-    $("#macro-modal").on("hidden.bs.modal", () => {
-      if (shouldShowLabel) {
-        $("#label-modal").modal("show");
-      }
-      shouldShowLabel = false;
     });
   });
 </script>
