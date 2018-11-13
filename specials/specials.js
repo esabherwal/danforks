@@ -200,10 +200,10 @@ function displayData(currentDate) {
         $("#macro-modal").modal("show");
         return false;
       });
-      listItem3.appendChild(link);
+      // listItem3.appendChild(link);
       // listItem3.className = 'collapse';
       // listItem3.id = "loc" + locStr;
-      locationdiv.appendChild(listItem3);
+      locationdiv.appendChild(link);
 
     }
 
