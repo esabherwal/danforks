@@ -205,7 +205,11 @@ function displayData(currentDate) {
         locationdiv.appendChild(listItem);
         array.push(loc);
       }
-      populateWithData(locationdiv, dictionary[aa]);
+      const div = document.createElement("div");
+      div.classList.add("meal-div");
+      div.hidden = true;
+      populateWithData(div, dictionary[aa]);
+      locationdiv.appendChild(div);
       // var listItem3 = document.createElement('li');
       // const link = document.createElement("a");
       // var food = dictionary[aa].value.key;
