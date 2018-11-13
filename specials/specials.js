@@ -174,7 +174,8 @@ function displayData(currentDate) {
     for (var aa = 0; aa < (Object.keys(dictionary)).length; aa++) {
       var loc = dictionary[aa].key;
       var locStr = loc.replace(/\s+/g, '');
-      locStr = locStr.replace("&", "");
+      locStr = locStr.replace('&', '');
+      console.log(locStr);
       if (!(array.contains(loc))) {
         //appends locations
         var listItem = document.createElement('h6');
