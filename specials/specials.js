@@ -248,7 +248,14 @@ function displayData(currentDate) {
       link.href = "#";
       link.text = location_stations[aa].value.value.key; //food name
       const food_macros = location_stations[aa].value.value.value;//array of nutrition info
-      console.log(location_stations[aa].value.value.key, ": ", food_macros)
+      // console.log(location_stations[aa].value.value.key, ": ", food_macros)
+
+      var listItem3 = document.createElement('li');
+      listItem3.innerHTML = '<a href="' + food_macros[4] + '">' + link.text + '</a>';
+      listItem3.className = 'collapse';
+      listItem3.id = "sta" + staStr;
+      locationdiv.appendChild(listItem3);
+
       //console.log(location_stations[aa].key); //<-- this is the location
       //note to Eesha:
       //make sure to change dictionary to location_stations for the popup
@@ -266,10 +273,10 @@ function displayData(currentDate) {
       //   $("#macro-modal").modal("show");
       //   return false;
       // });
-      listItem3.appendChild(link);
-      listItem3.className = 'collapse';
-      listItem3.id = "sta" + staStr;
-      locationdiv.appendChild(listItem3);
+      // listItem3.appendChild(link);
+      // listItem3.className = 'collapse';
+      // listItem3.id = "sta" + staStr;
+      // locationdiv.appendChild(listItem3);
     }
     var br = document.createElement('br');
     locationdiv.appendChild(br);
