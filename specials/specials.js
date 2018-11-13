@@ -186,9 +186,7 @@ function displayData(currentDate) {
       listItem3.innerHTML = '<a href="' + macros[4] + '">' + dictionary[aa].value.key + '</a>';
       listItem3.className = 'collapse';
       listItem3.id = "loc" + locStr;
-
       locationdiv.appendChild(listItem3);
-
 
       // var listItem3 = document.createElement('li');
       // const link = document.createElement("a");
@@ -210,10 +208,10 @@ function displayData(currentDate) {
       //   $("#macro-modal").modal("show");
       //   return false;
       // });
-      listItem3.appendChild(link);
-      listItem3.className = 'collapse';
-      listItem3.id = "loc" + locStr;
-      locationdiv.appendChild(listItem3);
+      // listItem3.appendChild(link);
+      // listItem3.className = 'collapse';
+      // listItem3.id = "loc" + locStr;
+      // locationdiv.appendChild(listItem3);
 
     }
 
@@ -254,20 +252,20 @@ function displayData(currentDate) {
       //console.log(location_stations[aa].key); //<-- this is the location
       //note to Eesha:
       //make sure to change dictionary to location_stations for the popup
-      link.addEventListener("click", e => {
-        e.preventDefault();
-        $("#modal-title").text(dictionary[aa].value);
-        $("#modal-location").text(dictionary[aa].key);
-        const macros = dictionary[aa].value;
-        $("#td-cals").text(macros.calories);
-        $("#td-carbs").text(macros.carbs);
-        $("#td-fat").text(macros.fat);
-        $("#td-protein").text(macros.protein);
-        const nutritionUrl = macros.nutrition_url;
-        document.getElementById("modal-button").href = nutritionUrl;
-        $("#macro-modal").modal("show");
-        return false;
-      });
+      // link.addEventListener("click", e => {
+      //   e.preventDefault();
+      //   $("#modal-title").text(dictionary[aa].value);
+      //   $("#modal-location").text(dictionary[aa].key);
+      //   const macros = dictionary[aa].value;
+      //   $("#td-cals").text(macros.calories);
+      //   $("#td-carbs").text(macros.carbs);
+      //   $("#td-fat").text(macros.fat);
+      //   $("#td-protein").text(macros.protein);
+      //   const nutritionUrl = macros.nutrition_url;
+      //   document.getElementById("modal-button").href = nutritionUrl;
+      //   $("#macro-modal").modal("show");
+      //   return false;
+      // });
       listItem3.appendChild(link);
       listItem3.className = 'collapse';
       listItem3.id = "sta" + staStr;
