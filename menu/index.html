@@ -190,21 +190,21 @@
     <div class="col-4 px-0">
       <ul class="navbar-nav">
         <li class="nav-item mr-auto">
-          <a class="nav-link" href="../maps/index2.html">Map</a>
+          <a id="map-link" class="nav-link" href="../maps/">Map</a>
         </li>
       </ul>
     </div>
     <div class="col-4 px-0">
       <ul class="navbar-nav">
         <li class="nav-item mx-auto active">
-          <a class="nav-link" href="../menus/">Menus <span class="sr-only">(current)</span></a>
+          <a id="menus-link" class="nav-link" href="../menus/">Menus <span class="sr-only">(current)</span></a>
         </li>
       </ul>
     </div>
     <div class="col-4 px-0">
       <ul class="navbar-nav">
         <li class="nav-item ml-auto">
-          <a class="nav-link" href="../specials/">Specials</a>
+          <a id="specials-link" class="nav-link" href="../specials/">Specials</a>
         </li>
       </ul>
     </div>
@@ -219,13 +219,24 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 <script>
+
+  const taskString = new URL(window.location.href).searchParams.get("task");
+  const taskNumber = taskString ? parseInt(taskString) : 1;
+  document.getElementById("map-link").href = "../maps/?task=" + taskNumber;
+  document.getElementById("menus-link").href = "../menus/?task=" + taskNumber;
+  document.getElementById("specials-link").href = "../specials/?task=" + taskNumber;
+
   function getDefaultMeal(meals) {
-    // TODO figure out how to do this for each task
-    if (meals.includes("LUNCH")) {
-      return "LUNCH";
+    if (taskNumber === 1) {
+      if (meals.includes("DINNER")) {
+        return "DINNER";
+      }
     } else {
-      return meals[0];
+      if (meals.includes("LUNCH")) {
+        return "LUNCH";
+      }
     }
+    return meals[0];
   }
 
   function populateWithData(element, mealData, location) {
