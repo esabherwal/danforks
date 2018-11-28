@@ -178,42 +178,16 @@ function displayData(currentDate) {
       console.log(locStr);
       if (!(array.contains(loc))) {
         //appends locations
-        var listItem = document.createElement('h6');
+        const listItem = document.createElement('h6');
         listItem.innerHTML = '<a class="btn btn-primary btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
         locationdiv.appendChild(listItem);
         array.push(loc);
       }
-      var listItem3 = document.createElement('li');
-      const macros = dictionary[aa].value.value;
-      listItem3.innerHTML = '<a href="' + macros[4] + '">' + dictionary[aa].value.key + '</a>';
-      listItem3.className = 'collapse';
-      listItem3.id = "loc" + locStr;
-      locationdiv.appendChild(listItem3);
 
-      // var listItem3 = document.createElement('li');
-      // const link = document.createElement("a");
-      // var food = dictionary[aa].value.key;
-      // link.href = "#";
-      // link.innerText = food;
-      // link.addEventListener("click", e => {
-      //   console.log(dictionary[aa]);
-      //   e.preventDefault();
-      //   $("#modal-title").text(food);
-      //   $("#modal-location").text(loc);
-      //   const macros = dictionary[aa].value.value;
-      //   $("#td-cals").text(macros[0]);
-      //   $("#td-carbs").text(macros[1]);
-      //   $("#td-fat").text(macros[2]);
-      //   $("#td-protein").text(macros[3]);
-      //   const nutritionUrl = macros[4];
-      //   document.getElementById("modal-button").href = nutritionUrl;
-      //   $("#macro-modal").modal("show");
-      //   return false;
-      // });
-      // listItem3.appendChild(link);
-      // listItem3.className = 'collapse';
-      // listItem3.id = "loc" + locStr;
-      // locationdiv.appendChild(listItem3);
+      const location = dictionary[aa];
+      const locationName = location.key;
+      const food = location.value;
+      locationdiv.appendChild(createListItem("loc" + locStr, locationName, food));
 
     }
 
