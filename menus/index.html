@@ -65,7 +65,7 @@
   document.getElementById("menus-link").href = "./?task=" + taskNumber;
   document.getElementById("specials-link").href = "../specials/?task=" + taskNumber;
 
-  $(() => {
+  function populateData(openLocations) {
     $.getJSON("https://esabherwal.github.io/danforks/menu_scrape/menu_data.json", {}, data => {
       const locationsDiv = document.getElementById("locations");
       for (const location of Object.keys(data).sort()) {
@@ -74,7 +74,11 @@
           const div = document.createElement("div");
           div.classList.add("dropdown");
           const button = document.createElement("button");
-          button.classList.add("btn", "btn-primary", "btn-block", "dropdown-toggle", "my-2");
+          button.classList.add("btn", "btn-block", "dropdown-toggle", "my-2");
+          if (taskNumber === 1 && !openLocations.hasOwnProperty(location))
+            button.classList.add("btn-secondary");
+          else
+            button.classList.add("btn-primary");
           button.type = "button";
           button.setAttribute("data-toggle", "dropdown");
           button.innerText = location;
@@ -102,7 +106,11 @@
         } else {
           const button = document.createElement("a");
           button.href = "../menu/?task=" + taskNumber + "&location=" + encodeURIComponent(location);
-          button.classList.add("btn", "btn-primary", "btn-block", "my-2");
+          button.classList.add("btn", "btn-block", "my-2");
+          if (taskNumber === 1 && !openLocations.hasOwnProperty(location))
+            button.classList.add("btn-secondary");
+          else
+            button.classList.add("btn-primary");
           button.role = "button";
           button.innerText = location;
           locationsDiv.appendChild(button);
@@ -112,7 +120,15 @@
       spacer.style.height = "56px";
       locationsDiv.appendChild(spacer);
     });
-  })
+  }
+
+  $(() => {
+    if (taskNumber === 1) {
+      $.getJSON("https://esabherwal.github.io/danforks/menus/open.json", {}, populateData);
+    } else {
+      populateData();
+    }
+  });
 </script>
 </body>
 </html>
