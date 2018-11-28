@@ -245,43 +245,48 @@ function displayData(currentDate) {
         array.push(sta);
       }
 
-      const li = document.createElement("li");
-      li.id = "sta" + staStr;
-      li.classList.add("collapse");
-
-      const link = document.createElement("a");
+      const id = "sta" + staStr;
       const locationStation = location_stations[aa];
       const locationName = locationStation.key;
       const station = locationStation.value;
       const stationName = station.key;
       const food = station.value;
-      const foodName = food.key;
-      const macros = food.value;
-      const nutritionUrl = macros[4];
-      link.href = nutritionUrl;
-      link.innerText = foodName;
-      link.addEventListener("click", e => {
-        e.preventDefault();
-        $("#modal-title").text(foodName);
-        $("#modal-location").text(stationName + " \u00b7 " + locationName);
-        const cals = macros[0];
-        $("#td-cals").text(cals);
-        const carbs = macros[1];
-        $("#td-carbs").text(carbs);
-        const fat = macros[2];
-        $("#td-fat").text(fat);
-        const protein = macros[3];
-        $("#td-protein").text(protein);
-        document.getElementById("modal-button").href = nutritionUrl;
-        $("#macro-modal").modal("show");
-        return false;
-      });
-
-      li.appendChild(link);
-      locationdiv.appendChild(li);
+      locationdiv.appendChild(createListItem(id, stationName + " \u00b7 " + locationName, food));
 
     }
     var br = document.createElement('br');
     locationdiv.appendChild(br);
   });
+}
+
+function createListItem(id, locationName, food) {
+  const li = document.createElement("li");
+  li.id = id;
+  li.classList.add("collapse");
+
+  const link = document.createElement("a");
+  const foodName = food.key;
+  const macros = food.value;
+  const nutritionUrl = macros[4];
+  link.href = nutritionUrl;
+  link.innerText = foodName;
+  link.addEventListener("click", e => {
+    e.preventDefault();
+    $("#modal-title").text(foodName);
+    $("#modal-location").text(locationName);
+    const cals = macros[0];
+    $("#td-cals").text(cals);
+    const carbs = macros[1];
+    $("#td-carbs").text(carbs);
+    const fat = macros[2];
+    $("#td-fat").text(fat);
+    const protein = macros[3];
+    $("#td-protein").text(protein);
+    document.getElementById("modal-button").href = nutritionUrl;
+    $("#macro-modal").modal("show");
+    return false;
+  });
+
+  li.appendChild(link);
+  return li;
 }
