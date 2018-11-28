@@ -53,7 +53,7 @@ getWeekDays()
 
 function displayData(currentDate) {
 
-  $.getJSON("https://esabherwal.github.io/danforks/menu_scrape/specials_data.json", function (json) {
+  $.getJSON("../menu_scrape/specials_data.json", function (json) {
     var locations = Object.keys(json);
     //***********************************************
     //Debug: This isn't updating asynchronously
@@ -172,7 +172,7 @@ function displayData(currentDate) {
     // console.log(dictionary);
     /////////////////// Locations without stations
     for (var aa = 0; aa < (Object.keys(dictionary)).length; aa++) {
-      const loc = dictionary[aa].key;
+      var loc = dictionary[aa].key;
       var locStr = loc.replace(/\s+/g, '');
       locStr = locStr.replace('&', '');
       console.log(locStr);
@@ -183,32 +183,38 @@ function displayData(currentDate) {
         locationdiv.appendChild(listItem);
         array.push(loc);
       }
-
-      const listItem3 = document.createElement('li');
-      listItem3.id = "loc" + locStr;
-      listItem3.className = 'collapse';
-
-      const link = document.createElement("a");
-      const food = dictionary[aa].value.key;
+      var listItem3 = document.createElement('li');
       const macros = dictionary[aa].value.value;
-      const nutritionUrl = macros[4];
-      link.href = nutritionUrl;
-      link.innerText = food;
-      link.addEventListener("click", e => {
-        e.preventDefault();
-          $("#modal-title").text(food);
-          $("#modal-location").text(loc);
-          $("#td-cals").text(macros[0]);
-          $("#td-carbs").text(macros[1]);
-          $("#td-fat").text(macros[2]);
-          $("#td-protein").text(macros[3]);
-          document.getElementById("modal-button").href = nutritionUrl;
-          $("#macro-modal").modal("show");
-          return false;
-      });
-      listItem3.appendChild(link);
+      listItem3.innerHTML = '<a href="' + macros[4] + '">' + dictionary[aa].value.key + '</a>';
+      listItem3.className = 'collapse';
+      listItem3.id = "loc" + locStr;
       locationdiv.appendChild(listItem3);
-      
+
+      // var listItem3 = document.createElement('li');
+      // const link = document.createElement("a");
+      // var food = dictionary[aa].value.key;
+      // link.href = "#";
+      // link.innerText = food;
+      // link.addEventListener("click", e => {
+      //   console.log(dictionary[aa]);
+      //   e.preventDefault();
+      //   $("#modal-title").text(food);
+      //   $("#modal-location").text(loc);
+      //   const macros = dictionary[aa].value.value;
+      //   $("#td-cals").text(macros[0]);
+      //   $("#td-carbs").text(macros[1]);
+      //   $("#td-fat").text(macros[2]);
+      //   $("#td-protein").text(macros[3]);
+      //   const nutritionUrl = macros[4];
+      //   document.getElementById("modal-button").href = nutritionUrl;
+      //   $("#macro-modal").modal("show");
+      //   return false;
+      // });
+      // listItem3.appendChild(link);
+      // listItem3.className = 'collapse';
+      // listItem3.id = "loc" + locStr;
+      // locationdiv.appendChild(listItem3);
+
     }
 
     //  console.log(location_stations);
