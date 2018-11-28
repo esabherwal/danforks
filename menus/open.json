@@ -1,22 +1,16 @@
-[
-  {
-    "location": "Bear’s Den",
-    "stations": [
-      "Ciao Down",
-      "Grizzly Grill",
-      "L’Chaim",
-      "OSOGood",
-      "Sizzle & Stir",
-      "WUrld Fusion"
-    ]
-  },
-  {
-    "location": "The Village",
-    "stations": [
-      "Coffee Connection",
-      "Comfort Food",
-      "Grill",
-      "Millbrook Market"
-    ]
-  }
-]
+{
+  "Bear’s Den": [
+    "Ciao Down",
+    "Grizzly Grill",
+    "L’Chaim",
+    "OSOGood",
+    "Sizzle & Stir",
+    "WUrld Fusion"
+  ],
+  "The Village": [
+    "Coffee Connection",
+    "Comfort Food",
+    "Grill",
+    "Millbrook Market"
+  ]
+}
