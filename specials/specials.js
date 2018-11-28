@@ -95,9 +95,10 @@ function displayData(currentDate) {
                   var fat = food_items.fat;
                   var protein = food_items.protein;
                   var url = food_items.nutrition_url;
+                  const labels = food_items.labels;
                   nutrition = {//}.push({
                     key: food_item,
-                    value: [cals, carbs, fat, protein, url]
+                    value: [cals, carbs, fat, protein, url, labels]
                   }//);
                   dictionary.push({
                     key: locations[i],
@@ -136,10 +137,11 @@ function displayData(currentDate) {
                     var fat = food_items.fat;
                     var protein = food_items.protein;
                     var url = food_items.nutrition_url;
+                    const labels = food_items.labels;
                     //console.log(food_items)
                     nutrition_s = {//}.push({
                       key: food_item,
-                      value: [cals, carbs, fat, protein, url]
+                      value: [cals, carbs, fat, protein, url, labels]
                     }//);
                     dictionary_stations = {//}.push({
                       key: stations[s],
@@ -248,6 +250,25 @@ function createListItem(id, locationName, food) {
     e.preventDefault();
     $("#modal-title").text(foodName);
     $("#modal-location").text(locationName);
+    const labels = macros[5];
+    const iconBox = document.getElementById("icon-anchor");
+    if (labels.length) {
+      iconBox.innerHTML = "";
+      for (const label of labels) {
+        const icon = document.createElement("img");
+        icon.src = "../menus/" + label + ".jpg";
+        iconBox.appendChild(icon);
+        iconBox.appendChild(document.createTextNode(" "));
+      }
+      iconBox.addEventListener("click", e => {
+        e.preventDefault();
+        $("#icon-modal").modal("show");
+        return false;
+      });
+      $(iconBox).show();
+    } else {
+      $(iconBox).hide();
+    }
     const cals = macros[0];
     $("#td-cals").text(cals);
     const carbs = macros[1];
