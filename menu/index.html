@@ -329,12 +329,10 @@
     return meal.toLowerCase().replace(/-*[^a-zA-Z\d-]+-*/g, "-");
   }
 
+  const dayStrings = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   function dateStringToDay(dateString) {
-    const result = new Date(dateString).getDay();
-    // move Sunday to end of week
-    if (result === 0)
-      return 7;
-    return result;
+    const dayString = dateString.match(/[a-zA-Z]+/)[0];
+    return dayStrings.indexOf(dayString);
   }
 
   $(() => {
@@ -458,10 +456,8 @@
 
       days[0] = "Today";
       days[1] = "Tomorrow";
-      const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-        "Saturday"];
       for (let i = 2; i < days.length; i++) {
-        days[i] = dayNames[new Date(Date.parse(days[i])).getDay()]
+        days[i] = days[i].match(/[a-zA-Z]+/)[0];
       }
 
       updateDay(0);
