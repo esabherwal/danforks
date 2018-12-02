@@ -1,3 +1,60 @@
+// attach filter action on document ready
+$(document).ready(function(){
+  $("#sFilter").on("keyup", function() {
+    var ftext = $(this).val().toLowerCase();
+    refreshFilter(ftext)
+  });
+});
+
+function refreshFilter(ftext) {
+  console.log(ftext)
+  $("#locationdiv>li:not(.btn)").filter(function() {
+    $(this).toggle($(this).text().toLowerCase().indexOf(ftext) > -1)
+  });
+
+  // Toggle No Results pane depending on whether there are results
+  var numVisible = $("#locationdiv>li:not(.btn):visible").length;
+  if(numVisible > 0) {
+    $("#noResults").addClass("d-none");
+  }
+  else {
+    $("#noResults").removeClass("d-none");
+  }
+
+  // hide categories for which there are no results:
+
+  // first, hide stations:
+  $('[aria-controls^="sta"]').each(function(i){
+    if( hideCatIfEmpty($(this)) ) {
+        $(this).parent().addClass("d-none");
+    }
+    else {
+        $(this).parent().removeClass("d-none");
+    }
+  });
+
+  // Then the locations:
+  $('[aria-controls^="loc"]').each(function(i){
+    hideCatIfEmpty($(this));
+  });
+}
+
+// hide a category if all <li> elements "controlled" by it are invisible;
+// return true if the category was hidden
+function hideCatIfEmpty(elem){
+    var cat_id = elem.attr('aria-controls') // the id which this category controls
+    var num_sub_items = $("#locationdiv>li:visible#"+cat_id).length // the number of sub-category items that are visible
+    console.log(cat_id, num_sub_items)
+    if(num_sub_items > 0) {
+      elem.removeClass("d-none");
+      return false;
+    }
+    else {
+      elem.addClass("d-none");
+      return true;
+    }
+}
+
 // cycles through weekdays based off button click in either direction
 function getWeekDays() {
 
@@ -179,7 +236,7 @@ function displayData(currentDate) {
       if (!(array.contains(loc))) {
         //appends locations
         const listItem = document.createElement('h6');
-        listItem.innerHTML = '<a class="btn btn-primary btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
+        listItem.innerHTML = '<a class="btn btn-primary btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="true" aria-controls="loc' + locStr + '">' + loc + '</a>';
         locationdiv.appendChild(listItem);
         array.push(loc);
       }
@@ -205,15 +262,15 @@ function displayData(currentDate) {
       if (!(array.contains(loc))) {
         //appends locations
         var listItem = document.createElement('h6');
-        listItem.innerHTML = '<a class="btn btn-primary btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="false" aria-controls="loc' + locStr + '">' + loc + '</a>';
+        listItem.innerHTML = '<a class="btn btn-primary btn-block text-center" data-toggle="collapse" href="#loc' + locStr + '"role="button" aria-expanded="true" aria-controls="loc' + locStr + '">' + loc + '</a>';
         locationdiv.appendChild(listItem);
         array.push(loc);
       }
       if (!(array.contains(sta))) {
         //appends stations
         var listItem = document.createElement('li');
-        listItem.innerHTML = '<a data-toggle="collapse" href="#sta' + staStr + '"role="button" aria-expanded="false" aria-controls="sta' + staStr + '">' + sta + "</a>";
-        listItem.className = 'btn btn-light btn-group btn-sm text-center collapse';
+        listItem.innerHTML = '<a data-toggle="collapse" href="#sta' + staStr + '"role="button" aria-expanded="true" aria-controls="sta' + staStr + '">' + sta + "</a>";
+        listItem.className = 'btn btn-light btn-group btn-sm text-center collapse show';
         listItem.id = "loc" + locStr;
         locationdiv.appendChild(listItem);
         array.push(sta);
@@ -230,6 +287,9 @@ function displayData(currentDate) {
     }
     var br = document.createElement('br');
     locationdiv.appendChild(br);
+
+    var ftext = $("#sFilter").val().toLowerCase();
+    refreshFilter(ftext)
   });
 }
 
@@ -237,6 +297,7 @@ function createListItem(id, locationName, food) {
   const li = document.createElement("li");
   li.id = id;
   li.classList.add("collapse");
+  li.classList.add("show");
 
   const link = document.createElement("a");
   const foodName = food.key;

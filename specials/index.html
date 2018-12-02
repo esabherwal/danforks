@@ -39,6 +39,8 @@
       </ul>
     </nav>
 
+    <input class="form-control" id="sFilter" type="text" placeholder="Filter specials..">
+
     <div id="macro-modal" class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -181,6 +183,13 @@
       </div>
     </nav>
     <ul id="locationdiv"></ul>
+
+    <div class="card text-white bg-danger mb-3 d-none" id="noResults">
+      <div class="card-body">
+        <h5 class="card-title">No Results</h5>
+        <p class="card-text">There are no specials on this day matching this filter.</p>
+    </div>
+    </div>
 
     <!-- Generates the weekdays by arrow button click -->
     <script type="text/javascript" src="specials.js"></script>
