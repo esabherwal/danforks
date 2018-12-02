@@ -358,6 +358,7 @@
     }
     $.getJSON("https://esabherwal.github.io/danforks/menu_scrape/menu_data.json", {}, data => {
       const locationData = data[location];
+      var locHours = locationData["hours"];
       console.log(locHours);
       locHours = locHours.replace(/&lt;br&gt;/g," ");
       console.log(locHours);
