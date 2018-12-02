@@ -31,6 +31,7 @@
 
 <div class="container">
   <h1 id="title" class="display-4"></h1>
+  <div id="hours"></div>
   <nav aria-label="Day navigation">
     <ul class="pagination justify-content-center">
       <li id="previous" class="page-item disabled">
@@ -359,6 +360,7 @@
       const locationData = data[location];
       let stationData = locationData[station || ""];
       if (!stationData) {
+        $("hours").text(locationData["hours"]);
         stationData = {};
         const menus = {};
         const stationNames = Object.keys(locationData).sort();
@@ -387,6 +389,7 @@
         stationData.menus = menus;
       }
       const menus = stationData.menus;
+      $("hours").text(stationData["hours"]);
       const days = Object.keys(menus).filter(
           s => Object.keys(menus[s].menu).length !== 0
       ).sort((a, b) => dateStringToDay(a) - dateStringToDay(b));
