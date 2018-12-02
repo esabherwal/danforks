@@ -31,7 +31,7 @@
 
 <div class="container">
   <h1 id="title" class="display-4"></h1>
-  <h3 id="hours"></h3>
+  <div id="hours"></div>
   <nav aria-label="Day navigation">
     <ul class="pagination justify-content-center">
       <li id="previous" class="page-item disabled">
@@ -362,7 +362,7 @@
       if (!stationData) {
         var locHoursBeforeReplacement = locationData["hours"];
         var locHours = locHoursBeforeReplacement.replace("<br>", "  ");
-        document.getElementById("hours").innerHTML = "HEY";
+        $("#hours")[0].innerHTML = locHours;
         stationData = {};
         const menus = {};
         const stationNames = Object.keys(locationData).sort();
