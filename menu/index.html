@@ -358,17 +358,10 @@
     }
     $.getJSON("https://esabherwal.github.io/danforks/menu_scrape/menu_data.json", {}, data => {
       const locationData = data[location];
-      var locHours = locationData["hours"];
-      console.log(locHours);
-      // locHours = locHours.replace(/&lt;br&gt;/g," ");
-      console.log(locHours);
       let stationData = locationData[station || ""];
       if (!stationData) {
         var locHours = locationData["hours"];
-        console.log("HELLO");
-        console.log(locHours);
         locHours = locHours.replace(/&lt;br&gt;/g," ");
-        console.log(locHours);
         $("#hours").text(locHours);
         stationData = {};
         const menus = {};
