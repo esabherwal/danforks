@@ -54,7 +54,7 @@
 
         //DUC works for all tasks, yay
         var myLocation = {lat: 38.648057, lng: -90.310565}; //DUC
-        var initialZoom = 16.7;
+        var initialZoom = 16.5;
 
         let hoursOfOperationHTML = "<span style='text-decoration:underline;'>Hours of Operation</span> <br>"
         let openNow = "<span style='color:green'>OPEN NOW<br></span>"
@@ -62,7 +62,22 @@
         let closed = "<span style='color:red'>CLOSED NOW<br></span>"
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: initialZoom,
-          center: myLocation
+          center: myLocation,
+         //  styles: [{
+         //   "featureType": "poi.business",
+         //   "stylers": [{"visibility": "off"}]
+         //  },
+         //  {
+         //   "featureType": "transit",
+         //   "elementType": "labels.icon",
+         //   "stylers": [{"visibility": "off"}]
+         // }],
+         //  mapTypeControlOptions: {
+         //      mapTypeIds: [
+         //        google.maps.MapTypeId.ROADMAP,
+         //        google.maps.MapTypeId.SATELLITE
+         //      ]
+         //  }
         });
 
         var currentLocationMarker = new google.maps.Marker({
@@ -175,6 +190,11 @@
              position: pointLocation,
              map: map,
              title: locations[i][2],
+             label: {
+               text: locations[i][2],
+               fontSize: "12px",
+               fontWeight: "bold"
+             }
             });
           }
           else {
@@ -182,6 +202,11 @@
              position: pointLocation,
              map: map,
              title: locations[i][2],
+             label: {
+               text: locations[i][2],
+               fontSize: "12px",
+               fontWeight: "bold"
+             },
              icon: 'graymarkersmall.png',
             });
          }
