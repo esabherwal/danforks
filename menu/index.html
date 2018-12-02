@@ -360,9 +360,8 @@
       const locationData = data[location];
       let stationData = locationData[station || ""];
       if (!stationData) {
-        // var str = String(locationData["hours"]);
-        var str = "abc def abc"
-        var locHours = str.replace("abc", "WHATWHAT");
+        var str = String(locationData["hours"]);
+        var locHours = str.replace(/<br\s*[\/]?>/gi, "\n");
         $("#hours").text(locHours);
         stationData = {};
         const menus = {};
@@ -392,7 +391,9 @@
         stationData.menus = menus;
       }
       const menus = stationData.menus;
-      // $("#hours").text(stationData["hours"]);
+      var str2 = String(stationData["hours"]);
+      var staHours = str2.replace(/<br\s*[\/]?>/gi, "\n");
+      $("#hours").text(staHours);
       const days = Object.keys(menus).filter(
           s => Object.keys(menus[s].menu).length !== 0
       ).sort((a, b) => dateStringToDay(a) - dateStringToDay(b));
