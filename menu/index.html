@@ -7,6 +7,12 @@
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css"
+        integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos"
+        crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css"
+        integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT"
+        crossorigin="anonymous">
 
   <title>danforks</title>
 
@@ -304,6 +310,11 @@
             iconBox.appendChild(icon);
             iconBox.appendChild(document.createTextNode(" "));
           }
+          const helpSpan = document.createElement("span");
+          const helpIcon = document.createElement("i");
+          helpIcon.classList.add("fas", "fa-question-circle");
+          helpSpan.appendChild(helpIcon);
+          iconBox.appendChild(helpSpan);
           iconBox.addEventListener("click", e => {
             e.preventDefault();
           });
