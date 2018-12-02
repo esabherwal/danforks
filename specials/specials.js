@@ -12,13 +12,14 @@ function getWeekDays() {
   weekday[6] = "Saturday";
 
   //Today
-  var index = d.getDay();
+  let index = 1;
   var currentDate = weekday[index];
   document.getElementById("today").innerHTML = currentDate;
   displayData(currentDate);
 
   //Yesterday
-  document.getElementById("button1").onclick = function () {
+  document.getElementById("button1").addEventListener("click", e => {
+    e.preventDefault();
     if (index <= 0) {
       index = 7;
     }
@@ -27,26 +28,23 @@ function getWeekDays() {
     document.getElementById("today").innerHTML = currentDate;
     document.getElementById("locationdiv").innerHTML = "";
     displayData(currentDate);
-  };
+    return false;
+  });
 
   //Tomorrow
-  document.getElementById("button2").onclick = function () {
+  document.getElementById("button2").addEventListener("click", e => {
+    e.preventDefault();
     if (index >= 6) {
       index = -1;
     }
     currentDate = weekday[index + 1];
     index = index + 1
-    if (index >= 6) {
-      $("#previous").addClass("disabled");
-    }
-    else {
-      $("#previous").removeClass("disabled");
-    }
     // document.getElementById("today").innerHTML = currentDate;
     $("#today").text(currentDate);
     document.getElementById("locationdiv").innerHTML = "";
     displayData(currentDate);
-  };
+    return false;
+  });
 }
 
 getWeekDays()
