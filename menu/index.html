@@ -360,7 +360,7 @@
       const locationData = data[location];
       let stationData = locationData[station || ""];
       if (!stationData) {
-        $("hours").text(locationData["hours"]);
+        $("#hours").text(locationData["hours"]);
         stationData = {};
         const menus = {};
         const stationNames = Object.keys(locationData).sort();
@@ -389,7 +389,7 @@
         stationData.menus = menus;
       }
       const menus = stationData.menus;
-      $("hours").text(stationData["hours"]);
+      $("#hours").text(stationData["hours"]);
       const days = Object.keys(menus).filter(
           s => Object.keys(menus[s].menu).length !== 0
       ).sort((a, b) => dateStringToDay(a) - dateStringToDay(b));
