@@ -329,6 +329,14 @@
     return meal.toLowerCase().replace(/-*[^a-zA-Z\d-]+-*/g, "-");
   }
 
+  function dateStringToDay(dateString) {
+    const result = new Date(dateString).getDay();
+    // move Sunday to end of week
+    if (result === 0)
+      return 7;
+    return result;
+  }
+
   $(() => {
     const url = new URL(window.location.href);
     const location = url.searchParams.get("location");
@@ -372,7 +380,7 @@
       const menus = stationData.menus;
       const days = Object.keys(menus).filter(
           s => Object.keys(menus[s].menu).length !== 0
-      ).sort((a, b) => Date.parse(a) - Date.parse(b));
+      ).sort((a, b) => dateStringToDay(a) - dateStringToDay(b));
 
       const meals = [];
       for (const day of days) {
@@ -465,6 +473,8 @@
         $("#current-link").text(days[newDayIndex]);
       }
 
+      const maxIndex = Math.max(...Object.values(dataDivs).map(value => value.length));
+
       function disablePagerButtons() {
         if (dayIndex < 1) {
           dayIndex = 0;
@@ -487,7 +497,6 @@
         updateDay(dayIndex);
         return false;
       });
-      const maxIndex = Math.max(Object.values(dataDivs).map(value => value.length));
       $("#next-link").click(() => {
         dayIndex++;
         disablePagerButtons();
