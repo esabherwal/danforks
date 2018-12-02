@@ -360,7 +360,9 @@
       const locationData = data[location];
       let stationData = locationData[station || ""];
       if (!stationData) {
-        $("#hours").text(locationData["hours"]);
+        var locHoursBeforeReplacement = locationData["hours"];
+        var locHours = locHoursBeforeReplacement.replace("<br>", "  ");
+        $("#hours").text(locHours);
         stationData = {};
         const menus = {};
         const stationNames = Object.keys(locationData).sort();
