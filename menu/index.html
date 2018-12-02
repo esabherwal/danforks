@@ -362,7 +362,7 @@
       if (!stationData) {
         var locHours = locationData["hours"];
         // var locHours = locHours.replace(/&lt;br&gt;/g," ");
-        $("#hours").text = locHours;
+        $("#hours").text = locationData["hours"];
         stationData = {};
         const menus = {};
         const stationNames = Object.keys(locationData).sort();
