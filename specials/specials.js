@@ -127,6 +127,8 @@ function displayData(currentDate) {
         }
       }
     }
+    const ftext = $("#sFilter").val().toLowerCase();
+    refreshFilter(ftext)
   });
 
 }
