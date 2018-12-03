@@ -131,7 +131,7 @@ function displayData(currentDate) {
 
 }
 
-function createCard(locationName, food, foodData) {
+function createCard(location, food, foodData) {
   const card = document.createElement("div");
   card.classList.add("card", "my-2");
   const body = document.createElement("div");
