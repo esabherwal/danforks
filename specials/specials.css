@@ -2,24 +2,6 @@ body {
     padding-bottom: 50px;
 }
 
-a {
-    text-decoration: none;
-    display: inline-block;
-    padding: 8px 16px;
-}
-
-a:hover {
-    text-decoration: none;
-}
-
-a:visited {
-    text-decoration: none;
-} 
-
-a:active {
-    text-decoration: none;
-}
-
 ul {
     list-style: none; 
 }
@@ -34,10 +16,6 @@ ul {
     margin: 10px;
     text-align: center;
 }
-
-#locationdiv {
-    margin: 10px 35px 0px 0px;
-} 
 
 #dayNavId {
     margin: auto;
@@ -55,9 +33,4 @@ ul {
 
 .round {
     border-radius: 50%;
-}
-
-#filter-div {
-    margin-left: 40px;
-    margin-right: 35px;
 }
