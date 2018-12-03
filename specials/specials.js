@@ -99,6 +99,7 @@ function displayStationData(weekday, name, data) {
       for (const [food, foodData] of Object.entries(categoryData)) {
         if (!seenFoods.has(food)) {
           stationDiv.appendChild(createCard(name, food, foodData))
+          seenFoods.add(food);
         }
       }
     }
