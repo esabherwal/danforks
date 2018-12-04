@@ -362,7 +362,9 @@
       if (!stationData) {
         var str = String(locationData["hours"]);
         var locHours = str.replace(/<br\s*[\/]?>/gi, "\n");
-        $("#hours").text(locHours);
+        if (locHours != "undefined") {
+          $("#hours").text(locHours);
+        }
         stationData = {};
         const menus = {};
         const stationNames = Object.keys(locationData).sort();
@@ -393,7 +395,9 @@
       const menus = stationData.menus;
       var str2 = String(stationData["hours"]);
       var staHours = str2.replace(/<br\s*[\/]?>/gi, "\n");
-      $("#hours").text(staHours);
+      if (staHours == "undefined") {
+        $("#hours").text(staHours);
+      }
       const days = Object.keys(menus).filter(
           s => Object.keys(menus[s].menu).length !== 0
       ).sort((a, b) => dateStringToDay(a) - dateStringToDay(b));
