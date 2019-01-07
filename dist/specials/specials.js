@@ -75,7 +75,7 @@ function getWeekDays() {
 }
 
 const jsonData = $.getJSON(
-    "https://esabherwal.github.io/danforks/menu_scrape/specials_data.json"
+    "//esabherwal.github.io/danforks/menu_scrape/specials_data.json"
 );
 
 function displayStationData(weekday, name, data) {
@@ -184,7 +184,7 @@ function createCard(location, food, foodData) {
     });
     for (const label of labels) {
       const icon = document.createElement("img");
-      icon.src = "../menus/" + label + ".jpg";
+      icon.src = "/menus/" + label + ".jpg";
       iconBox.appendChild(icon);
       iconBox.appendChild(document.createTextNode(" "));
     }

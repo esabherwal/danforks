@@ -1,15 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        href="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
 
   <title>Map &middot; danforks</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#2d89ef">
+  <meta name="msapplication-config" content="/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
 </head>
+
 <body>
 <div class="d-flex flex-column" style="height: 100vh;">
   <div id="map" class="flex-grow-1"></div>
@@ -22,21 +33,21 @@
         <div class="col-4 px-0">
           <ul class="navbar-nav">
             <li class="nav-item mr-auto active">
-              <a id="map-link" class="nav-link" href="./">Map <span class="sr-only">(current)</span></a>
+              <a id="map-link" class="nav-link" href="/map/">Map <span class="sr-only">(current)</span></a>
             </li>
           </ul>
         </div>
         <div class="col-4 px-0">
           <ul class="navbar-nav">
             <li class="nav-item mx-auto">
-              <a id="menus-link" class="nav-link" href="../menus/">Menus</a>
+              <a id="menus-link" class="nav-link" href="/menus/">Menus</a>
             </li>
           </ul>
         </div>
         <div class="col-4 px-0">
           <ul class="navbar-nav">
             <li class="nav-item ml-auto">
-              <a id="specials-link" class="nav-link" href="../specials/">Specials</a>
+              <a id="specials-link" class="nav-link" href="/specials/">Specials</a>
             </li>
           </ul>
         </div>
@@ -47,7 +58,7 @@
 
 <script src="/map/script.js"></script>
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIyX07lj9dcK1-R0iXoEzOhoQjbBTwHRM&callback=initMap">
+        src="//maps.googleapis.com/maps/api/js?key=AIzaSyDIyX07lj9dcK1-R0iXoEzOhoQjbBTwHRM&callback=initMap">
 </script>
 
 </body>

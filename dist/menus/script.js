@@ -1,6 +1,8 @@
 function populateData(openLocations) {
-  $.getJSON("https://esabherwal.github.io/danforks/menu_scrape/menu_data.json",
-      {}, data => {
+  $.getJSON(
+      "//esabherwal.github.io/danforks/menu_scrape/menu_data.json",
+      {},
+      data => {
         const locationsDiv = document.getElementById("locations");
         for (const location of Object.keys(data).sort()) {
           const stationNames = Object.keys(data[location]).sort();
@@ -18,7 +20,7 @@ function populateData(openLocations) {
             menu.classList.add("dropdown-menu");
             const allStations = document.createElement("a");
             allStations.classList.add("dropdown-item");
-            allStations.href = "../menu/?location=" + encodeURIComponent(
+            allStations.href = "/menu/?location=" + encodeURIComponent(
                 location);
             allStations.innerText = "All stations";
             menu.appendChild(allStations);
@@ -28,7 +30,7 @@ function populateData(openLocations) {
             for (const station of stationNames) {
               const item = document.createElement("a");
               item.classList.add("dropdown-item");
-              item.href = "../menu/?location="
+              item.href = "/menu/?location="
                   + encodeURIComponent(location) + "&station="
                   + encodeURIComponent(station);
               item.innerText = station;
@@ -39,7 +41,7 @@ function populateData(openLocations) {
             $(button).dropdown();
           } else {
             const button = document.createElement("a");
-            button.href = "../menu/?location="
+            button.href = "/menu/?location="
                 + encodeURIComponent(location);
             button.classList.add("btn", "btn-block", "my-2");
             button.classList.add("btn-secondary"); // TODO based on open

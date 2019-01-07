@@ -66,7 +66,7 @@ function populateWithData(element, mealData, location) {
         });
         for (const label of labels) {
           const icon = document.createElement("img");
-          icon.src = "../menus/" + label + ".jpg";
+          icon.src = "/menus/" + label + ".jpg";
           iconBox.appendChild(icon);
           iconBox.appendChild(document.createTextNode(" "));
         }
@@ -117,8 +117,10 @@ $(() => {
   } else {
     $("#title").text(location);
   }
-  $.getJSON("https://esabherwal.github.io/danforks/menu_scrape/menu_data.json",
-      {}, data => {
+  $.getJSON(
+      "//esabherwal.github.io/danforks/menu_scrape/menu_data.json",
+      {},
+      data => {
         const locationData = data[location];
         let stationData = locationData[station || ""];
         if (!stationData) {
