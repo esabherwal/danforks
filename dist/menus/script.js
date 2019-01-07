@@ -1,10 +1,3 @@
-const taskString = new URL(window.location.href).searchParams.get("task");
-const taskNumber = taskString ? parseInt(taskString) : 1;
-document.getElementById("map-link").href = "../maps/?task=" + taskNumber;
-document.getElementById("menus-link").href = "./?task=" + taskNumber;
-document.getElementById("specials-link").href = "../specials/?task="
-    + taskNumber;
-
 function populateData(openLocations) {
   $.getJSON("https://esabherwal.github.io/danforks/menu_scrape/menu_data.json",
       {}, data => {
@@ -16,11 +9,7 @@ function populateData(openLocations) {
             div.classList.add("dropdown");
             const button = document.createElement("button");
             button.classList.add("btn", "btn-block", "dropdown-toggle", "my-2");
-            if (taskNumber === 1 && !openLocations.hasOwnProperty(location)) {
-              button.classList.add("btn-secondary");
-            } else {
-              button.classList.add("btn-primary");
-            }
+            button.classList.add("btn-secondary"); // TODO based on open
             button.type = "button";
             button.setAttribute("data-toggle", "dropdown");
             button.innerText = location;
@@ -39,7 +28,7 @@ function populateData(openLocations) {
             for (const station of stationNames) {
               const item = document.createElement("a");
               item.classList.add("dropdown-item");
-              item.href = "../menu/?task=" + taskNumber + "&location="
+              item.href = "../menu/?location="
                   + encodeURIComponent(location) + "&station="
                   + encodeURIComponent(station);
               item.innerText = station;
@@ -50,14 +39,10 @@ function populateData(openLocations) {
             $(button).dropdown();
           } else {
             const button = document.createElement("a");
-            button.href = "../menu/?task=" + taskNumber + "&location="
+            button.href = "../menu/?location="
                 + encodeURIComponent(location);
             button.classList.add("btn", "btn-block", "my-2");
-            if (taskNumber === 1 && !openLocations.hasOwnProperty(location)) {
-              button.classList.add("btn-secondary");
-            } else {
-              button.classList.add("btn-primary");
-            }
+            button.classList.add("btn-secondary"); // TODO based on open
             button.role = "button";
             button.innerText = location;
             locationsDiv.appendChild(button);
@@ -70,10 +55,10 @@ function populateData(openLocations) {
 }
 
 $(() => {
-  if (taskNumber === 1) {
-    $.getJSON("https://esabherwal.github.io/danforks/menus/open.json", {},
-        populateData);
-  } else {
-    populateData();
-  }
+  // if (taskNumber === 1) {
+  //   $.getJSON("https://esabherwal.github.io/danforks/menus/open.json", {},
+  //       populateData);
+  // } else {
+  populateData(); // TODO based on open
+  // }
 });

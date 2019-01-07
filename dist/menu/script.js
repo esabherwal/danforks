@@ -1,19 +1,6 @@
-const taskString = new URL(window.location.href).searchParams.get("task");
-const taskNumber = taskString ? parseInt(taskString) : 1;
-document.getElementById("map-link").href = "../maps/?task=" + taskNumber;
-document.getElementById("menus-link").href = "../menus/?task=" + taskNumber;
-document.getElementById("specials-link").href = "../specials/?task="
-    + taskNumber;
-
 function getDefaultMeal(meals) {
-  if (taskNumber === 1) {
-    if (meals.includes("DINNER")) {
-      return "DINNER";
-    }
-  } else {
-    if (meals.includes("LUNCH")) {
-      return "LUNCH";
-    }
+  if (meals.includes("LUNCH")) {
+    return "LUNCH";
   }
   return meals[0];
 }

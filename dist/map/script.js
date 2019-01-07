@@ -1,18 +1,5 @@
-const taskString = new URL(window.location.href).searchParams.get("task");
-const taskNumber = taskString ? parseInt(taskString) : 1;
-document.getElementById("map-link").href = "./?task=" + taskNumber;
-document.getElementById("menus-link").href = "../menus/?task=" + taskNumber;
-document.getElementById("specials-link").href = "../specials/?task="
-    + taskNumber;
-
 //adapted from https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple
 function initMap() {
-  //Task 1: Monday 9:30pm DUC, change this for all other tasks and it'll autochoose
-  const task = "task" + taskNumber;
-
-  //var campusCenter = {lat: 38.647648, lng: -90.310810}; //for reference
-  //var myLocation = {lat: 38.648313, lng: -90.308118}; //Olin
-  //var myLocation = {lat: 38.649325, lng: -90.307864}; //Louderman
 
   //DUC works for all tasks, yay
   var myLocation = {lat: 38.648057, lng: -90.310565}; //DUC
@@ -61,7 +48,7 @@ function initMap() {
         lng: -90.310455
       },
       title: "DUC",
-      open: task !== "task1", //open for all but task 1
+      open: false, // TODO determine if open
       hours: hoursOfOperationHTML + "M-F: 11a-3p <br> Sa, Su: Closed",
       link: "DUC"
     },
@@ -82,7 +69,7 @@ function initMap() {
         lng: -90.304714
       },
       title: "Grounds for Change",
-      open: task !== "task1", //open for all but task 1,
+      open: false, // TODO determine if open
       hours: hoursOfOperationHTML + "<br>M-F: 8a-2p<br>",
       link: "Grounds%20for%20Change"
     },
@@ -92,7 +79,7 @@ function initMap() {
         lng: -90.306066
       },
       title: "Stanley's",
-      open: task !== "task1", //open for all but task 1
+      open: false, // TODO determine if open
       hours: hoursOfOperationHTML + "M-F: 9:30a-3p<br> Sa-Su: Closed",
       link: "Stanley’s"
     },
@@ -113,7 +100,7 @@ function initMap() {
         lng: -90.306184
       },
       title: "Holmes Lounge",
-      open: task !== "task1", //open for all but task 1,
+      open: false, // TODO determine if open
       hours: hoursOfOperationHTML + "M-F: 7:30a-3p<br> Sa-Su: Closed",
       link: "Holmes%20Lounge"
     },
@@ -123,7 +110,7 @@ function initMap() {
         lng: -90.302662
       },
       title: "Etta's",
-      open: task !== "task1", //open for all but task 1
+      open: false, // TODO determine if open
       hours: hoursOfOperationHTML
           + "M-Th: 7:45a-6p<br> Fr: 7:45a-3p<br> Sa-Su: Closed",
       link: "Etta’s"
@@ -134,7 +121,7 @@ function initMap() {
         lng: -90.307456
       },
       title: "Whispers Café",
-      open: task !== "task1", //open for all but task 1
+      open: false, // TODO determine if open
       hours: hoursOfOperationHTML
           + "M-Th, 7:30am-12am<br> F: 7:30am-3pm<br> Sat: 9am-1pm<br> Sun: 9am-12am",
       link: "Whispers%20Café"
@@ -145,7 +132,7 @@ function initMap() {
         lng: -90.310705
       },
       title: "Café Bergson",
-      open: task !== "task1", //open for all but task 1
+      open: false, // TODO determine if open
       hours: hoursOfOperationHTML
           + "M-F: 7:30a - 5p<br> Sa: 9a-3p<br> Su: 9a-7p ",
       link: "DUC&station=Café%20Bergson"
@@ -156,7 +143,7 @@ function initMap() {
         lng: -90.312092
       },
       title: "Law Café",
-      open: task !== "task1",
+      open: false, // TODO determine if open
       hours: hoursOfOperationHTML + "M-Th: 8a-3p<br>Fr: 8a-2p<br>Sa-Su: Closed",
       link: "Law%20Café"
     }
@@ -179,7 +166,7 @@ function initMap() {
     bodyContent.appendChild(p);
     const a = document.createElement("a");
     a.classList.add("btn", "btn-light");
-    a.href = "../menu/?task=" + taskNumber + "&location=" + location.link;
+    a.href = "/menu/?location=" + location.link;
     a.role = "button";
     a.innerText = "Menu";
     bodyContent.appendChild(a);
