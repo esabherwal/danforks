@@ -33,8 +33,9 @@ function populateWithData(element, mealData, location) {
         $("#td-carbs").text(macros.carbs);
         $("#td-fat").text(macros.fat);
         $("#td-protein").text(macros.protein);
-        const nutritionUrl = macros.nutrition_url;
-        document.getElementById("modal-button").href = nutritionUrl;
+        const nutritionUrl = macros.nutrition_url.substring(2);
+        const modalButton = document.getElementById("modal-button");
+        modalButton.href = "//data.danforks.com" + nutritionUrl;
         $("#label-title").text(food);
         $("#macro-modal").modal("show");
         return false;
@@ -118,7 +119,7 @@ $(() => {
     $("#title").text(location);
   }
   $.getJSON(
-      "//esabherwal.github.io/danforks/menu_scrape/menu_data.json",
+      "//data.danforks.com/menu_data.json",
       {},
       data => {
         const locationData = data[location];

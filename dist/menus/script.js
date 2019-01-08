@@ -1,6 +1,6 @@
 function populateData(openLocations) {
   $.getJSON(
-      "//esabherwal.github.io/danforks/menu_scrape/menu_data.json",
+      "//data.danforks.com/menu_data.json",
       {},
       data => {
         const locationsDiv = document.getElementById("locations");

@@ -23,8 +23,6 @@ function refreshFilter(ftext) {
   document.getElementById("noResults").hidden = numVisible >= 1;
 }
 
-
-
 // cycles through weekdays based off button click in either direction
 function getWeekDays() {
 
@@ -74,9 +72,7 @@ function getWeekDays() {
   });
 }
 
-const jsonData = $.getJSON(
-    "//esabherwal.github.io/danforks/menu_scrape/specials_data.json"
-);
+const jsonData = $.getJSON("//data.danforks.org/specials_data.json");
 
 function displayStationData(weekday, name, data) {
   const menus = data.menus;
