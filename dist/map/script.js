@@ -27,12 +27,6 @@ function initMap() {
     }
   });
 
-  var currentLocationMarker = new google.maps.Marker({
-    position: myLocation,
-    icon: "currentLocationDotSmall.png",
-    map: map
-  });
-
   const openNow = document.createElement("span");
   openNow.style.color = "green";
   openNow.innerText = "OPEN NOW";
