@@ -1,7 +1,8 @@
 \.DS_Store
 
-.idea/**/workspace.xml
-.idea/**/tasks.xml
-.idea/**/usage.statistics.xml
-.idea/**/dictionaries
-.idea/**/shelf
+dist/.idea/**/workspace.xml
+dist/.idea/**/tasks.xml
+dist/.idea/**/usage.statistics.xml
+dist/.idea/**/dictionaries
+dist/.idea/**/shelf
+
