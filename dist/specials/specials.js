@@ -72,7 +72,7 @@ function getWeekDays() {
   });
 }
 
-const jsonData = $.getJSON("//data.danforks.org/specials_data.json");
+const jsonData = $.getJSON("//data.danforks.com/specials_data.json");
 
 function displayStationData(weekday, name, data) {
   const menus = data.menus;
@@ -180,7 +180,7 @@ function createCard(location, food, foodData) {
     });
     for (const label of labels) {
       const icon = document.createElement("img");
-      icon.src = "/menus/" + label + ".jpg";
+      icon.src = "/resources/" + label + ".jpg";
       iconBox.appendChild(icon);
       iconBox.appendChild(document.createTextNode(" "));
     }

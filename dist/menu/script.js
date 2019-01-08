@@ -67,7 +67,7 @@ function populateWithData(element, mealData, location) {
         });
         for (const label of labels) {
           const icon = document.createElement("img");
-          icon.src = "/menus/" + label + ".jpg";
+          icon.src = "/resources/" + label + ".jpg";
           iconBox.appendChild(icon);
           iconBox.appendChild(document.createTextNode(" "));
         }
