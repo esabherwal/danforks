@@ -1,4 +1,3 @@
-import json
 import os
 
 import boto3
@@ -10,7 +9,7 @@ import scrape_menus
 import scrape_metadata
 
 
-def lambda_handler(event, context):
+def main():
     s3 = boto3.client('s3')
 
     print('scraping metadata')
@@ -24,6 +23,17 @@ def lambda_handler(event, context):
 
     print('scraping menus')
     scrape_menus.main()
+
+    print('getting all nutrition')
+    get_all_nutrition.main()
+    print('uploading nutrition')
+    for filename in os.listdir('/tmp/danforks-data/nutrition/'):
+        s3.upload_file(
+                '/tmp/danforks-data/nutrition/' + filename,
+                'data.danforks.com',
+                'nutrition/' + filename
+        )
+
     print('getting calories')
     get_calories.main()
     print('uploading menu data')
@@ -42,21 +52,6 @@ def lambda_handler(event, context):
             'specials-data.json'
     )
 
-    print('getting all nutrition')
-    get_all_nutrition.main()
-    print('uploading nutrition')
-    for filename in os.listdir('/tmp/danforks-data/nutrition/'):
-        s3.upload_file(
-                '/tmp/danforks-data/nutrition/' + filename,
-                'data.danforks.com',
-                'nutrition/' + filename
-        )
-
-    return {
-        'statusCode': 200,
-        'body': json.dumps('Completed')
-    }
-
 
 if __name__ == '__main__':
-    lambda_handler(None, None)
+    main()
