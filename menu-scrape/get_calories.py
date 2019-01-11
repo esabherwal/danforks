@@ -1,4 +1,4 @@
-# Get the calories for each menu item in menu_data.json and write back to the same file.
+# Get the calories for each menu item in menu-data.json and write back to the same file.
 # This should have been part of the original scrape, but I forgot.
 import collections
 import json
@@ -7,7 +7,7 @@ from lxml import html
 
 
 def main():
-    with open('/tmp/danforks-data/menu_data.json') as f:
+    with open('/tmp/danforks-data/menu-data.json') as f:
         full_menus = json.load(f, object_pairs_hook=collections.OrderedDict)
         for loc in full_menus:
             loc_data = full_menus[loc]
@@ -26,7 +26,7 @@ def main():
                                 add_macros(item_data)
 
     print('writing')
-    with open('/tmp/danforks-data/menu_data.json', 'w+') as outfile:
+    with open('/tmp/danforks-data/menu-data.json', 'w+') as outfile:
         json.dump(full_menus, outfile)
 
 

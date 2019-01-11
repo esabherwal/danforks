@@ -75,4 +75,5 @@ def main():
         writer.writerows(place_metadata)
 
 
-main()
+if __name__ == '__main__':
+    main()

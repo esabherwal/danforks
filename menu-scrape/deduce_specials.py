@@ -82,7 +82,7 @@ def main():
                                 print(loc, station, date, meal, category, item)
                                 add_special(full_menus, loc, station, date, meal, category, item)
 
-        with open('/tmp/danforks-data/specials_data.json', 'w+') as outfile:
+        with open('/tmp/danforks-data/specials-data.json', 'w+') as outfile:
             json.dump(specials, outfile)
 
 

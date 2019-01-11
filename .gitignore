@@ -11,4 +11,7 @@
 **/.idea/modules
 
 menu-scrape/venv/
+menu-scrape/__pycache__/
+menu-scrape/package/
+menu-scrape/function.zip
 

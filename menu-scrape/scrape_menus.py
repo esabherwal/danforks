@@ -110,7 +110,7 @@ def main():
 
             menu_data[place_name][station_name] = this_station
 
-    with open('/tmp/danforks-data/menu_data.json', 'w+') as outfile:
+    with open('/tmp/danforks-data/menu-data.json', 'w+') as outfile:
         json.dump(menu_data, outfile)
 
 
