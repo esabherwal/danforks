@@ -1,37 +1,57 @@
 # Get the calories for each menu item in menu_data.json and write back to the same file.
 # This should have been part of the original scrape, but I forgot.
-import json
-from lxml import html
-import requests
 import collections
+import json
+
+from lxml import html
 
 
-full_menus = {}
+def main():
+    with open('/tmp/danforks-data/menu_data.json') as f:
+        full_menus = json.load(f, object_pairs_hook=collections.OrderedDict)
+        for loc in full_menus:
+            loc_data = full_menus[loc]
+            for station in loc_data:
+                print(loc, station)
+                menus_data = loc_data[station]['menus']
+                for date in menus_data:
+                    menu_data = menus_data[date]['menu']
+                    for meal in menu_data:
+                        print(meal, date)
+                        meal_data = menu_data[meal]
+                        for category in meal_data:
+                            category_data = meal_data[category]
+                            for item in category_data:
+                                item_data = category_data[item]
+                                add_macros(item_data)
 
-with open('menu_data.json') as f:
-    full_menus = json.load(f, object_pairs_hook=collections.OrderedDict)
-    for loc in full_menus:
-        for station in full_menus[loc]:
-            print loc, station
-            for date in full_menus[loc][station]['menus']:
-                for meal in full_menus[loc][station]['menus'][date]['menu']:
-                    print meal, date
-                    for category in full_menus[loc][station]['menus'][date]['menu'][meal]:
-                        for item in full_menus[loc][station]['menus'][date]['menu'][meal][category]:
-                            nutrition_url = full_menus[loc][station]['menus'][date]['menu'][meal][category][item]["nutrition_url"]
-                            with open(nutrition_url, "r") as nutrition_f:
-                                print nutrition_url
-                                nutrition_tree = html.fromstring(nutrition_f.read())
-                                calories = nutrition_tree.xpath('//b[starts-with(text(),"Calories")]/text()')[0].split()[1]
-                                fat = nutrition_tree.xpath('//b[starts-with(text(),"Total Fat")]/../following-sibling::font/text()')[0]
-                                protein = nutrition_tree.xpath('//b[starts-with(text(),"Protein")]/../following-sibling::font/text()')[0]
-                                carbs = nutrition_tree.xpath('//b[starts-with(text(),"Tot. Carb.")]/../following-sibling::font/text()')[0]
-                                full_menus[loc][station]['menus'][date]['menu'][meal][category][item]['calories'] = calories
-                                full_menus[loc][station]['menus'][date]['menu'][meal][category][item]['fat'] = fat
-                                full_menus[loc][station]['menus'][date]['menu'][meal][category][item]['protein'] = protein
-                                full_menus[loc][station]['menus'][date]['menu'][meal][category][item]['carbs'] = carbs
-            
+    print('writing')
+    with open('/tmp/danforks-data/menu_data.json', 'w+') as outfile:
+        json.dump(full_menus, outfile)
 
-print 'writing'                        
-with open('menu_data.json', 'w') as outfile:  
-     json.dump(full_menus, outfile)
+
+def add_macros(item_data):
+    nutrition_url = item_data['nutrition_url']
+    with open(nutrition_url) as nutrition_f:
+        print(nutrition_url)
+        nutrition_tree = html.fromstring(nutrition_f.read())
+        calories = nutrition_tree.xpath(
+                '//b[starts-with(text(),"Calories")]/text()'
+        )[0].split()[1]
+        fat = nutrition_tree.xpath(
+                '//b[starts-with(text(),"Total Fat")]/../following-sibling::font/text()'
+        )[0]
+        protein = nutrition_tree.xpath(
+                '//b[starts-with(text(),"Protein")]/../following-sibling::font/text()'
+        )[0]
+        carbs = nutrition_tree.xpath(
+                '//b[starts-with(text(),"Tot. Carb.")]/../following-sibling::font/text()'
+        )[0]
+        item_data['calories'] = calories
+        item_data['fat'] = fat
+        item_data['protein'] = protein
+        item_data['carbs'] = carbs
+
+
+if __name__ == '__main__':
+    main()

@@ -6,3 +6,9 @@
 **/.idea/**/dictionaries
 **/.idea/**/shelf
 
+**/.idea/modules.xml
+**/.idea/*.iml
+**/.idea/modules
+
+menu-scrape/venv/
+
